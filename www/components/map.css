@@ -1,5 +1,6 @@
 @import "../jspm_packages/github/Leaflet/Leaflet@0.7.3/dist/leaflet.css";
 map{
-	flex: auto;
-	overflow-y: auto;
+	width: 100%;
+	display: block;
+	align-items: stretch;
 }
