@@ -2,6 +2,8 @@ System.config({
   "transpiler": "babel",
   "babelOptions": {
     "optional": [
+      "es7.decorators",
+      "es7.classProperties",
       "runtime"
     ]
   },
@@ -16,6 +18,7 @@ System.config({
   "map": {
     "Leaflet/Leaflet": "github:Leaflet/Leaflet@0.7.3",
     "aurelia-bootstrapper": "github:aurelia/bootstrapper@0.13.1",
+    "aurelia-dependency-injection": "github:aurelia/dependency-injection@0.8.1",
     "aurelia-framework": "github:aurelia/framework@0.12.0",
     "babel": "npm:babel-core@5.5.7",
     "babel-runtime": "npm:babel-runtime@5.5.7",

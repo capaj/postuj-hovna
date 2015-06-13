@@ -1,0 +1,5 @@
+@import "../jspm_packages/github/Leaflet/Leaflet@0.7.3/dist/leaflet.css";
+map{
+	flex: auto;
+	overflow-y: auto;
+}

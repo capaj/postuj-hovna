@@ -10,6 +10,7 @@
     "dependencies": {
       "Leaflet/Leaflet": "github:Leaflet/Leaflet@^0.7.3",
       "aurelia-bootstrapper": "github:aurelia/bootstrapper@^0.13.1",
+      "aurelia-dependency-injection": "github:aurelia/dependency-injection@^0.8.1",
       "aurelia-framework": "github:aurelia/framework@^0.12.0",
       "bootstrap": "github:twbs/bootstrap@^3.3.4",
       "moment": "github:moment/moment@^2.10.3"

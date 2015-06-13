@@ -1,5 +1,5 @@
 import * as bootstrap from 'bootstrap';
-import Leaflet from 'Leaflet/Leaflet';
+import Map from './components/map';
 
 export class PostujHovna{
 	constructor(){
