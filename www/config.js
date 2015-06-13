@@ -24,6 +24,7 @@ System.config({
     "babel-runtime": "npm:babel-runtime@5.5.7",
     "bootstrap": "github:twbs/bootstrap@3.3.4",
     "core-js": "npm:core-js@0.9.16",
+    "exif-js/exif-js": "github:exif-js/exif-js@master",
     "moment": "github:moment/moment@2.10.3",
     "moonridge-client": "github:capaj/Moonridge-client@0.8.5",
     "github:aurelia/binding@0.7.3": {

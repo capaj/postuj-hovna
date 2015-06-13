@@ -1,14 +1,28 @@
 /**
  * for local development/debugging
  */
-
+var cors = require('cors');
 var bs = require('browser-sync').create();
 var gulp = require('gulp');
 require('./gulpfile');
 
 bs.init({
 	open: false,
-	server: ['./www']
+	server: {
+		baseDir: "./www",
+		middleware: [
+			function(req, res, next) {
+				res.setHeader('Access-Control-Expose-Headers', 'Accept-Ranges, Content-Encoding, Content-Length, Content-Range');
+				next();
+			},
+			function(req, res, next) {
+				res.setHeader('Access-Control-Allow-Origin', 'example.com');
+				res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+				res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+				next();
+			}]
+	}
 });
 
 var from = 'www/**/';

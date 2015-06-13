@@ -24,7 +24,6 @@ export class Map {
 				id: 'capaj.024572e4',
 				accessToken: 'pk.eyJ1IjoiY2FwYWoiLCJhIjoiODdmMTU1NWQ2NjIxMWEwNjJkZWY4NDQ0MzlkZTVkMWYifQ.0GJycAMIsKzFO6vR8EfTDA'
 			}).addTo(self.map);
-
 			navigator.geolocation.getCurrentPosition(pos => {
 				var crd = pos.coords;
 				self.map.setView([crd.latitude, crd.longitude], 17);
@@ -33,6 +32,9 @@ export class Map {
 				console.warn('ERROR(' + err.code + '): ' + err.message);
 			}, options);
 		}, 100);
+	}
+	onValueChanged(val){
+		self.map.setView(val, 17);
 	}
 
 }
