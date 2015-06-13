@@ -9,8 +9,8 @@
 		</div>
 
 		<div class="post item">
-			<img src="img/bin-plain.svg" class="big-icon clickable img-responsive" width="160px" if.bind="!files">
-			<span class="glyphicon glyphicon-camera" if.bind="!files" onclick.call="clickInput()"></span>
+			<img src="img/bin-plain.svg" class="big-icon img-responsive" width="160px" if.bind="!files">
+			<span class="glyphicon glyphicon-camera clickable" if.bind="!files" onclick.call="clickInput()" ></span>
 			<!--<span class="glyphicon glyphicon-camera"></span>-->
 			<input class="glyphicon glyphicon-camera" type="file" accept="image/*;capture=camera" name="images"
 				   onchange.call="handleOnFilesSelected($event)" multiple>
