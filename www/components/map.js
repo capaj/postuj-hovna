@@ -1,6 +1,7 @@
 import {customElement, inject, bindable, bindingMode} from 'aurelia-framework';
 import Leaflet from 'Leaflet/Leaflet';
 import _ from 'lodash';
+import icons from './map-icons'
 
 var defaultCenter = [50.051611, 14.407032];
 

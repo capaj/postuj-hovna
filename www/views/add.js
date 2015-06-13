@@ -1,4 +1,6 @@
 import EXIF from 'exif-js/exif-js';
+import icons from '../components/map-icons';
+
 
 export class Add {
 	constructor() {
@@ -6,6 +8,11 @@ export class Add {
 	}
 	activate(params, routeConfig) {
 		this.route = routeConfig;
+		if (this.route === 'pridat-kos') {
+			this.newIcon = icons.bin.plain;
+		}else{
+			this.newIcon = icons.poo;
+		}
 	}
 	clickInput(){
 		$(':file').click();
@@ -46,12 +53,12 @@ export class Add {
 
 		EXIF.getData(ev.target, function() {
 			var pos = {
-				long: toDecimal(EXIF.getTag(this, "GPSLongitude")),
+				lng: toDecimal(EXIF.getTag(this, "GPSLongitude")),
 				lat: toDecimal(EXIF.getTag(this, "GPSLatitude"))
 			};
 
-			console.log("was taken on " + pos.lat + " " + pos.long);
-			self.GPS = [pos.lat, pos.long];
+			console.log("was taken on " + pos.lat + " " + pos.lng);
+			self.GPS = pos;
 		});
 	}
 }
