@@ -15,7 +15,7 @@
 			<span class="glyphicon glyphicon-map-marker"></span>
 		</div>
 		<div class="post item">
-			<img src="img/poo-plain.svg" class="big-icon clickable" width="160px" onclick.call="clickInput()" if.bind="!files">
+			<img src="img/bin-plain.svg" class="big-icon clickable" width="160px" onclick.call="clickInput()" if.bind="!files">
 			<span class="glyphicon glyphicon-camera"></span>
 			<input class="glyphicon glyphicon-camera" type="file" accept="image/*;capture=camera" name="images"
 				   onchange.call="handleOnFilesSelected($event)" multiple>
@@ -26,18 +26,22 @@
 
 			<span class="glyphicon glyphicon-pencil"></span>
 		</div>
-		<div class="post item half">
+		<div class="post good item half">
 			<img src="img/bin-good.svg" width="45px">
 			DOST PYTLÍKŮ
 		</div>
-		<div class="post item half">
+		<div class="post bad item half">
 			<img src="img/bin-bad.svg" width="45px">
 			MÁLO PYTLÍKŮ
+		</div>
+		<div class="hidden post item half">
+			<img src="img/bin-bad.svg" width="45px">
+			VUBEC!!!! OMG@!$@#!
 		</div>
 		<div class="post button ok">
 			<span class="glyphicon glyphicon-ok"></span>
 		</div>
-		<div class="post button delete">
+		<div class="hidden post button delete">
 			<span class="glyphicon glyphicon-trash"></span>
 		</div>
 	</div>
