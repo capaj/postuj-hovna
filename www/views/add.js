@@ -2,13 +2,17 @@ import EXIF from 'exif-js/exif-js';
 
 export class Add {
 	constructor() {
-		this.files = [];
+
 		console.log('add');
 	}
 	activate(params, routeConfig) {
 		this.route = routeConfig;
 	}
+	clickInput(){
+		$(':file').click();
+	}
 	handleOnFilesSelected(evt) {
+		this.files = [];
 		var self = this;
 		var files = evt.target.files; // FileList object
 

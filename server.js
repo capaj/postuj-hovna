@@ -1,7 +1,6 @@
 /**
  * for local development/debugging
  */
-var cors = require('cors');
 var bs = require('browser-sync').create();
 var gulp = require('gulp');
 require('./gulpfile');

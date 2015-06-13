@@ -1,3 +1,7 @@
-.loaded-photo{
+.loaded-photo {
 	max-width: 80vw;
+}
+
+input[type=file] {
+	display: none;
 }

@@ -11,16 +11,18 @@
 			<img src="img/bin.svg" width="45px">
 		</div>
 
-		<div class="post item" >
+		<div class="post item" if.bind="GPS">
 			<span class="glyphicon glyphicon-map-marker"></span>
 		</div>
 		<div class="post item">
-
+			<span class="glyphicon glyphicon-camera clickable" onclick.call="clickInput()" if.bind="!files"></span>
 			<input class="glyphicon glyphicon-camera" type="file" accept="image/*;capture=camera" name="images"
 				   onchange.call="handleOnFilesSelected($event)" multiple>
+
+			<img class="loaded-photo" repeat.for="photo of files" src="${photo}" onload.call="$parent.getGPS($event)">
 		</div>
 		<div class="post item photo" if.bind="files.length > 0">
-			<img class="loaded-photo" repeat.for="photo of files" src="${photo}" onload.call="$parent.getGPS($event)">
+
 			<span class="glyphicon glyphicon-pencil"></span>
 		</div>
 		<div class="post item half">
