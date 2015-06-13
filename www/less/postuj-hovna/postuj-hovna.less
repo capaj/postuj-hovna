@@ -68,11 +68,17 @@ router-view{
 	border-radius: 3px;
 	&.item {
 		background: fade(white, 5%);
-		font-size: 6em;
-		color: lighten(@brown5, 0%);
+		font-size: 2em;
+		color: white;
 		height: 16rem;
 		.glyphicon {
-			vertical-align: bottom;
+			padding-top: 7rem;
+		}
+		.big-icon {
+			position: absolute;
+			left: 50%;
+			margin-left: -80px;
+			opacity: 0.1;
 		}
 		&.photo {
 			.glyphicon {
@@ -84,7 +90,6 @@ router-view{
 			padding: 1rem 2rem;
 			text-align: left;
 			font-size: 1.5em;
-			color: white;
 			.glyphicon {
 				font-size: 1.5em;
 				padding-right: 2rem;
