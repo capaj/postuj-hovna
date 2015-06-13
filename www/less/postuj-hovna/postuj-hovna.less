@@ -7,6 +7,9 @@
 /*@brown: darken(#3A1F07, 4%);*/
 @brown: darken(#4A2F2c, 4%);
 
+@green: fade(green, 70%);
+@red: fade(red, 70%);
+
 body{
 	display: flex;
 	flex-direction: column;
@@ -25,10 +28,18 @@ router-view{
 	background: darken(@brown, 2%);
 	font-size: 1.2em;
 	color: lighten(@brown5, 0%);
+	text-align: center;
 	.glyphicon {
+		margin-top: 3px; /* position fix */
+	}
+	.back {
+		float: left;
+	}
+	.user {
 		float: right;
 	}
 }
+
 
 .add {
 	position: absolute;
@@ -43,12 +54,53 @@ router-view{
 	&.bin {
 		right: 2rem;
 	}
+	&.poo {
+		left: 2rem;
+	}
 	.glyphicon {
 		padding-top: 0.4em;
 	}
 }
 
-.map-container{
-	display: block;
-	z-index: -1;
+.post {
+	margin: 2rem;
+	text-align: center;
+	border-radius: 3px;
+	&.item {
+		background: fade(white, 5%);
+		font-size: 6em;
+		color: lighten(@brown5, 0%);
+		height: 16rem;
+		.glyphicon {
+			vertical-align: bottom;
+		}
+		&.photo {
+			background: url('https://il-rockisland.civicplus.com/images/pages/N754//50-50-Sidewalk-and-Curb-Program.JPG');
+			.glyphicon {
+				color: fade(white, 50%);
+			}
+		}
+		&.half {
+			height: auto;
+			padding: 1rem 2rem;
+			text-align: left;
+			font-size: 1.75em;
+			.glyphicon {
+				font-size: 1.5em;
+				padding-right: 2rem;
+			}
+		}
+	}
+	&.button {
+		font-size: 2em;
+		padding: 2rem;
+		&.ok {
+			background: @green;
+			color: white;
+		}
+		&.delete {
+			background: @red;
+			color: white;
+		}
+	}
 }
