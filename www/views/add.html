@@ -1,14 +1,26 @@
+<link rel="stylesheet" type="text/css" href="./add.css">
 <template>
 	<!-- POST HOVNO -->
 	<div class="container add-form">
-		<div class="post item">
+
+		<div class="poo" if.bind="route.route === 'pridat-hovno'">
+			<img src="img/poo.svg" width="45px">
+		</div>
+
+		<div class="bin" if.bind="route.route === 'pridat-kos'">
+			<img src="img/bin.svg" width="45px">
+		</div>
+
+		<div class="post item" >
 			<span class="glyphicon glyphicon-map-marker"></span>
 		</div>
 		<div class="post item">
 
-			<input class="glyphicon glyphicon-camera" type="file" accept="image/*;capture=camera" name="images" multiple>
+			<input class="glyphicon glyphicon-camera" type="file" accept="image/*;capture=camera" name="images"
+				   onchange.call="handleOnFilesSelected($event)" multiple>
 		</div>
-		<div class="post item photo">
+		<div class="post item photo" if.bind="files.length > 0">
+			<img class="loaded-photo" repeat.for="photo of files" src="${photo}" onload.call="$parent.getGPS($event)">
 			<span class="glyphicon glyphicon-pencil"></span>
 		</div>
 		<div class="post item half">
