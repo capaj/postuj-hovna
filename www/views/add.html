@@ -1,19 +1,13 @@
 <link rel="stylesheet" type="text/css" href="./add.css">
 <template>
+	<require from="../components/map"></require>
+
 	<!-- POST HOVNO -->
 	<div class="container add-form">
-
-		<div class="poo" if.bind="route.route === 'pridat-hovno'">
-			<img src="img/poo.svg" width="45px">
+		<div class="post item" show.bind="GPS">
+			<map center.bind="GPS"></map>
 		</div>
 
-		<div class="bin" if.bind="route.route === 'pridat-kos'">
-			<img src="img/bin.svg" width="45px">
-		</div>
-
-		<div class="post item" if.bind="GPS">
-			<span class="glyphicon glyphicon-map-marker"></span>
-		</div>
 		<div class="post item">
 			<img src="img/bin-plain.svg" class="big-icon clickable" width="160px" onclick.call="clickInput()" if.bind="!files">
 			<span class="glyphicon glyphicon-camera"></span>
@@ -24,15 +18,23 @@
 		</div>
 		<div class="post item photo" if.bind="files.length > 0">
 
+		<div class="poo" if.bind="route.route === 'pridat-hovno'">
+			<!--<img src="img/poo.svg" width="45px">-->
+		</div>
+
+		<div class="bin" if.bind="route.route === 'pridat-kos'">
+			<!--<img src="img/bin.svg" width="45px">-->
+		</div>
+
 			<span class="glyphicon glyphicon-pencil"></span>
 		</div>
 		<div class="post good item half">
 			<img src="img/bin-good.svg" width="45px">
-			DOST PYTLÍKŮ
+			DOST PYTL�?KŮ
 		</div>
 		<div class="post bad item half">
 			<img src="img/bin-bad.svg" width="45px">
-			MÁLO PYTLÍKŮ
+			M�?LO PYTL�?KŮ
 		</div>
 		<div class="hidden post item half">
 			<img src="img/bin-bad.svg" width="45px">
@@ -41,9 +43,7 @@
 		<div class="post button ok">
 			<span class="glyphicon glyphicon-ok"></span>
 		</div>
-		<div class="hidden post button delete">
-			<span class="glyphicon glyphicon-trash"></span>
-		</div>
+
 	</div>
 
 

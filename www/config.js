@@ -25,6 +25,7 @@ System.config({
     "bootstrap": "github:twbs/bootstrap@3.3.4",
     "core-js": "npm:core-js@0.9.16",
     "exif-js/exif-js": "github:exif-js/exif-js@master",
+    "lodash": "npm:lodash@3.9.3",
     "moment": "github:moment/moment@2.10.3",
     "moonridge-client": "github:capaj/Moonridge-client@0.8.5",
     "github:aurelia/binding@0.7.3": {
@@ -322,6 +323,9 @@ System.config({
     },
     "npm:inherits@2.0.1": {
       "util": "github:jspm/nodelibs-util@0.1.0"
+    },
+    "npm:lodash@3.9.3": {
+      "process": "github:jspm/nodelibs-process@0.1.1"
     },
     "npm:miller-rabin@2.0.1": {
       "bn.js": "npm:bn.js@2.0.5",

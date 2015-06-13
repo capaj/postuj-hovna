@@ -2,8 +2,7 @@ import EXIF from 'exif-js/exif-js';
 
 export class Add {
 	constructor() {
-
-		console.log('add');
+		this.GPS = null;
 	}
 	activate(params, routeConfig) {
 		this.route = routeConfig;
@@ -39,6 +38,7 @@ export class Add {
 	}
 	getGPS(ev){
 		//thanks to http://blogs.microsoft.co.il/ranw/2015/01/07/reading-gps-data-using-exif-js/
+		var self = this;
 		var toDecimal = function(number) {
 			return number[0].numerator + number[1].numerator /
 				(60 * number[1].denominator) + number[2].numerator / (3600 * number[2].denominator);
@@ -51,6 +51,7 @@ export class Add {
 			};
 
 			console.log("was taken on " + pos.lat + " " + pos.long);
+			self.GPS = [pos.lat, pos.long];
 		});
 	}
 }
