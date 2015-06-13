@@ -1,0 +1,33 @@
+{
+  "scripts": {
+    "postinstall": "jspm install",
+    "serve": "gulp less && node server"
+  },
+  "jspm": {
+    "directories": {
+      "baseURL": "www"
+    },
+    "dependencies": {
+      "Leaflet/Leaflet": "github:Leaflet/Leaflet@^0.7.3",
+      "aurelia-bootstrapper": "github:aurelia/bootstrapper@^0.13.1",
+      "aurelia-framework": "github:aurelia/framework@^0.12.0",
+      "bootstrap": "github:twbs/bootstrap@^3.3.4",
+      "moment": "github:moment/moment@^2.10.3"
+    },
+    "devDependencies": {
+      "babel": "npm:babel-core@^5.1.13",
+      "babel-runtime": "npm:babel-runtime@^5.1.13",
+      "core-js": "npm:core-js@^0.9.4"
+    }
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-less": "^3.0.3",
+    "jspm": "^0.15.7",
+    "less-plugin-autoprefix": "^1.4.2",
+    "less-plugin-clean-css": "^1.5.0"
+  },
+  "dependencies": {
+    "browser-sync": "^2.7.10"
+  }
+}
