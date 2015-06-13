@@ -7,6 +7,7 @@ var gulp = require('gulp');
 require('./gulpfile');
 
 bs.init({
+	open: false,
 	server: ['./www']
 });
 

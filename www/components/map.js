@@ -27,7 +27,7 @@ export class Map {
 
 			navigator.geolocation.getCurrentPosition(pos => {
 				var crd = pos.coords;
-				self.map.setView([crd.latitude, crd.longitude], 13);
+				self.map.setView([crd.latitude, crd.longitude], 17);
 			}, err => {
 				self.map.setView(defaultCenter, 11);
 				console.warn('ERROR(' + err.code + '): ' + err.message);

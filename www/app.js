@@ -8,7 +8,7 @@ export class PostujHovna{
 	}
 	configureRouter(config, router){
 		this.router = router;
-		config.options.pushState = true;
+		//config.options.pushState = true;
 		config.title = 'Postuj hovna';
 		config.map([
 			{route: ['', 'home'], name: 'home', moduleId: './views/home'},
