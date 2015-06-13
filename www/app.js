@@ -8,12 +8,13 @@ export class PostujHovna{
 	}
 	configureRouter(config, router){
 		this.router = router;
-
+		config.options.pushState = true;
 		config.title = 'Postuj hovna';
 		config.map([
-			{ route: ['', 'home'],       name: 'home',       moduleId: './views/home' },
-			{ route: 'pridat',            name: 'add',      moduleId: './views/add'},
-			{ route: 'profil',            name: 'profil',      moduleId: './views/profil'}
+			{route: ['', 'home'], name: 'home', moduleId: './views/home'},
+			{route: 'pridat-hovno', name: 'add', moduleId: './views/add'},
+			{route: 'pridat-kos', name: 'add', moduleId: './views/add'},
+			{route: 'profil', name: 'profil', moduleId: './views/profil'}
 		]);
 	}
 }
