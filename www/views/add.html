@@ -15,8 +15,8 @@
 			<span class="glyphicon glyphicon-map-marker"></span>
 		</div>
 		<div class="post item">
-			<img src="img/poo-plain.svg" class="big-icon" width="160px">
-			<span class="glyphicon glyphicon-camera clickable" onclick.call="clickInput()" if.bind="!files"></span>
+			<img src="img/poo-plain.svg" class="big-icon clickable" width="160px" onclick.call="clickInput()" if.bind="!files">
+			<span class="glyphicon glyphicon-camera"></span>
 			<input class="glyphicon glyphicon-camera" type="file" accept="image/*;capture=camera" name="images"
 				   onchange.call="handleOnFilesSelected($event)" multiple>
 
