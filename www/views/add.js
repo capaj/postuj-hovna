@@ -34,10 +34,16 @@ export class Add {
 		}
 	}
 	getGPS(ev){
+		//thanks to http://blogs.microsoft.co.il/ranw/2015/01/07/reading-gps-data-using-exif-js/
+		var toDecimal = function(number) {
+			return number[0].numerator + number[1].numerator /
+				(60 * number[1].denominator) + number[2].numerator / (3600 * number[2].denominator);
+		};
+
 		EXIF.getData(ev.target, function() {
 			var pos = {
-				long: EXIF.getTag(this, "GPSLongitude"),
-				lat: EXIF.getTag(this, "GPSLatitude")
+				long: toDecimal(EXIF.getTag(this, "GPSLongitude")),
+				lat: toDecimal(EXIF.getTag(this, "GPSLatitude"))
 			};
 
 			console.log("was taken on " + pos.lat + " " + pos.long);
