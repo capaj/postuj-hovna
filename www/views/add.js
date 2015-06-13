@@ -8,7 +8,10 @@ export class Add {
 		this.route = routeConfig;
 	}
 	clickInput(){
-		$(':file').click();
+		setTimeout(function(){
+			$(':file').click();
+
+		});
 	}
 	handleOnFilesSelected(evt) {
 		this.files = [];
