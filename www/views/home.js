@@ -9,20 +9,32 @@ export class Home {
   activate(params) {
     if (params.type && params.id) {
 
-      this.selected = this[params.type].liveQuery().findOne({_id: params.id}).exec().promise.then(LQ => {
-        console.log('LQ.doc', LQ.doc);
-      });
+      this.selected = this[params.type].liveQuery().findOne({_id: params.id}).exec();
     }
 
-    this.bins = this.bin.liveQuery().find().exec().promise.then(LQ => {
-      console.log('bins', LQ.docs);
-    });
+    this.bins = this.bin.liveQuery().find().exec();
 
-    this.poos = this.poo.liveQuery().find().exec().promise.then(LQ => {
-      console.log('poos', LQ.docs);
-    });
+    this.poos = this.poo.liveQuery().find().exec();
   }
   get markers(){
-    return [{pos:[50.051611, 14.407032], icon: icons.poo}];
+    var bins = this.bins.docs.map(bin=> {
+      var icon = icons.bin.plain;
+      if (bin.has_bags === true) {
+        icon = icons.bin.good;
+      } else if(bin.has_bags === false) {
+        icon = icons.bin.bad;
+      }
+      return {
+        pos: bin.loc,
+        icon: icon
+      };
+    });
+    var poos = this.poos.docs.map(poo=> {
+      return {
+        pos: poo.loc,
+        icon:  icons.poo
+      };
+    });
+    return bins.concat(poos);
   }
 }
