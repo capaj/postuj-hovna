@@ -23,6 +23,7 @@ export class Map {
 	@bindable markers;
 	constructor(el){
 		var self = this;
+    this._markerLayers = [];
 		this.element = el;
 		console.log('this.markers', this.markers);
 		if (this.center !== null) {
@@ -66,8 +67,22 @@ export class Map {
 			}
 		}
 	}
+  clearMarkers(){
+    this._markerLayers.forEach(layer => {
+      this.map.removeLayer(layer);
+    });
+  }
 	markersChanged(val){
-		console.log('val', val);
+    //var self = this;
+    if (this.map) {
+      this.clearMarkers();
+      val.forEach(posAndIcon=>{
+        var marker = Leaflet.marker(posAndIcon.pos, {icon: posAndIcon.icon});
+        marker.addTo(this.map);
+        this._markerLayers.push(marker);
+      });
+
+    }
 	}
 
 }

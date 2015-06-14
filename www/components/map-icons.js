@@ -15,17 +15,17 @@ var makeIcon = function(props) {
 
 export default {
 	poo: makeIcon({
-		iconUrl: 'leaf-green.png'
+		iconUrl: '/img/pin-poo.svg'
 	}),
 	bin: {
 		plain: makeIcon({
-			iconUrl: '/img/bin-plain.svg'
+			iconUrl: '/img/pin-bin-plain.svg'
 		}),
 		good: makeIcon({
-			iconUrl: '/img/bin-good.svg'
+			iconUrl: '/img/pin-bin-good.svg'
 		}),
 		bad: makeIcon({
-			iconUrl: '/img/bin-bad.svg'
+			iconUrl: '/img/pin-bin-bad.svg'
 		})
 	}
 }
