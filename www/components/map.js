@@ -1,4 +1,5 @@
 import {customElement, inject, bindable, bindingMode} from 'aurelia-framework';
+import {Compiler} from 'gooy/aurelia-compiler';
 import Leaflet from 'Leaflet/Leaflet';
 import _ from 'lodash';
 import icons from './map-icons'
@@ -12,7 +13,6 @@ var options = {
 };
 
 @customElement('map')
-@inject(Element)
 @bindable({
 	name:'center',
 	attribute:'center',
@@ -21,8 +21,8 @@ var options = {
 })
 export class Map {
 	@bindable markers;
-	constructor(el){
-		var self = this;
+	constructor(el, compiler) {
+    this.compiler = compiler;
     this._markerLayers = [];
     this.lastMarkersVal = [];
 		this.element = el;
@@ -31,6 +31,7 @@ export class Map {
 			this.initMap();
 		}
 	}
+  static inject = [Element, Compiler];
 	initMap(){
 		var self = this;
 		setTimeout(function(){
@@ -57,7 +58,7 @@ export class Map {
 				}, options);
 			}
 
-		}, 10);
+		}, 30);
 	}
 	centerChanged(val){
 		if (!this.map) {
@@ -76,18 +77,20 @@ export class Map {
 
   markersChanged(val) {
     if (this.lastMarkersVal.length !== val.length && this.map) {
-
+      var self = this;
       this.lastMarkersVal = val;
 
       console.log('adding markers', val);
       this.clearMarkers();
       val.forEach(markerOptions=> {
         var marker = Leaflet.marker(markerOptions.pos, {icon: markerOptions.icon});
+        marker.bindPopup(markerOptions.popup);
+        marker.on('popupopen', ev=> {
+          console.log('ev', ev);
+          self.compiler.compile(ev.popup._wrapper.firstChild);  //TODO figure why this ends with
+        });
         marker.addTo(this.map);
 
-        var popup = Leaflet.popup()
-          .setContent(markerOptions.popup);
-        marker.bindPopup(popup);
         this._markerLayers.push(marker);
       });
 

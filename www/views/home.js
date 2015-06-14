@@ -19,6 +19,10 @@ export class Home {
     this.poos = this.poo.liveQuery().find().exec();
   }
   get markers(){
+    function makeContent(type, id) {
+      return `<map-popup-content type="${type}" id="${id}"></map-popup-content>`;
+    }
+
     var bins = this.bins.docs.map(bin=> {
       var icon = icons.bin.plain;
       if (bin.has_bags === true) {
@@ -28,16 +32,15 @@ export class Home {
       }
       return {
         pos: bin.loc,
-        icon: icon
+        icon: icon,
+        popup: makeContent('bin', bin._id)
       };
     });
     var poos = this.poos.docs.map(poo=> {
-
-
       return {
         pos: poo.loc,
         icon:  icons.poo,
-        popup: '<p>Hello world!<br />This is a nice popup.</p>'
+        popup: makeContent('poo', poo._id)
       };
     });
     return bins.concat(poos);
