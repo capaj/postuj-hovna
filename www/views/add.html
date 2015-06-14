@@ -26,11 +26,11 @@
 		</div>
 
 		<div class="bin" if.bind="route.route === 'pridat-kos'">
-			<div class="post good item half" onclick="submit(true)">
+			<div class="post good item half" onclick.call="submit(true)">
 				<img src="img/bin-good.svg" width="45px">
 				DOST PYTLÍKŮ
 			</div>
-			<div class="post bad item half" onclick="submit(false)">
+			<div class="post bad item half" onclick.call="submit(false)">
 				<img src="img/bin-bad.svg" width="45px">
 				MÁLO PYTLÍKŮ
 			</div>

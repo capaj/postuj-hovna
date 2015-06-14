@@ -8,7 +8,7 @@ export class Add {
 	}
 	activate(params, routeConfig) {
     this.route = routeConfig;
-    if (this.route === 'pridat-kos') {
+    if (routeConfig.name === 'add-bin') {
       this.newIcon = icons.bin.plain;
       this.type = 'bin';
     } else {

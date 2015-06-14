@@ -79,7 +79,7 @@ export class Map {
 
       this.lastMarkersVal = val;
 
-      console.log('adding markers');
+      console.log('adding markers', val);
       this.clearMarkers();
       val.forEach(posAndIcon=> {
         var marker = Leaflet.marker(posAndIcon.pos, {icon: posAndIcon.icon});
