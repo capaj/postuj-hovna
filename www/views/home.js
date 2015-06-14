@@ -1,5 +1,6 @@
 import icons from '../components/map-icons';
 import backend from '../services/moonridge';
+import Leaflet from 'Leaflet/Leaflet';
 
 export class Home {
 	constructor(){
@@ -13,6 +14,7 @@ export class Home {
     }
 
     this.bins = this.bin.liveQuery().find().exec();
+
 
     this.poos = this.poo.liveQuery().find().exec();
   }
@@ -30,9 +32,12 @@ export class Home {
       };
     });
     var poos = this.poos.docs.map(poo=> {
+
+
       return {
         pos: poo.loc,
-        icon:  icons.poo
+        icon:  icons.poo,
+        popup: '<p>Hello world!<br />This is a nice popup.</p>'
       };
     });
     return bins.concat(poos);

@@ -9,7 +9,7 @@ export class PostujHovna{
 	configureRouter(config, router){
 		this.router = router;
 		//config.options.pushState = true;
-		config.title = 'Postuj hovna';
+		config.title = 'Sbirej.to';
 		config.map([
 			{route: [':type/:id', 'home', ''], name: 'home', moduleId: './views/home'},
 			{route: 'pridat-hovno', name: 'add-poo', moduleId: './views/add'},

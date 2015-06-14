@@ -17,24 +17,29 @@
 
 			<img class="loaded-photo" repeat.for="photo of files" src="${photo}" onload.call="$parent.getGPS($event)">
 		</div>
+        <div show.bind="addInProgress !== true">
+            <div if.bind="route.route === 'pridat-hovno'">
 
-		<div if.bind="route.route === 'pridat-hovno'">
+                <div class="post button ok clickable" onclick.call="submit()">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </div>
+            </div>
 
-			<div class="post button ok" onclick.call="submit()">
-				<span class="glyphicon glyphicon-ok"></span>
-			</div>
-		</div>
+            <div class="bin" if.bind="route.route === 'pridat-kos'">
+                <div class="post good item half clickable" onclick.call="submit(true)">
+                    <img src="img/bin-good.svg" width="45px">
+                    DOST PYTLÍKŮ
+                </div>
+                <div class="post bad item half clickable" onclick.call="submit(false)">
+                    <img src="img/bin-bad.svg" width="45px">
+                    MÁLO PYTLÍKŮ
+                </div>
+            </div>
+        </div>
+        <div show.bind="error" class="alert">
+            ${error}
+        </div>
 
-		<div class="bin" if.bind="route.route === 'pridat-kos'">
-			<div class="post good item half" onclick.call="submit(true)">
-				<img src="img/bin-good.svg" width="45px">
-				DOST PYTLÍKŮ
-			</div>
-			<div class="post bad item half" onclick.call="submit(false)">
-				<img src="img/bin-bad.svg" width="45px">
-				MÁLO PYTLÍKŮ
-			</div>
-		</div>
 
 
 

@@ -81,9 +81,13 @@ export class Map {
 
       console.log('adding markers', val);
       this.clearMarkers();
-      val.forEach(posAndIcon=> {
-        var marker = Leaflet.marker(posAndIcon.pos, {icon: posAndIcon.icon});
+      val.forEach(markerOptions=> {
+        var marker = Leaflet.marker(markerOptions.pos, {icon: markerOptions.icon});
         marker.addTo(this.map);
+
+        var popup = Leaflet.popup()
+          .setContent(markerOptions.popup);
+        marker.bindPopup(popup);
         this._markerLayers.push(marker);
       });
 

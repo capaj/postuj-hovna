@@ -71,6 +71,7 @@ export class Add {
   }
 
   submit(hasBags) {
+    this.addInProgress = true;
     backend.rpc('savePhoto')(this.files[0]).then(photoId => {
       var toCreate = {
         loc: [this.GPS.lat, this.GPS.lng],
@@ -79,9 +80,11 @@ export class Add {
       if (hasBags !== undefined) {
         toCreate.has_bags = hasBags;
       }
-      this.model.create(toCreate).then(created => {
+      return this.model.create(toCreate).then(created => {
          location.hash = `/${this.type}/${created._id}`;
       });
+    }, err => {
+      this.error = err;
     });
 
   }
