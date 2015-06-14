@@ -24,6 +24,7 @@ export class Map {
 	constructor(el){
 		var self = this;
     this._markerLayers = [];
+    this.lastMarkersVal = [];
 		this.element = el;
 		console.log('this.markers', this.markers);
 		if (this.center !== null) {
@@ -56,7 +57,7 @@ export class Map {
 				}, options);
 			}
 
-		}, 100);
+		}, 10);
 	}
 	centerChanged(val){
 		if (!this.map) {
@@ -72,17 +73,23 @@ export class Map {
       this.map.removeLayer(layer);
     });
   }
-	markersChanged(val){
-    //var self = this;
-    if (this.map) {
+
+  markersChanged(val) {
+    if (this.lastMarkersVal.length !== val.length && this.map) {
+
+      this.lastMarkersVal = val;
+
+      console.log('adding markers');
       this.clearMarkers();
-      val.forEach(posAndIcon=>{
+      val.forEach(posAndIcon=> {
         var marker = Leaflet.marker(posAndIcon.pos, {icon: posAndIcon.icon});
         marker.addTo(this.map);
         this._markerLayers.push(marker);
       });
 
+
     }
-	}
+
+  }
 
 }
