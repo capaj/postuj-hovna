@@ -14,6 +14,7 @@ body{
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
+	color: white;
 }
 
 router-view{
@@ -25,6 +26,10 @@ router-view{
 .add-form{
 	display: block;
 	width: 100%;
+	background: @brown;
+	&.padded {
+		padding: 3rem;
+	}
 }
 
 .settings {
@@ -58,9 +63,6 @@ router-view{
 	}
 }
 
-.add-form {
-	background: @brown;
-}
 .post {
 	margin: 2rem;
 	text-align: center;
@@ -116,4 +118,33 @@ router-view{
 
 .clickable{
 	cursor: pointer;
+}
+
+/* MENU SUB-PAGES */
+.fb-login {
+	display: inline-block;
+	margin: 2rem;
+	text-align: center;
+	border-radius: 3px;
+	padding: 1rem 3rem;
+	text-align: left;
+	font-size: 1.5em;
+	background: #3b5998;
+	img {
+		margin-right: 2rem;
+		margin-top: -7px;
+	}
+	&.cancel {
+		background: @red;
+	}
+}
+.fb-pic {
+	/*float: left;*/
+	border-radius: 50%;
+	max-width: 7rem;
+	margin-right: 3rem;
+	margin-bottom: 2rem;
+}
+.fb-name {
+	font-size: 2em;
 }
