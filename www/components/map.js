@@ -20,10 +20,11 @@ var options = {
 	defaultBindingMode: bindingMode.twoWay
 })
 export class Map {
+	@bindable markers;
 	constructor(el){
 		var self = this;
 		this.element = el;
-		console.log('this.center', el);
+		console.log('this.markers', this.markers);
 		if (this.center !== null) {
 			this.initMap();
 		}
@@ -64,6 +65,9 @@ export class Map {
 				this.map.setView(val, 17);
 			}
 		}
+	}
+	markersChanged(val){
+		console.log('val', val);
 	}
 
 }
