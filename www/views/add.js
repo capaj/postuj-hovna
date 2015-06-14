@@ -5,7 +5,6 @@ import backend from '../services/moonridge'
 export class Add {
 	constructor() {
 		this.GPS = null;
-    this.hasBags = null;
 	}
 	activate(params, routeConfig) {
     this.route = routeConfig;
@@ -71,14 +70,14 @@ export class Add {
 		});
   }
 
-  submit() {
+  submit(hasBags) {
     backend.rpc('savePhoto')(this.files[0]).then(photoId => {
       var toCreate = {
         loc: [this.GPS.lat, this.GPS.lng],
         photos: [photoId]
       };
-      if (this.hasBags !== null) {
-        toCreate.has_bags = true;
+      if (hasBags !== undefined) {
+        toCreate.has_bags = hasBags;
       }
       this.model.create(toCreate).then(created => {
          location.hash = `/${this.type}/${created._id}`;
