@@ -17,6 +17,11 @@ body{
 	color: white;
 }
 
+hr {
+	opacity: 0.2;
+}
+
+
 router-view{
 	flex: auto;
 	overflow-y: auto;
@@ -49,6 +54,18 @@ router-view{
 	}
 	.user {
 		float: right;
+	}
+}
+.menu {
+	margin-top: -1px;
+	padding: 2rem 4rem;
+	background: darken(@brown, 5%);
+	font-size: 1.2em;
+	a, a:visited, a:active  {
+		color: white;
+		display: inline-block;
+		padding: 1.5rem 2rem;
+		width: 100%;
 	}
 }
 
