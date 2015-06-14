@@ -87,7 +87,7 @@ export class Map {
         marker.bindPopup(markerOptions.popup);
         marker.on('popupopen', ev=> {
           console.log('ev', ev);
-          self.compiler.compile(ev.popup._wrapper.firstChild);  //TODO figure why this ends with
+          self.compiler.compile(ev.popup._wrapper.firstChild);  //TODO figure why this won't compile the map-popup-content element
         });
         marker.addTo(this.map);
 
