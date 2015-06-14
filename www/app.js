@@ -11,7 +11,7 @@ export class PostujHovna{
 		//config.options.pushState = true;
 		config.title = 'Postuj hovna';
 		config.map([
-			{route: ['', 'home'], name: 'home', moduleId: './views/home'},
+			{route: [':type/:id', 'home', ''], name: 'home', moduleId: './views/home'},
 			{route: 'pridat-hovno', name: 'add-poo', moduleId: './views/add'},
 			{route: 'pridat-kos', name: 'add-bin', moduleId: './views/add'},
 			{route: 'profil', name: 'profil', moduleId: './views/profile'},

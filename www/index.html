@@ -13,7 +13,9 @@
 		<script src="jspm_packages/system.js"></script>
 		<script src="config.js"></script>
 		<script>
-			System.import('aurelia-bootstrapper');
+			System.import('aurelia-bootstrapper').then(function() {
+                console.log('bootstrapped at', new Date());
+            });
 		</script>
 	</body>
 </html>

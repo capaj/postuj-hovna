@@ -1,18 +1,22 @@
 import EXIF from 'exif-js/exif-js';
 import icons from '../components/map-icons';
-
+import backend from '../services/moonridge'
 
 export class Add {
 	constructor() {
 		this.GPS = null;
+    this.hasBags = null;
 	}
 	activate(params, routeConfig) {
-		this.route = routeConfig;
-		if (this.route === 'pridat-kos') {
-			this.newIcon = icons.bin.plain;
-		}else{
-			this.newIcon = icons.poo;
-		}
+    this.route = routeConfig;
+    if (this.route === 'pridat-kos') {
+      this.newIcon = icons.bin.plain;
+      this.type = 'bin';
+    } else {
+      this.newIcon = icons.poo;
+      this.type = 'poo';
+    }
+    this.model = backend.model(this.type);
 	}
 	clickInput(){
 		$(':file').click();
@@ -53,12 +57,33 @@ export class Add {
 
 		EXIF.getData(ev.target, function() {
 			var pos = {
-				lng: toDecimal(EXIF.getTag(this, "GPSLongitude")),
-				lat: toDecimal(EXIF.getTag(this, "GPSLatitude"))
+				lng: EXIF.getTag(this, "GPSLongitude"),
+				lat: EXIF.getTag(this, "GPSLatitude")
 			};
+      if (Array.isArray(pos.lng) && Array.isArray(pos.lat)) {
+        pos.lat = toDecimal(pos.lat);
+        pos.lng = toDecimal(pos.lng);
 
-			console.log("was taken on " + pos.lat + " " + pos.lng);
-			self.GPS = pos;
+        self.GPS = pos;
+      }
+      console.log("was taken on " + self.GPS.lat + " " + self.GPS.lng);
+
 		});
-	}
+  }
+
+  submit() {
+    backend.rpc('savePhoto')(this.files[0]).then(photoId => {
+      var toCreate = {
+        loc: [this.GPS.lat, this.GPS.lng],
+        photos: [photoId]
+      };
+      if (this.hasBags !== null) {
+        toCreate.has_bags = true;
+      }
+      this.model.create(toCreate).then(created => {
+         location.hash = `/${this.type}/${created._id}`;
+      });
+    });
+
+  }
 }

@@ -20,13 +20,13 @@
 
 		<div if.bind="route.route === 'pridat-hovno'">
 
-			<div class="post button ok">
+			<div class="post button ok" onclick.call="submit()">
 				<span class="glyphicon glyphicon-ok"></span>
 			</div>
 		</div>
 
 		<div class="bin" if.bind="route.route === 'pridat-kos'">
-			<div class="post good item half">
+			<div class="post good item half" onclick="hasBags = true">
 				<img src="img/bin-good.svg" width="45px">
 				DOST PYTLÍKŮ
 			</div>
@@ -34,7 +34,7 @@
 				<img src="img/bin-bad.svg" width="45px">
 				MÁLO PYTLÍKŮ
 			</div>
-			<div class="hidden post item half">
+			<div class="hidden post item half" onclick="hasBags = false">
 				<img src="img/bin-bad.svg" width="45px">
 				VŮBEC!!!! OMG@!$@#!
 			</div>
