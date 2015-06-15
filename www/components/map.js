@@ -23,6 +23,7 @@ export class Map {
 	@bindable markers;
 	constructor(el, compiler) {
     this.compiler = compiler;
+
     this._markerLayers = [];
     this.lastMarkersVal = [];
 		this.element = el;
@@ -87,7 +88,9 @@ export class Map {
         marker.bindPopup(markerOptions.popup);
         marker.on('popupopen', ev=> {
           console.log('ev', ev);
-          self.compiler.compile(ev.popup._wrapper.firstChild);  //TODO figure why this won't compile the map-popup-content element
+
+          self.compiler.compile(ev.popup._wrapper.firstChild, self);  //TODO figure why this won't compile the map-popup-content element
+          ev.popup._wrapper.firstChild.removeChild(ev.popup._wrapper.firstChild.firstChild);
         });
         marker.addTo(this.map);
 
