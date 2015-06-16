@@ -89,8 +89,10 @@ export class Map {
         marker.on('popupopen', ev=> {
           console.log('ev', ev);
 
-          self.compiler.compile(ev.popup._wrapper.firstChild, self);  //TODO figure why this won't compile the map-popup-content element
+          self.compiler.compile(ev.popup._wrapper.firstChild, self);
+            //TODO figure why this won't duplicates the node
           ev.popup._wrapper.firstChild.removeChild(ev.popup._wrapper.firstChild.firstChild);
+
         });
         marker.addTo(this.map);
 
