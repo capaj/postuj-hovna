@@ -66,7 +66,7 @@ export class Map {
 			this.initMap();
 		} else {
 			if (!_.isEqual(this.map.getCenter(),val)) {
-				this.map.setView(val, 17);
+				this.map.setView(val, 16);
 			}
 		}
 	}
