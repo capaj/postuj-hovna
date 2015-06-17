@@ -14,8 +14,10 @@
 			<!--<span class="glyphicon glyphicon-camera"></span>-->
 			<input class="glyphicon glyphicon-camera" type="file" accept="image/*;capture=camera" name="images"
 				   onchange.call="handleOnFilesSelected($event)" multiple>
+            <div id="canvas-container">
 
-			<img class="loaded-photo" repeat.for="photo of files" au-src.bind="photo" onload.call="$parent.getGPS($event)">
+            </div>
+
 		</div>
         <div show.bind="addInProgress !== true">
             <div if.bind="route.route === 'pridat-hovno'">

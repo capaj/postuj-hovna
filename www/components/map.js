@@ -4,9 +4,9 @@ import Leaflet from 'Leaflet/Leaflet';
 import _ from 'lodash';
 import icons from './map-icons'
 
-var defaultCenter = [50.051611, 14.407032];
+const defaultCenter = [50.051611, 14.407032];
 
-var options = {
+const options = {
 	enableHighAccuracy: true,
 	timeout: 6000,
 	maximumAge: 0
@@ -34,7 +34,7 @@ export class Map {
 	}
   static inject = [Element, Compiler];
 	initMap(){
-		var self = this;
+		const self = this;
 		setTimeout(function(){
 			self.map = Leaflet.map(self.element);
 			Leaflet.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
@@ -78,7 +78,7 @@ export class Map {
 
   markersChanged(val) {
     if (this.lastMarkersVal.length !== val.length && this.map) {
-      var self = this;
+      const self = this;
       this.lastMarkersVal = val;
 
       console.log('adding markers', val);

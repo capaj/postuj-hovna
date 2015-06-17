@@ -3,7 +3,7 @@ export function configure(aurelia) {
     .standardConfiguration()
     .developmentLogging();
 
-  aurelia.globalizeResources(['./components/map-popup-content', './components/au-src']);
+  aurelia.globalizeResources(['./components/map-popup-content']);
 
   //window.aurelia = aurelia;
   aurelia.start().then(a => a.setRoot());

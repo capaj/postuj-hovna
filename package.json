@@ -13,9 +13,11 @@
       "aurelia-dependency-injection": "github:aurelia/dependency-injection@^0.8.1",
       "aurelia-framework": "github:aurelia/framework@^0.12.0",
       "bootstrap": "github:twbs/bootstrap@^3.3.4",
+      "chai": "npm:chai@^3.0.0",
       "exif-js/exif-js": "github:exif-js/exif-js@master",
       "gooy/aurelia-compiler": "github:gooy/aurelia-compiler@^0.0.4",
       "lodash": "npm:lodash@^3.9.3",
+      "mocha": "npm:mocha@^2.2.5",
       "moment": "github:moment/moment@^2.10.3",
       "moonridge-client": "github:capaj/Moonridge-client@^0.8.5"
     },

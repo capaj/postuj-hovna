@@ -21,6 +21,7 @@ export class Add {
 		$(':file').click();
 	}
 	handleOnFilesSelected(evt) {
+        this.images = [];
 		this.files = [];
 		var self = this;
 		var files = evt.target.files; // FileList object
@@ -38,7 +39,13 @@ export class Add {
 			// Closure to capture the file information.
 			reader.onload = (function(theFile) {
 				return function(e) {
-					self.files.push(e.target.result);
+					var ind = self.files.push(e.target.result);
+                    var img = new Image();
+                    img.onload = function() {
+                        var canvasEl = $('<canvas class="loaded-photo"></canvas>');
+                        var ctx = canvasEl.getContext('2d');
+                        $('#canvas-container').append(canvasEl)
+                    }
 				};
 			})(f);
 
