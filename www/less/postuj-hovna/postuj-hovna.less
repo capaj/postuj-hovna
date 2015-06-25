@@ -9,12 +9,15 @@
 
 @green: fade(green, 70%);
 @red: fade(red, 70%);
-
+@import "./add";
+@import "./home";
 body{
+    color: white;
+}
+.screen-covering{
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
-	color: white;
 }
 
 hr {
@@ -22,7 +25,7 @@ hr {
 }
 
 
-router-view{
+.main{
 	flex: auto;
 	overflow-y: auto;
 	display: flex;

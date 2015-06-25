@@ -9,7 +9,7 @@ export default class Main extends React.Component {
 
 	}
 	render() {
-		return <div>
+		return <div className='screen-covering'>
             <div className="settings">
                 <a href="/#/">
                     <span className="back glyphicon glyphicon-menu-left"></span>
@@ -27,7 +27,9 @@ export default class Main extends React.Component {
                 <hr/>
                 <a href="#">O APLIKACI / NÁPOVĚDA</a>
             </div>
-            <RouteHandler/>
+            <div className="main">
+                <RouteHandler/>
+            </div>
         </div>;
 	}
 };
