@@ -29,11 +29,13 @@ bs.init({
 	}
 });
 
-var from = 'www/**/';
+var from = 'www/**/*';
+var extensionsToWatch = ['html', 'css', 'js', 'jsx'];
+extensionsToWatch.forEach(function (ext){
+    bs.watch(from + '.' + ext, watchOptions).on('change', bs.reload);
+});
 
-bs.watch(from + '*.html', watchOptions).on('change', bs.reload);
 bs.watch(from + '*.less', watchOptions).on('change', function() {
 	gulp.start('less'); //not a public gulp API, but works, be aware of when updating gulp
 });
-bs.watch(from + '*.css', watchOptions).on('change', bs.reload);
-bs.watch(from + '*.js', watchOptions).on('change', bs.reload);
+
