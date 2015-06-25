@@ -1,5 +1,6 @@
 import React from 'react';
-import {RouteHandler} from 'react-router';
+import Router from 'react-router';
+const RouteHandler = Router.RouteHandler;
 
 export default class Main extends React.Component {
 	constructor(...props) {
