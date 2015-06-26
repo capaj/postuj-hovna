@@ -1,11 +1,12 @@
 import React from 'react';
 
 export default class About extends React.Component {
-    constructor(...props) {
-        super(...props);
+  constructor(...props) {
+    super(...props);
 
-    }
-    render() {
-        return <div>About </div>;
-    }
+  }
+
+  render() {
+    return <div>About </div>;
+  }
 }

@@ -10,15 +10,15 @@ import About from './components/about.jsx!';
 import Home from './components/home.jsx!';
 
 var routes = (
-    <Route path="/" handler={Main}>
-        <Route handler={Home}/>
-        <Route path="about" handler={About}/>
-        <Route path="pridat-hovno" handler={AddPoo}/>
-        <Route path="pridat-kos" handler={AddBin}/>
-        <Route path="zebricek" handler={Leaderboards}/>
-    </Route>
+  <Route path="/" handler={Main}>
+    <Route handler={Home}/>
+    <Route path="about" handler={About}/>
+    <Route path="pridat-hovno" handler={AddPoo}/>
+    <Route path="pridat-kos" handler={AddBin}/>
+    <Route path="zebricek" handler={Leaderboards}/>
+  </Route>
 );
 
 Router.run(routes, Router.HashLocation, (Root) => {
-    React.render(<Root/>, document.getElementById('app'));
+  React.render(<Root/>, document.getElementById('app'));
 });
