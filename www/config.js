@@ -20,6 +20,7 @@ System.config({
     "core-js": "npm:core-js@0.9.18",
     "exif-js/exif-js": "github:exif-js/exif-js@master",
     "jsx": "github:floatdrop/plugin-jsx@1.1.0",
+    "just-debounce": "npm:just-debounce@1.0.0",
     "lodash": "npm:lodash@3.9.3",
     "moonridge-client": "github:capaj/Moonridge-client@0.8.6",
     "react": "npm:react@0.13.3",

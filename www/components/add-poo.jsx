@@ -1,55 +1,71 @@
 import React from 'react';
-
+import ImgUploader from './img-uploader.jsx!';
 import GoogleMap from './google-map.jsx!';
 import Marker from './marker.jsx!';
+
+import backend from '../services/moonridge';
+const binModel = backend.model('bin');
 
 export default class AddPoo extends React.Component {
   constructor(...props) {
     super(...props);
     this.state = {
-      GPS: []
+      pos: []
     }
-
   }
 
   onFilesSelected(ev) {
 
   }
-
+  addGPS(pos){
+    this.setState({pos: pos});
+  }
+  addImages(imageIds){
+    this.setState({photos: imageIds});
+  }
   submit() {
     console.log('submit');
+    this.setState({inProgress: true});
+    binModel.create(this.state).then(function(newPoo){
+        //TODO transition to home
+      this.setState({inProgress: false});
+    }, function(err) {
+      this.setState({
+        error: err
+      });
+    });
   }
 
   render() {
+    var props = this.props;
+    var submitBtn;
+    var state = this.state;
+    if (state.pos && state.photos.length > 1 && !state.inProgress) {
+      submitBtn =  <div className="post button ok clickable" onClick={this.submit}>
+        <span className="glyphicon glyphicon-ok"/>
+      </div>;
+    }
+    var alert;
+    if (state.error) {
+      alert = <div className="alert">
+        {state.error}
+      </div>;
+    }
     return <div className="container add-form">
-      <div className="post item">
+      <div className="post item">cvbh
+          center={state.loc}
+          zoom={props.zoom}
         <GoogleMap
-          center={this.props.center}
-          zoom={this.props.zoom}>
-          <Marker lat={59.955413} lng={30.337844} text={'A'} style={{}}/>
+          markers={state.markers}>
         </GoogleMap>
       </div>
-      <div className="post item">
-        <img src="img/bin-plain.svg" className="big-icon img-responsive" width="160px"/>
-        <span className="glyphicon glyphicon-camera clickable" onClick={this.clickInput}/>
-        <input className="glyphicon glyphicon-camera" type="file" accept="image/*;capture=camera" name="images"
-               onChange={this.onFilesSelected} multiple/>
-
-        <div id="canvas-container">
-        </div>
-      </div>
-      <div className="post button ok clickable" onClick={this.submit}>
-        <span className="glyphicon glyphicon-ok"/>
-      </div>
-      <div className="alert">
-        {this.state.error}
-      </div>
+      <ImgUploader onGPSRead={this.addGPS} onImageReady={this.addImages}/>
+      {submitBtn}
+      {alert}
     </div>;
   }
 };
 
 AddPoo.defaultProps = {
-  center: [59.938043, 30.337157],
-  zoom: 9,
-  greatPlaceCoords: {lat: 59.724465, lng: 30.080121}
+  zoom: 9
 };

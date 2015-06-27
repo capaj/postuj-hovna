@@ -1,5 +1,10 @@
 import React from 'react';
 import GoogleMap from './google-map.jsx!';
+import backend from '../services/moonridge';
+const models = {
+  bin: backend.model('bin'),
+  poo: backend.model('poo')
+};
 
 export default class Home extends React.Component {
   constructor() {
@@ -28,10 +33,16 @@ export default class Home extends React.Component {
       console.warn('ERROR(' + err.code + '): ' + err.message);
     }, geolocationOptions);
   }
-
+  query(bounds){
+    console.log('run query', bounds);
+    models.poo.query().where('loc').within({box: bounds}).exec().promise.then(function(bins){
+        console.log('bins', bins);
+    });
+  }
   render() {
     return <div className="google-map-wrapper">
-      <GoogleMap center={this.state.center} zoom={this.state.zoom}>
+      <GoogleMap center={this.state.center} zoom={this.state.zoom}
+                 onBoundsChanged={this.query} markers={this.state.markers}>
       </GoogleMap>
       <a href="/#/pridat-hovno">
         <img className="add poo" src="img/poo.svg" width="75px"/>
