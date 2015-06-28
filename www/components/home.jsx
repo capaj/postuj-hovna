@@ -35,7 +35,12 @@ export default class Home extends React.Component {
   }
   query(bounds){
     console.log('run query', bounds);
-    models.poo.query().where('loc').within({box: bounds}).exec().promise.then(function(bins){
+    const southWest = bounds.getSouthWest();
+    const northEast = bounds.getNorthEast();
+    var box = [[southWest.lat(), southWest.lng()], [northEast.lat(), northEast.lng()]];
+    console.log('box', box);
+    models.poo.query().where('loc').within({box: box})
+      .exec().promise.then(function(bins){
         console.log('bins', bins);
     });
   }

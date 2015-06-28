@@ -31,12 +31,12 @@ export default class MarkerBubble extends React.Component {
     var entityRender;
 
 
-    return (<div>
+    return <div>
       {photos}
       Vyfotil: <user data={item.owner}>
       Vloženo <formatDate date={item.created_at}/>
       {this.bodyRender()}
 
-      </div>);
+      </div>;
   }
 };

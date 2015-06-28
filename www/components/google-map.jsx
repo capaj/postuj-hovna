@@ -36,8 +36,6 @@ export default class GoogleMap extends React.Component {
       streetViewControl: false
     };
     var domNode = React.findDOMNode(this);
-    console.log('domNode', domNode);
-    console.log('mapOptions', mapOptions);
     const map = new google.maps.Map(domNode, mapOptions);
     //const marker = new google.maps.Marker({position: this.mapCenterLatLng(), title: 'Hi', map: map});
 
