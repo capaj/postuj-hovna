@@ -14,9 +14,6 @@ export default class AddPoo extends React.Component {
     }
   }
 
-  onFilesSelected(ev) {
-
-  }
   addGPS(pos){
     this.setState({pos: pos});
   }

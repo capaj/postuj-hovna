@@ -12,6 +12,7 @@ import Home from './components/home.jsx!';
 var routes = (
   <Route path="/" handler={Main}>
     <Route handler={Home}/>
+    <Route path=":type/:id" handler={Home}/>
     <Route path="about" handler={About}/>
     <Route path="pridat-hovno" handler={AddPoo}/>
     <Route path="pridat-kos" handler={AddBin}/>
