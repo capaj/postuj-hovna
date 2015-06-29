@@ -9,6 +9,7 @@
     },
     "dependencies": {
       "bootstrap": "github:twbs/bootstrap@^3.3.4",
+      "classnames": "npm:classnames@^2.1.2",
       "exif-js/exif-js": "github:exif-js/exif-js@master",
       "jsx": "github:floatdrop/plugin-jsx@^1.1.0",
       "just-debounce": "npm:just-debounce@^1.0.0",

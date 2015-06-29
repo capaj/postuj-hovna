@@ -1,32 +1,42 @@
 import * as bootstrap from 'bootstrap';
 import React from 'react';
+import clNs from 'classnames';
 import Router from 'react-router';
 const RouteHandler = Router.RouteHandler;
 
 export default class Main extends React.Component {
   constructor(...props) {
     super(...props);
-
+    this.state = {
+      showMenu: false
+    };
+  }
+  toggleMenu(){
+    this.setState({
+      showMenu: !this.state.showMenu
+    });
   }
 
   render() {
+    const menuClasses = clNs({open: this.state.showMenu, menu: true});
+	  var toggleMenu = this.toggleMenu.bind(this);
     return <div className='screen-covering'>
       <div className="settings">
         <a href="/#/">
           <span className="back glyphicon glyphicon-menu-left"></span>
         </a>
         <img src="img/sbirejto.svg" height="35px"/>
-        <a href="/#/profil">
+        <a onClick={toggleMenu}>
           <span className="user glyphicon glyphicon-menu-hamburger"></span>
         </a>
       </div>
 
-      <div className="menu hidden">
-        <a href="#">PROFIL</a>
+      <div className={menuClasses}>
+        <a href="#/profil" onClick={toggleMenu}>PROFIL</a>
         <hr/>
-        <a href="#">ŽEBŘÍČKY</a>
+        <a href="#/zebricky" onClick={toggleMenu}>ŽEBŘÍČKY</a>
         <hr/>
-        <a href="#">O APLIKACI / NÁPOVĚDA</a>
+        <a href="#/about" onClick={toggleMenu}>O APLIKACI / NÁPOVĚDA</a>
       </div>
       <div className="main">
         <RouteHandler/>

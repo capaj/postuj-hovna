@@ -17,6 +17,7 @@ System.config({
     "babel": "npm:babel-core@5.6.5",
     "babel-runtime": "npm:babel-runtime@5.6.5",
     "bootstrap": "github:twbs/bootstrap@3.3.5",
+    "classnames": "npm:classnames@2.1.2",
     "core-js": "npm:core-js@0.9.18",
     "exif-js/exif-js": "github:exif-js/exif-js@master",
     "jsx": "github:floatdrop/plugin-jsx@1.1.0",
@@ -166,6 +167,11 @@ System.config({
       "base64-js": "npm:base64-js@0.0.8",
       "ieee754": "npm:ieee754@1.1.6",
       "is-array": "npm:is-array@1.0.1"
+    },
+    "npm:classnames@2.1.2": {
+      "assert": "github:jspm/nodelibs-assert@0.1.0",
+      "process": "github:jspm/nodelibs-process@0.1.1",
+      "systemjs-json": "github:systemjs/plugin-json@0.1.0"
     },
     "npm:commander@2.5.1": {
       "child_process": "github:jspm/nodelibs-child_process@0.1.0",
