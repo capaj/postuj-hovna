@@ -5,7 +5,7 @@ import GoogleMap from './google-map.jsx!';
 import backend from '../services/moonridge';
 const binModel = backend.model('bin');
 
-export default class AddPoo extends React.Component {
+export default class AddBin extends React.Component {
   constructor(...props) {
     super(...props);
     this.state = {
@@ -65,6 +65,6 @@ export default class AddPoo extends React.Component {
   }
 };
 
-AddPoo.defaultProps = {
+AddBin.defaultProps = {
   zoom: 9
 };
