@@ -9,7 +9,8 @@ export default class AddPoo extends React.Component {
   constructor(...props) {
     super(...props);
     this.state = {
-      pos: []
+      pos: [],
+      photos: []
     }
   }
 
@@ -40,7 +41,7 @@ export default class AddPoo extends React.Component {
     var submitBtn;
     var state = this.state;
     if (state.pos && state.photos.length > 1 && !state.inProgress) {
-      submitBtn =  <div className="post button ok clickable" onClick={this.submit}>
+      submitBtn = <div className="post button ok clickable" onClick={this.submit}>
         <span className="glyphicon glyphicon-ok"/>
       </div>;
     }
@@ -51,14 +52,16 @@ export default class AddPoo extends React.Component {
       </div>;
     }
     return <div className="container add-form">
-      <div className="post item">cvbh
-          center={state.loc}
-          zoom={props.zoom}
-        <GoogleMap
-          markers={state.markers}>
-        </GoogleMap>
+      <div className="post item">
+        {
+        //  <GoogleMap
+        //  center={state.loc}
+        //  zoom={props.zoom}
+        //  markers={state.markers}>
+        //</GoogleMap>
+        }
       </div>
-      <ImgUploader onGPSRead={this.addGPS} onImageReady={this.addImages}/>
+      <ImgUploader onGPSRead={this.addGPS} onImageReady={this.addImages} icon={'img/poo-plain.svg'}/>
       {submitBtn}
       {alert}
     </div>;

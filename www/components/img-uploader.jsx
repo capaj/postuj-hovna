@@ -36,7 +36,7 @@ export default class ImgUploader extends React.Component {
   }
 	render() {
 		return <div className="post item">
-      <img src="img/bin-plain.svg" className="big-icon img-responsive" width="160px"/>
+      <img src={this.props.icon} className="big-icon img-responsive" width="160px"/>
       <span className="glyphicon glyphicon-camera clickable" onClick={this.clickInput}/>
       <input className="glyphicon glyphicon-camera" ref="input" type="file" accept="image/*;capture=camera" name="images"
              onChange={this.onFilesSelected} multiple/>

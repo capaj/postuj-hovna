@@ -24,6 +24,7 @@ System.config({
     "lodash": "npm:lodash@3.9.3",
     "moonridge-client": "github:capaj/Moonridge-client@0.8.6",
     "react": "npm:react@0.13.3",
+    "react-intl": "npm:react-intl@1.2.0",
     "react-router": "npm:react-router@0.13.3",
     "github:capaj/Moonridge-client@0.8.6": {
       "debug": "npm:debug@2.2.0",
@@ -317,6 +318,12 @@ System.config({
       "path": "github:jspm/nodelibs-path@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
+    "npm:intl-messageformat@1.1.0": {
+      "intl-messageformat-parser": "npm:intl-messageformat-parser@1.1.0"
+    },
+    "npm:intl-relativeformat@1.1.0": {
+      "intl-messageformat": "npm:intl-messageformat@1.1.0"
+    },
     "npm:invariant@2.1.0": {
       "envify": "npm:envify@3.4.0",
       "process": "github:jspm/nodelibs-process@0.1.1"
@@ -416,6 +423,12 @@ System.config({
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "crypto": "github:jspm/nodelibs-crypto@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.1"
+    },
+    "npm:react-intl@1.2.0": {
+      "intl-format-cache": "npm:intl-format-cache@2.0.4",
+      "intl-messageformat": "npm:intl-messageformat@1.1.0",
+      "intl-relativeformat": "npm:intl-relativeformat@1.1.0",
+      "react": "npm:react@0.13.3"
     },
     "npm:react-router@0.13.3": {
       "object-assign": "npm:object-assign@2.1.1",

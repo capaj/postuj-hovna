@@ -3,7 +3,7 @@ import Router from 'react-router';
 var Route = Router.Route;
 
 import AddPoo from './components/add-poo.jsx!';
-import AddBin from './components/add-poo.jsx!';
+import AddBin from './components/add-bin.jsx!';
 import Leaderboards from './components/leaderboards.jsx!';
 import Main from './components/main.jsx!';
 import About from './components/about.jsx!';
