@@ -34,20 +34,23 @@ export default class Home extends React.Component {
     }, geolocationOptions);
   }
   query(bounds){
-    console.log('run query', bounds);
     const southWest = bounds.getSouthWest();
     const northEast = bounds.getNorthEast();
     var box = [[southWest.lat(), southWest.lng()], [northEast.lat(), northEast.lng()]];
-    console.log('box', box);
-    models.poo.query().where('loc').within({box: box})
-      .exec().promise.then(function(bins){
-        console.log('bins', bins);
+
+    models.bin.query().where('loc').within({box: box}).exec().promise.then((bins)=>{
+      console.log('bins', bins);
+      this.refs.map.addMarkers('bin', bins);
+    });
+    models.poo.query().where('loc').within({box: box}).exec().promise.then((poos)=>{
+      console.log('poos', poos);
+      this.refs.map.addMarkers('poo', poos);
     });
   }
   render() {
     return <div className="google-map-wrapper">
-      <GoogleMap center={this.state.center} zoom={this.state.zoom}
-                 onBoundsChanged={this.query} markers={this.state.markers}>
+      <GoogleMap ref="map" center={this.state.center} zoom={this.state.zoom}
+                 onBoundsChanged={this.query.bind(this)}>
       </GoogleMap>
       <a href="/#/pridat-hovno">
         <img className="add poo" src="img/poo.svg" width="75px"/>

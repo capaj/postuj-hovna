@@ -16,13 +16,21 @@ export default class Main extends React.Component {
       showMenu: !this.state.showMenu
     });
   }
+  componentDidMount(){
 
+    console.log('this.props', this.props);
+  }
   render() {
     const menuClasses = clNs({open: this.state.showMenu, menu: true});
 	  var toggleMenu = this.toggleMenu.bind(this);
+    var backBtnStyle = {};
+    if (location.hash === '#/') {
+      backBtnStyle.visibility = 'hidden';
+    }
+
     return <div className='screen-covering'>
       <div className="settings">
-        <a href="/#/">
+        <a href="/#/" style={backBtnStyle}>
           <span className="back glyphicon glyphicon-menu-left"></span>
         </a>
         <img src="img/sbirejto.svg" height="35px"/>

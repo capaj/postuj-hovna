@@ -21,6 +21,7 @@ System.config({
     "classnames": "npm:classnames@2.1.2",
     "core-js": "npm:core-js@0.9.18",
     "exif-js/exif-js": "github:exif-js/exif-js@master",
+    "hashset.js": "npm:hashset.js@1.0.0",
     "jsx": "npm:jspm-loader-jsx@0.0.1",
     "just-debounce": "npm:just-debounce@1.0.0",
     "lodash": "npm:lodash@3.9.3",

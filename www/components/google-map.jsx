@@ -1,6 +1,6 @@
 import React from 'react';
 import debounce from 'just-debounce';
-
+import mapMarkers from '../stores/map-markers';
 const LatLng = function(obj) {
   return new google.maps.LatLng(obj.lat, obj.lng);
 };
@@ -8,9 +8,6 @@ const LatLng = function(obj) {
 export default class GoogleMap extends React.Component {
   constructor(...props) {
     super(...props);
-    this.state = {
-      markers: []
-    }
   }
 
   mapCenterLatLng() {
@@ -19,12 +16,14 @@ export default class GoogleMap extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-
+    console.log('willReceive');
     this.setState(nextProps);
     this.state.map.setCenter(LatLng(nextProps.center));
     this.state.map.setZoom(nextProps.zoom);
   }
-
+  addMarkers(type, markerEntities){
+    mapMarkers.addMarkers(type, markerEntities, this.state.map);
+  }
   componentDidMount() {
     const mapOptions = {
       center: this.mapCenterLatLng(),
@@ -42,9 +41,10 @@ export default class GoogleMap extends React.Component {
     //we need this, because google maps are triggering this way to much
     var debouncedBoundsChangedEvent = debounce(()=>{
       this.props.onBoundsChanged(map.getBounds());
-    }, 1500);
+    }, 1000);
     map.addListener('bounds_changed', (ev) => {
       debouncedBoundsChangedEvent();
+      console.log('ev', ev);
     });
 
     this.setState({map: map});
