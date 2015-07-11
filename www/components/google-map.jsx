@@ -27,30 +27,34 @@ export default class GoogleMap extends React.Component {
   componentDidMount() {
     const mapOptions = {
       center: this.mapCenterLatLng(),
-      zoom: 8,
+      zoom: this.props.zoom || 8,
       zoomControlOptions: {
         style: google.maps.ZoomControlStyle.SMALL,
         position: google.maps.ControlPosition.TOP_LEFT
       },
       streetViewControl: false
     };
+    Object.assign(mapOptions, this.props.mapOptions);
     var domNode = React.findDOMNode(this);
     const map = new google.maps.Map(domNode, mapOptions);
     //const marker = new google.maps.Marker({position: this.mapCenterLatLng(), title: 'Hi', map: map});
 
-    //we need this, because google maps are triggering this way to much
-    var debouncedBoundsChangedEvent = debounce(()=>{
-      this.props.onBoundsChanged(map.getBounds());
-    }, 1000);
-    map.addListener('bounds_changed', (ev) => {
-      debouncedBoundsChangedEvent();
-      console.log('ev', ev);
-    });
+    if (this.props.onBoundsChanged) {
+      //we need this, because google maps are triggering this way to much
+      var debouncedBoundsChangedEvent = debounce(()=>{
+        this.props.onBoundsChanged(map.getBounds());
+      }, 1000);
+
+      map.addListener('bounds_changed', (ev) => {
+        debouncedBoundsChangedEvent();
+        console.log('ev', ev);
+      });
+    }
 
     this.setState({map: map});
   }
 
   render() {
-    return <div className='google-map-container'></div>;
+    return <div className={this.props.containerClass || "google-map-container"}></div>;
   }
 }

@@ -1,56 +1,37 @@
-export default function resizeCanvasImage(img, canvas, maxWidth, maxHeight) {
-    var imgWidth = img.width,
-        imgHeight = img.height;
+export default function downscaleImage(opts) {
+  var img = opts.img;
+  var type = opts.type;
+  var quality = opts.quality;
 
-    var ratio = 1, ratio1 = 1, ratio2 = 1;
-    ratio1 = maxWidth / imgWidth;
-    ratio2 = maxHeight / imgHeight;
+  var tmp = new Image();
+  var tmp2 = new Image();
+  var canvas, context, cW, cH;
 
-    // Use the smallest ratio that the image best fit into the maxWidth x maxHeight box.
-    if (ratio1 < ratio2) {
-        ratio = ratio1;
+  type = type || 'image/jpeg';
+  quality = quality || 0.92;
+
+  cW = img.naturalWidth;
+  cH = img.naturalHeight;
+
+  tmp.src = img.src;
+  tmp.onload = function() {
+
+    canvas = document.createElement('canvas');
+
+    cW /= 2;
+    cH /= 2;
+
+    canvas.width = cW;
+    canvas.height = cH;
+    context = canvas.getContext('2d');
+    context.drawImage(tmp, 0, 0, cW, cH);
+
+    tmp2.src = canvas.toDataURL(type, quality);
+
+    if (cW <= opts.maxWidth || cH <= opts.maxHeight) {
+      opts.done(tmp2.src);
+    } else {
+      tmp.src = tmp2.src; //recursion
     }
-    else {
-        ratio = ratio2;
-    }
-
-    var canvasContext = canvas.getContext("2d");
-    var canvasCopy = document.createElement("canvas");
-    var copyContext = canvasCopy.getContext("2d");
-    var canvasCopy2 = document.createElement("canvas");
-    var copyContext2 = canvasCopy2.getContext("2d");
-    canvasCopy.width = imgWidth;
-    canvasCopy.height = imgHeight;
-    copyContext.drawImage(img, 0, 0);
-
-    // init
-    canvasCopy2.width = imgWidth;
-    canvasCopy2.height = imgHeight;
-    copyContext2.drawImage(canvasCopy, 0, 0, canvasCopy.width, canvasCopy.height, 0, 0, canvasCopy2.width, canvasCopy2.height);
-
-
-    var rounds = 2;
-    var roundRatio = ratio * rounds;
-    for (var i = 1; i <= rounds; i++) {
-        console.log("Step: " + i);
-
-        // tmp
-        canvasCopy.width = imgWidth * roundRatio / i;
-        canvasCopy.height = imgHeisght * roundRatio / i;
-
-        copyContext.drawImage(canvasCopy2, 0, 0, canvasCopy2.width, canvasCopy2.height, 0, 0, canvasCopy.width, canvasCopy.height);
-
-        // copy back
-        canvasCopy2.width = imgWidth * roundRatio / i;
-        canvasCopy2.height = imgHeight * roundRatio / i;
-        copyContext2.drawImage(canvasCopy, 0, 0, canvasCopy.width, canvasCopy.height, 0, 0, canvasCopy2.width, canvasCopy2.height);
-
-    } // end for
-
-
-    // copy back to canvas
-    canvas.width = imgWidth * roundRatio / rounds;
-    canvas.height = imgHeight * roundRatio / rounds;
-    canvasContext.drawImage(canvasCopy2, 0, 0, canvasCopy2.width, canvasCopy2.height, 0, 0, canvas.width, canvas.height);
-
+  }
 }

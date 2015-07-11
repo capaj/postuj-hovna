@@ -3,44 +3,45 @@ import ImgUploader from './img-uploader.jsx!';
 import GoogleMap from './google-map.jsx!';
 
 import backend from '../services/moonridge';
-const binModel = backend.model('bin');
+const pooModel = backend.model('poo');
 
 export default class AddPoo extends React.Component {
   constructor(...props) {
     super(...props);
     this.state = {
-      pos: [],
-      photos: []
+      images: []
     }
+    this.model = pooModel;
   }
 
   onFilesSelected(ev) {
 
   }
-  addGPS(pos){
-    this.setState({pos: pos});
-  }
-  addImages(imageIds){
-    this.setState({photos: imageIds});
+  addImage(imageData){
+    this.setState({images: this.state.images.concat([imageData])});
   }
   submit() {
     console.log('submit');
     this.setState({inProgress: true});
-    binModel.create(this.state).then(function(newPoo){
-        //TODO transition to home
-      this.setState({inProgress: false});
-    }, function(err) {
-      this.setState({
-        error: err
+    backend.rpc('savePhoto')(this.files[0]).then(photoId => {
+      var toCreate = {
+        loc: this.state.loc,
+        photos: [photoId]
+      };
+      return this.model.create(toCreate).then(created => {
+        location.hash = `/${this.type}/${created._id}`;
       });
+    }, err => {
+      this.error = err;
     });
+
   }
 
   render() {
     var props = this.props;
     var submitBtn;
     var state = this.state;
-    if (state.pos && state.photos.length > 1 && !state.inProgress) {
+    if (state.loc && state.images.length > 0 && !state.inProgress) {
       submitBtn = <div className="post button ok clickable" onClick={this.submit}>
         <span className="glyphicon glyphicon-ok"/>
       </div>;
@@ -51,17 +52,16 @@ export default class AddPoo extends React.Component {
         {state.error}
       </div>;
     }
+    var map;
+    if (state.loc) {
+      map = <GoogleMap center={state.loc} zoom={17} containerClass="small-map"></GoogleMap>;
+    }
     return <div className="container add-form">
       <div className="post item">
-        {
-        //  <GoogleMap
-        //  center={state.loc}
-        //  zoom={props.zoom}
-        //  markers={state.markers}>
-        //</GoogleMap>
-        }
+        {map}
       </div>
-      <ImgUploader onGPSRead={this.addGPS} onImageReady={this.addImages} icon={'img/poo-plain.svg'}/>
+      <ImgUploader onGPSRead={(GPS) => {this.setState({loc: GPS})}} onImageRead={this.addImage.bind(this)}
+                   icon={'img/poo-plain.svg'}/>
       {submitBtn}
       {alert}
     </div>;

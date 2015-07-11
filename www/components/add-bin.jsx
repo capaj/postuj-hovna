@@ -9,16 +9,12 @@ export default class AddBin extends React.Component {
   constructor(...props) {
     super(...props);
     this.state = {
-      pos: [],
       photos: []
-    }
-  }
+    };
 
-  addGPS(pos){
-    this.setState({pos: pos});
   }
   addImages(imageIds){
-    this.setState({photos: imageIds});
+
   }
   submit() {
     console.log('submit');
@@ -37,9 +33,16 @@ export default class AddBin extends React.Component {
     var props = this.props;
     var submitBtn;
     var state = this.state;
-    if (state.pos && state.photos.length > 1 && !state.inProgress) {
-      submitBtn = <div className="post button ok clickable" onClick={this.submit}>
-        <span className="glyphicon glyphicon-ok"/>
+    if (state.loc && !state.inProgress) {
+      submitBtn = <div>
+        <div className="post good item half clickable" onClick={()=>{this.submit(10)}}>
+          <img src="img/bin-good.svg" width="45px"/>
+            DOST PYTLÍKŮ
+          </div>
+          <div className="post bad item half clickable" onClick={()=>{this.submit(0)}}>
+            <img src="img/bin-bad.svg" width="45px"/>
+              MÁLO PYTLÍKŮ
+            </div>
       </div>;
     }
     var alert;
@@ -48,17 +51,16 @@ export default class AddBin extends React.Component {
         {state.error}
       </div>;
     }
+    var map;
+    if (state.loc) {
+      map = <GoogleMap center={state.loc} zoom={17} containerClass="small-map"></GoogleMap>;
+    }
     return <div className="container add-form">
       <div className="post item">
-        {
-          //  <GoogleMap
-          //  center={state.loc}
-          //  zoom={props.zoom}
-          //  markers={state.markers}>
-          //</GoogleMap>
-        }
+        {map}
       </div>
-      <ImgUploader onGPSRead={this.addGPS} onImageReady={this.addImages} icon={'img/bin-plain.svg'}/>
+      <ImgUploader onGPSRead={(GPS) => {this.setState({loc: GPS})}} onImageRead={this.addImages}
+                   icon={'img/bin-plain.svg'}/>
       {submitBtn}
       {alert}
     </div>;

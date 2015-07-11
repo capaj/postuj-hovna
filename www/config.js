@@ -2,7 +2,9 @@ System.config({
   "transpiler": "babel",
   "babelOptions": {
     "optional": [
-      "runtime"
+      "runtime",
+      "es7.classProperties",
+      "es7.functionBind"
     ]
   },
   "paths": {
@@ -15,12 +17,13 @@ System.config({
 
 System.config({
   "map": {
-    "babel": "npm:babel-core@5.6.5",
-    "babel-runtime": "npm:babel-runtime@5.6.5",
+    "babel": "npm:babel-core@5.6.17",
+    "babel-runtime": "npm:babel-runtime@5.6.17",
     "bootstrap": "github:twbs/bootstrap@3.3.5",
     "classnames": "npm:classnames@2.1.2",
     "core-js": "npm:core-js@0.9.18",
     "exif-js/exif-js": "github:exif-js/exif-js@master",
+    "googlemaps/js-info-bubble": "github:googlemaps/js-info-bubble@gh-pages",
     "hashset.js": "npm:hashset.js@1.0.0",
     "jsx": "npm:jspm-loader-jsx@0.0.1",
     "just-debounce": "npm:just-debounce@1.0.0",
@@ -129,6 +132,9 @@ System.config({
     "npm:ast-types@0.7.8": {
       "assert": "github:jspm/nodelibs-assert@0.1.0",
       "util": "github:jspm/nodelibs-util@0.1.0"
+    },
+    "npm:babel-runtime@5.6.17": {
+      "process": "github:jspm/nodelibs-process@0.1.1"
     },
     "npm:babel-runtime@5.6.5": {
       "process": "github:jspm/nodelibs-process@0.1.1"
