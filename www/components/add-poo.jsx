@@ -10,33 +10,34 @@ export default class AddPoo extends React.Component {
     super(...props);
     this.state = {
       images: []
-    }
+    };
     this.model = pooModel;
   }
 
-  onFilesSelected(ev) {
-
-  }
-  addImage(imageData){
+  addImage = (imageData) => {
     this.setState({images: this.state.images.concat([imageData])});
   }
-  submit() {
-    console.log('submit');
+  submit = () => {
+    console.log('submit', this);
     this.setState({inProgress: true});
-    backend.rpc('savePhoto')(this.files[0]).then(photoId => {
+    var images = this.state.images.map((imgData)=> {return imgData.substr(imgData.indexOf(',') + 1);});
+    backend.rpc('savePhoto')(images[0]).then(photoId => {
+      const GPS = this.state.loc;
       var toCreate = {
-        loc: this.state.loc,
+        loc: [GPS.lat, GPS.lng],
         photos: [photoId]
       };
       return this.model.create(toCreate).then(created => {
-        location.hash = `/${this.type}/${created._id}`;
+        location.hash = `/poo/${created._id}`;
       });
     }, err => {
       this.error = err;
+      console.log('err', err);
     });
-
   }
-
+  addLoc = (GPS) => {
+    this.setState({loc: GPS});
+  }
   render() {
     var props = this.props;
     var submitBtn;
@@ -60,7 +61,7 @@ export default class AddPoo extends React.Component {
       <div className="post item">
         {map}
       </div>
-      <ImgUploader onGPSRead={(GPS) => {this.setState({loc: GPS})}} onImageRead={this.addImage.bind(this)}
+      <ImgUploader onGPSRead={this.addLoc} onImageRead={this.addImage}
                    icon={'img/poo-plain.svg'}/>
       {submitBtn}
       {alert}

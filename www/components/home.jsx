@@ -33,7 +33,7 @@ export default class Home extends React.Component {
       console.warn('ERROR(' + err.code + '): ' + err.message);
     }, geolocationOptions);
   }
-  query(bounds){
+  query = (bounds) => {
     const southWest = bounds.getSouthWest();
     const northEast = bounds.getNorthEast();
     var box = [[southWest.lat(), southWest.lng()], [northEast.lat(), northEast.lng()]];
@@ -50,7 +50,7 @@ export default class Home extends React.Component {
   render() {
     return <div className="google-map-wrapper">
       <GoogleMap ref="map" center={this.state.center} zoom={this.state.zoom}
-                 onBoundsChanged={this.query.bind(this)}>
+                 onBoundsChanged={this.query}>
       </GoogleMap>
       <a href="/#/pridat-hovno">
         <img className="add poo" src="img/poo.svg" width="75px"/>

@@ -1,13 +1,14 @@
 import React from 'react';
+import ImgUploader from '../img-uploader.jsx!';
 
-export default {
-  addPhoto: function() {
+export default class PooMarkerBubbleBody extends React.Component {
+  addPhoto() {
     //clcik on hidden input
-  },
-  clearedNow: function(){
+  }
+  clearedNow(){
 
-  },
-  bodyRender: function() {
+  }
+  render() {
     return (<div>
       <button onClick={this.clearedNow}>Už je uklizeno</button>
       <h3>Přidat novou fotku</h3>

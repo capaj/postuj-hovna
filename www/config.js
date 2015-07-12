@@ -1,10 +1,12 @@
 System.config({
   "transpiler": "babel",
   "babelOptions": {
+    blacklist: [],
+    "stage": 0,
     "optional": [
-      "runtime",
       "es7.classProperties",
-      "es7.functionBind"
+      "es7.functionBind",
+      "runtime"
     ]
   },
   "paths": {
