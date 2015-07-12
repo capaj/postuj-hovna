@@ -9,12 +9,15 @@
 
 @green: fade(green, 70%);
 @red: fade(red, 70%);
-
+@import "./add";
+@import "./home";
 body{
+    color: white;
+}
+.screen-covering{
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
-	color: white;
 }
 
 hr {
@@ -22,7 +25,7 @@ hr {
 }
 
 
-router-view{
+.main{
 	flex: auto;
 	overflow-y: auto;
 	display: flex;
@@ -56,11 +59,19 @@ router-view{
 		float: right;
 	}
 }
+
 .menu {
-	padding: 2rem 4rem;
 	background: darken(@brown, 5%);
 	font-size: 1.2em;
-	a, a:visited, a:active  {
+  transition: padding 0.2s linear, opacity 0.5s ease, height 0.5s ease;
+  height: 0px;
+  opacity: 0;
+	&.open{
+    opacity: 1;
+    padding: 2rem 4rem;
+    height: 300px;
+  }
+  a, a:visited, a:active  {
 		color: white;
 		display: inline-block;
 		padding: 1.5rem 2rem;
@@ -83,7 +94,7 @@ router-view{
 	margin: 2rem;
 	text-align: center;
 	border-radius: 3px;
-	&.item {
+  &.item {
 		background: fade(white, 5%);
 		font-size: 2em;
 		color: white;

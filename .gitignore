@@ -1,6 +1,6 @@
 ogs
 *.log
-
+.idea/encodings.xml
 # Runtime data
 pids
 *.pid

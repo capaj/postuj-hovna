@@ -5,8 +5,13 @@ var bs = require('browser-sync').create();
 var gulp = require('gulp');
 require('./gulpfile');
 
+var watchOptions = {
+    ignored: 'www/jspm_packages/**/*.*',
+    ignoreInitial: true
+};
 bs.init({
 	open: false,
+    watchOptions: watchOptions,
 	server: {
 		baseDir: "./www",
 		middleware: [
@@ -24,11 +29,13 @@ bs.init({
 	}
 });
 
-var from = 'www/**/';
+var from = 'www/**/*';
+var extensionsToWatch = ['html', 'css', 'js', 'jsx'];
+extensionsToWatch.forEach(function (ext){
+    bs.watch(from + '.' + ext, watchOptions).on('change', bs.reload);
+});
 
-bs.watch(from + '*.html').on('change', bs.reload);
-bs.watch(from + '*.less').on('change', function() {
+bs.watch(from + '*.less', watchOptions).on('change', function() {
 	gulp.start('less'); //not a public gulp API, but works, be aware of when updating gulp
 });
-bs.watch(from + '*.css').on('change', bs.reload);
-bs.watch(from + '*.js').on('change', bs.reload);
+

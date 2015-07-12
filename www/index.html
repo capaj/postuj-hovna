@@ -1,22 +1,118 @@
 <!DOCTYPE html>
 
 <html>
-    <head>
-        <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">-->
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+<head>
+  <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">-->
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta name="viewport"
+        content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
 
-		<link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
-    </head>
-	<body aurelia-app>
-		<script src="jspm_packages/system.js"></script>
-		<script src="config.js"></script>
-		<script>
-			System.import('aurelia-bootstrapper').then(function() {
-                console.log('bootstrapped at', new Date());
-            });
-		</script>
-	</body>
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+  <style type="text/css">
+    body {
+      background: #4A2F2C;
+    }
+
+    h4 {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      margin: 0;
+      font-weight: 200;
+      opacity: .5;
+      font-family: sans-serif;
+      color: #3A1F07;
+    }
+
+    #loader {
+      width: 100px;
+      height: 40px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin: -20px -50px;
+    }
+
+    #loader div {
+      width: 20px;
+      height: 20px;
+      background: #3A1F07;
+      border-radius: 50%;
+      position: absolute;
+
+    }
+
+    #d1 {
+      animation: animate 2s linear infinite;
+    }
+
+    #d2 {
+      animation: animate 2s linear infinite -.4s;
+    }
+
+    #d3 {
+      animation: animate 2s linear infinite -.8s;
+    }
+
+    #d4 {
+      animation: animate 2s linear infinite -1.2s;
+    }
+
+    #d5 {
+      animation: animate 2s linear infinite -1.6s;
+    }
+
+    @-webkit-keyframes animate {
+      0% {
+        left: 100px;
+        top: 0
+      }
+      80% {
+        left: 0;
+        top: 0;
+      }
+      85% {
+        left: 0;
+        top: -20px;
+        width: 20px;
+        height: 20px;
+      }
+      90% {
+        width: 40px;
+        height: 15px;
+      }
+      95% {
+        left: 100px;
+        top: -20px;
+        width: 20px;
+        height: 20px;
+      }
+      100% {
+        left: 100px;
+        top: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div id="loader">
+      <div id="d1"></div>
+      <div id="d2"></div>
+      <div id="d3"></div>
+      <div id="d4"></div>
+      <div id="d5"></div>
+    </div>
+  </div>
+  <script src="jspm_packages/system.js"></script>
+  <script src="config.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
+  <script>
+    System.import('postuj-hovna.jsx!').then(function() {
+      console.log('ran at ', new Date());
+    });
+  </script>
+</body>
 </html>
 
