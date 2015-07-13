@@ -26,8 +26,8 @@ System.config({
     "core-js": "npm:core-js@0.9.18",
     "exif-js/exif-js": "github:exif-js/exif-js@master",
     "googlemaps/js-info-bubble": "github:googlemaps/js-info-bubble@gh-pages",
-    "hashset.js": "npm:hashset.js@1.0.0",
-    "jsx": "npm:jspm-loader-jsx@0.0.1",
+    "hashset.js": "npm:hashset.js@1.1.0",
+    "jsx": "npm:jspm-loader-jsx@0.0.2",
     "just-debounce": "npm:just-debounce@1.0.0",
     "lodash": "npm:lodash@3.9.3",
     "moonridge-client": "github:capaj/Moonridge-client@0.8.6",
@@ -341,12 +341,11 @@ System.config({
     "npm:intl-relativeformat@1.1.0": {
       "intl-messageformat": "npm:intl-messageformat@1.1.0"
     },
-    "npm:jspm-loader-jsx@0.0.1": {
+    "npm:jspm-loader-jsx@0.0.2": {
       "pascal-case": "npm:pascal-case@1.1.1",
       "path": "github:jspm/nodelibs-path@0.1.0",
       "react": "npm:react@0.13.3",
-      "react-hot-api": "github:gaearon/react-hot-api@0.4.3",
-      "react-tools": "npm:react-tools@0.13.3"
+      "react-hot-api": "github:gaearon/react-hot-api@0.4.3"
     },
     "npm:jstransform@10.1.0": {
       "base62": "npm:base62@0.1.1",

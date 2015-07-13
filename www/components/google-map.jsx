@@ -14,10 +14,8 @@ export default class GoogleMap extends React.Component {
     var props = this.props;
     return new LatLng(props.center);
   }
-
   componentWillReceiveProps(nextProps) {
     console.log('willReceive');
-    this.setState(nextProps);
     this.state.map.setCenter(LatLng(nextProps.center));
     this.state.map.setZoom(nextProps.zoom);
   }
@@ -25,6 +23,7 @@ export default class GoogleMap extends React.Component {
     mapMarkers.addMarkers(type, markerEntities, this.state.map);
   }
   componentDidMount() {
+    console.log('componentDidMount GoogleMap');
     const mapOptions = {
       center: this.mapCenterLatLng(),
       zoom: this.props.zoom || 8,
@@ -50,6 +49,14 @@ export default class GoogleMap extends React.Component {
         console.log('ev', ev);
       });
     }
+
+    mapMarkers.bin.each((bin) => {
+      mapMarkers.addMarkerToMap('bin', bin, map);
+    });
+
+    mapMarkers.poo.each((poo) => {
+      mapMarkers.addMarkerToMap('poo', poo, map);
+    });
 
     this.setState({map: map});
   }
