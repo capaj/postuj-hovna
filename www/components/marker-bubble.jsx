@@ -18,10 +18,10 @@ export default class MarkerBubble extends React.Component {
     const photos = this.props.photos.map((photo) => {
       return <img src={env.backend + '/img/' + photo + '.jpg'} style={{maxWidth: '90%'}}/>;
     });
-    var bubbleBody = <BinMarkerBubbleBody/>;
     var props = this.props;
+    var bubbleBody = <BinMarkerBubbleBody {...props}/>;
     if (props.notoriety) {
-      bubbleBody = <PooMarkerBubbleBody/>;
+      bubbleBody = <PooMarkerBubbleBody {...props}/>;
     }
 
     return <div style={{display: 'flex', flexDirection: 'column', paddingTop: 10}}>
