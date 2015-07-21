@@ -54,7 +54,7 @@ const store = {
     });
     const infoBubble = new InfoBubble({
       map: map,
-      content: `<div id="${marker._id}" class="${type}-bubble" style="width: 300px;height: 300px;"></div>`,
+      content: `<div id="${marker._id}" class="${type}-bubble" style="width: 345px;height: 300px;"></div>`,
       shadowStyle: 1,
       padding: 10,
       backgroundColor: '#3A1F07',
@@ -81,7 +81,7 @@ const store = {
         React.render(<MarkerBubble {...marker}/>, infoBubble.contentContainer_.children[0].children[0]);
       }, 50);
     };
-    google.maps.event.addListener(newMarker, 'mouseover', marker.openInfoBubble);
+    google.maps.event.addListener(newMarker, 'click', marker.openInfoBubble);
   }
 
 };

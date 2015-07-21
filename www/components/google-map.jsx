@@ -10,22 +10,22 @@ export default class GoogleMap extends React.Component {
     super(...props);
   }
 
-  mapCenterLatLng() {
-    var props = this.props;
-    return new LatLng(props.center);
-  }
   componentWillReceiveProps(nextProps) {
-    console.log('willReceive');
-    this.state.map.setCenter(LatLng(nextProps.center));
-    this.state.map.setZoom(nextProps.zoom);
+    if (location.hash === '#/') { //if we have an entity, we better ignore props(otherwise we set the old props)
+      this.state.map.setCenter(LatLng(nextProps.center));
+      this.state.map.setZoom(nextProps.zoom);
+    }
+
   }
   addMarkers(type, markerEntities){
     mapMarkers.addMarkers(type, markerEntities, this.state.map);
   }
   componentDidMount() {
     console.log('componentDidMount GoogleMap');
+    var props = this.props;
+
     const mapOptions = {
-      center: this.mapCenterLatLng(),
+      center: new LatLng(props.center),
       zoom: this.props.zoom || 8,
       zoomControlOptions: {
         style: google.maps.ZoomControlStyle.SMALL,
@@ -46,8 +46,8 @@ export default class GoogleMap extends React.Component {
 
       map.addListener('bounds_changed', (ev) => {
         debouncedBoundsChangedEvent();
-        console.log('ev', ev);
       });
+
     }
 
     mapMarkers.bin.each((bin) => {

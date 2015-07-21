@@ -1,4 +1,5 @@
 import React from 'react';
+import ProfileStore from '../stores/profile-store';
 
 export default class Profile extends React.Component {
   constructor(...props) {
@@ -6,6 +7,8 @@ export default class Profile extends React.Component {
   }
 
   render() {
-    return <div>Profil</div>;
+    return <div>Profil
+     
+    </div>;
   }
 }

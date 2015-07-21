@@ -19,6 +19,7 @@ System.config({
 
 System.config({
   "map": {
+    "ENV": "envs/dev",
     "babel": "npm:babel-core@5.6.17",
     "babel-runtime": "npm:babel-runtime@5.6.17",
     "bootstrap": "github:twbs/bootstrap@3.3.5",

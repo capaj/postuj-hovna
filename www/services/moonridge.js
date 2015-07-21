@@ -1,7 +1,7 @@
 import MR from 'moonridge-client';
-import env from '../js/env';
+import ENV from 'ENV';
 
-var MRinst = MR({url: env.backend});
+var backend = MR({url: ENV.backend});
 
 export default {
   rpc: backend.rpc,

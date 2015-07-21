@@ -3,7 +3,7 @@ import ImgUploader from './img-uploader.jsx!';
 import GoogleMap from './google-map.jsx!';
 
 import backend from '../services/moonridge';
-const binModel = backend.model('bin');
+
 
 export default class AddBin extends React.Component {
   constructor(...props) {
@@ -19,7 +19,7 @@ export default class AddBin extends React.Component {
   submit() {
     console.log('submit');
     this.setState({inProgress: true});
-    binModel.create(this.state).then(function(newPoo){
+    backend.bin.create(this.state).then(function(newPoo){
       //TODO transition to home
       this.setState({inProgress: false});
     }, function(err) {

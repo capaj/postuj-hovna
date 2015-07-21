@@ -40,6 +40,7 @@ export default class Main extends React.Component {
       </div>
 
       <div className={menuClasses}>
+        <hr/>
         <a href="#/profil" onClick={toggleMenu}>PROFIL</a>
         <hr/>
         <a href="#/zebricky" onClick={toggleMenu}>ŽEBŘÍČKY</a>

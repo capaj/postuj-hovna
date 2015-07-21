@@ -2,7 +2,7 @@ import React from 'react';
 import ImgUploader from './img-uploader.jsx!';
 
 import backend from '../services/moonridge';
-import env from '../js/env';
+import env from '../envs/dev';
 import BinMarkerBubbleBody from './marker-methods/bin-marker-bubble.jsx!';
 import PooMarkerBubbleBody from './marker-methods/poo-marker-bubble.jsx!';
 
@@ -11,7 +11,7 @@ export default class MarkerBubble extends React.Component {
   constructor(props) {
     super(props);
     var type = this.props.type;
-    model = backend.model(type);
+    model = backend[type];
   }
 
   render(){

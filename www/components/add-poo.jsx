@@ -3,7 +3,6 @@ import ImgUploader from './img-uploader.jsx!';
 import GoogleMap from './google-map.jsx!';
 
 import backend from '../services/moonridge';
-const pooModel = backend.model('poo');
 
 export default class AddPoo extends React.Component {
   constructor(...props) {
@@ -11,7 +10,7 @@ export default class AddPoo extends React.Component {
     this.state = {
       images: []
     };
-    this.model = pooModel;
+    this.model = backend.poo;
   }
 
   addImage = (imageData) => {

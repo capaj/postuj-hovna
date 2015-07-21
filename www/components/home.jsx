@@ -1,9 +1,10 @@
 import React from 'react';
 import GoogleMap from './google-map.jsx!';
 import backend from '../services/moonridge';
+
 const models = {
-  bin: backend.model('bin'),
-  poo: backend.model('poo')
+  bin: backend.bin,
+  poo: backend.poo
 };
 
 export default class Home extends React.Component {
@@ -46,7 +47,7 @@ export default class Home extends React.Component {
       navigator.geolocation.getCurrentPosition(pos => {
         var crd = pos.coords;
 
-        var zoom = Math.floor(20 - (pos.coords.accuracy/600));
+        var zoom = Math.floor(17 - (pos.coords.accuracy/500));
         this.setState({
           center: {lat: crd.latitude, lng: crd.longitude},
           zoom: zoom
