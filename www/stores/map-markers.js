@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import LSBackedStore from '../js/ls-backed-store';
 import Hashset from 'hashset.js';
-import InfoBubble from 'googlemaps/js-info-bubble@gh-pages/src/infobubble';
+import InfoBubble from 'googlemaps/js-info-bubble/src/infobubble';
 import MarkerBubble from '../components/marker-bubble.jsx!';
 import React from 'react';
 import 'jspm_packages/npm/hashset.js@1.1.0/test/object-assign-polyfill';
