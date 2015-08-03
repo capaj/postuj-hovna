@@ -7,13 +7,16 @@ export default class PooMarkerBubbleBody extends React.Component {
   addPhoto() {
     //clcik on hidden input
   }
-  clearedNow(){
+
+  clearedNow() {
 
   }
-  seenAsWell = ()=>{
+
+  seenAsWell = ()=> {
     this.props.seen_by.push(profile._id);
     backend.poo.update(this.props);
   }
+
   render() {
     return (<div>
       <button onClick={this.clearedNow}>Už je uklizeno</button>

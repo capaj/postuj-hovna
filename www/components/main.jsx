@@ -46,6 +46,8 @@ export default class Main extends React.Component {
         <a href="#/zebricky" onClick={toggleMenu}>ŽEBŘÍČKY</a>
         <hr/>
         <a href="#/about" onClick={toggleMenu}>O APLIKACI / NÁPOVĚDA</a>
+        <hr/>
+
       </div>
       <div className="main">
         <RouteHandler/>

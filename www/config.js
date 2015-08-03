@@ -24,6 +24,7 @@ System.config({
     "babel-core": "npm:babel-core@5.8.3",
     "babel-runtime": "npm:babel-runtime@5.6.17",
     "bootstrap": "github:twbs/bootstrap@3.3.5",
+    "chai": "npm:chai@3.2.0",
     "classnames": "npm:classnames@2.1.2",
     "core-js": "npm:core-js@0.9.18",
     "exif-js/exif-js": "github:exif-js/exif-js@master",
@@ -32,6 +33,7 @@ System.config({
     "jsx": "npm:jspm-loader-jsx@0.0.2",
     "just-debounce": "npm:just-debounce@1.0.0",
     "lodash": "npm:lodash@3.9.3",
+    "mocha": "npm:mocha@2.2.5",
     "moonridge-client": "github:capaj/Moonridge-client@0.8.6",
     "react": "npm:react@0.13.3",
     "react-intl": "npm:react-intl@1.2.0",
@@ -171,6 +173,14 @@ System.config({
       "sentence-case": "npm:sentence-case@1.1.2",
       "upper-case": "npm:upper-case@1.1.2"
     },
+    "npm:chai@3.2.0": {
+      "assertion-error": "npm:assertion-error@1.0.1",
+      "buffer": "github:jspm/nodelibs-buffer@0.1.0",
+      "deep-eql": "npm:deep-eql@0.1.3",
+      "process": "github:jspm/nodelibs-process@0.1.1",
+      "systemjs-json": "github:systemjs/plugin-json@0.1.0",
+      "type-detect": "npm:type-detect@1.0.0"
+    },
     "npm:classnames@2.1.2": {
       "assert": "github:jspm/nodelibs-assert@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.1",
@@ -228,6 +238,10 @@ System.config({
       "process": "github:jspm/nodelibs-process@0.1.1",
       "tty": "github:jspm/nodelibs-tty@0.1.0",
       "util": "github:jspm/nodelibs-util@0.1.0"
+    },
+    "npm:deep-eql@0.1.3": {
+      "buffer": "github:jspm/nodelibs-buffer@0.1.0",
+      "type-detect": "npm:type-detect@0.1.1"
     },
     "npm:diffie-hellman@3.0.2": {
       "bn.js": "npm:bn.js@2.1.0",
@@ -309,6 +323,9 @@ System.config({
       "bn.js": "npm:bn.js@2.1.0",
       "brorand": "npm:brorand@1.0.5"
     },
+    "npm:mocha@2.2.5": {
+      "css": "github:systemjs/plugin-css@0.1.13"
+    },
     "npm:parse-asn1@3.0.1": {
       "asn1.js": "npm:asn1.js@2.1.0",
       "browserify-aes": "npm:browserify-aes@1.0.1",
@@ -377,10 +394,8 @@ System.config({
       "inherits": "npm:inherits@2.0.1",
       "isarray": "npm:isarray@0.0.1",
       "process": "github:jspm/nodelibs-process@0.1.1",
-      "stream": "github:jspm/nodelibs-stream@0.1.0",
       "stream-browserify": "npm:stream-browserify@1.0.0",
-      "string_decoder": "npm:string_decoder@0.10.31",
-      "util": "github:jspm/nodelibs-util@0.1.0"
+      "string_decoder": "npm:string_decoder@0.10.31"
     },
     "npm:ripemd160@1.0.1": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
