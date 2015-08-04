@@ -2,6 +2,10 @@ import * as bootstrap from 'bootstrap';
 import React from 'react';
 import clNs from 'classnames';
 import Router from 'react-router';
+import observeStore from 'capaj/react-observe-store';
+import ProfileStore from '../stores/profile-store';
+import FbProfilePicture from './fb-profile-picture.jsx!';
+
 const RouteHandler = Router.RouteHandler;
 
 export default class Main extends React.Component {
@@ -10,6 +14,7 @@ export default class Main extends React.Component {
     this.state = {
       showMenu: false
     };
+    observeStore(this, ProfileStore, 'ProfileStore');
   }
   toggleMenu(){
     this.setState({
@@ -27,6 +32,10 @@ export default class Main extends React.Component {
     if (location.hash === '#/') {
       backBtnStyle.visibility = 'hidden';
     }
+    let profilePic;
+    if (ProfileStore.id) {
+      profilePic = <FbProfilePicture id={ProfileStore.id} type="normal"/>;
+    }
 
     return <div className='screen-covering'>
       <div className="settings">
@@ -41,7 +50,10 @@ export default class Main extends React.Component {
 
       <div className={menuClasses}>
         <hr/>
-        <a href="#/profil" onClick={toggleMenu}>PROFIL</a>
+        <div style={{display: 'flex'}}>
+          <a href="#/profil" onClick={toggleMenu}>PROFIL</a>
+          {profilePic}
+        </div>
         <hr/>
         <a href="#/zebricky" onClick={toggleMenu}>ŽEBŘÍČKY</a>
         <hr/>

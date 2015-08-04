@@ -1,5 +1,4 @@
 System.config({
-  "defaultJSExtensions": true,
   "transpiler": "babel",
   "babelOptions": {
     "blacklist": [],
@@ -11,9 +10,11 @@ System.config({
     ]
   },
   "paths": {
-    "github:*": "jspm_packages/github/*",
-    "npm:*": "jspm_packages/npm/*"
+    "github:*": "jspm_packages/github/*.js",
+    "npm:*": "jspm_packages/npm/*.js",
+    "*": "*.js"
   },
+  "defaultJSExtensions": true,
   "trace": true
 });
 
@@ -24,6 +25,7 @@ System.config({
     "babel-core": "npm:babel-core@5.8.3",
     "babel-runtime": "npm:babel-runtime@5.6.17",
     "bootstrap": "github:twbs/bootstrap@3.3.5",
+    "capaj/react-observe-store": "github:capaj/react-observe-store@0.0.4",
     "chai": "npm:chai@3.2.0",
     "classnames": "npm:classnames@2.1.2",
     "core-js": "npm:core-js@0.9.18",
@@ -42,6 +44,9 @@ System.config({
       "debug": "npm:debug@2.2.0",
       "lodash.difference": "npm:lodash.difference@3.2.1",
       "socket.io-rpc-client": "github:capaj/socket.io-rpc-client@0.9.11"
+    },
+    "github:capaj/react-observe-store@0.0.4": {
+      "observe-js": "github:Polymer/observe-js@0.5.6"
     },
     "github:capaj/socket.io-rpc-client@0.9.11": {
       "debug": "npm:debug@2.2.0",
@@ -394,8 +399,10 @@ System.config({
       "inherits": "npm:inherits@2.0.1",
       "isarray": "npm:isarray@0.0.1",
       "process": "github:jspm/nodelibs-process@0.1.1",
+      "stream": "github:jspm/nodelibs-stream@0.1.0",
       "stream-browserify": "npm:stream-browserify@1.0.0",
-      "string_decoder": "npm:string_decoder@0.10.31"
+      "string_decoder": "npm:string_decoder@0.10.31",
+      "util": "github:jspm/nodelibs-util@0.1.0"
     },
     "npm:ripemd160@1.0.1": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",

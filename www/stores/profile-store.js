@@ -1,5 +1,12 @@
 import ENV from 'ENV';
 
+function connectedCallback(response) {
+  self.authResponse = response.authResponse;  //saving into the store
+  FB.api('/me', function(response) {
+    Object.assign(self, response);
+  });
+}
+
 const self = {
   login: function() {
 
@@ -16,8 +23,7 @@ window.fbAsyncInit = function() {
   FB.getLoginStatus(function(response) {
     if (response.status === 'connected') {
       // Logged in
-      self.authResponse = response.authResponse;  //saving into the store
-
+    connectedCallback(response);
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not this app
 
