@@ -2,6 +2,9 @@ import ENV from 'ENV';
 
 function connectedCallback(response) {
   self.authResponse = response.authResponse;  //saving into the store
+  mr.authorize(self.authResponse).then(function(user) {
+    console.log("user", user);
+  });
   FB.api('/me', function(response) {
     Object.assign(self, response);
   });
