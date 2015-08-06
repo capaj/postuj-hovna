@@ -1,9 +1,11 @@
 import ENV from 'ENV';
+import backend from '../services/moonridge';
 
 function connectedCallback(response) {
   self.authResponse = response.authResponse;  //saving into the store
-  mr.authorize(self.authResponse).then(function(user) {
-    console.log("user", user);
+  backend.authorize(self.authResponse.accessToken).then(function(user) {
+    Object.assign(self, user);
+    console.log("self", self);
   });
   FB.api('/me', function(response) {
     Object.assign(self, response);

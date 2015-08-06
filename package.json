@@ -15,7 +15,7 @@
       "exif-js/exif-js": "github:exif-js/exif-js@master",
       "googlemaps/js-info-bubble": "github:googlemaps/js-info-bubble@gh-pages",
       "hashset.js": "npm:hashset.js@^1.1.0",
-      "jsx": "npm:jspm-loader-jsx@^0.0.2",
+      "jsx": "npm:jspm-loader-jsx@^0.0.7",
       "just-debounce": "npm:just-debounce@^1.0.0",
       "lodash": "npm:lodash@^3.9.3",
       "moonridge-client": "github:capaj/Moonridge-client@^0.8.5",
