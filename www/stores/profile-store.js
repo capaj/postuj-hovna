@@ -1,22 +1,25 @@
 import ENV from 'ENV';
 import backend from '../services/moonridge';
 
+const self = {
+  login: function() {
+    FB.login(function() {
+      //todo handle the login properly
+    });
+  }
+};
+
 function connectedCallback(response) {
   self.authResponse = response.authResponse;  //saving into the store
   backend.authorize(self.authResponse.accessToken).then(function(user) {
     Object.assign(self, user);
-    console.log("self", self);
+    console.log("self", backend.user);
   });
   FB.api('/me', function(response) {
     Object.assign(self, response);
+    console.log('response', response);
   });
 }
-
-const self = {
-  login: function() {
-
-  }
-};
 
 window.fbAsyncInit = function() {
   FB.init({

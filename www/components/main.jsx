@@ -2,7 +2,7 @@ import * as bootstrap from 'bootstrap';
 import React from 'react';
 import clNs from 'classnames';
 import Router from 'react-router';
-import observeStore from 'capaj/react-observe-store';
+import {observeStore} from 'capaj/react-observe-store';
 import ProfileStore from '../stores/profile-store';
 import FbProfilePicture from './fb-profile-picture.jsx!';
 

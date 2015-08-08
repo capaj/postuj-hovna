@@ -24,7 +24,7 @@ System.config({
     "babel-core": "npm:babel-core@5.8.3",
     "babel-runtime": "npm:babel-runtime@5.6.17",
     "bootstrap": "github:twbs/bootstrap@3.3.5",
-    "capaj/react-observe-store": "github:capaj/react-observe-store@0.0.4",
+    "capaj/react-observe-store": "github:capaj/react-observe-store@0.1.1",
     "chai": "npm:chai@3.2.0",
     "classnames": "npm:classnames@2.1.2",
     "core-js": "npm:core-js@0.9.18",
@@ -44,7 +44,7 @@ System.config({
       "lodash.difference": "npm:lodash.difference@3.2.1",
       "socket.io-rpc-client": "github:capaj/socket.io-rpc-client@0.9.11"
     },
-    "github:capaj/react-observe-store@0.0.4": {
+    "github:capaj/react-observe-store@0.1.1": {
       "observe-js": "github:Polymer/observe-js@0.5.6"
     },
     "github:capaj/socket.io-rpc-client@0.9.11": {
