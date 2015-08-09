@@ -2,11 +2,6 @@ import React from 'react';
 import GoogleMap from './google-map.jsx!';
 import backend from '../services/moonridge';
 
-const models = {
-  bin: backend.bin,
-  poo: backend.poo
-};
-
 export default class Home extends React.Component {
   constructor() {
     super();
@@ -24,8 +19,8 @@ export default class Home extends React.Component {
     var id = this.props.params.id;
     var type = this.props.params.type;
 
-    if (id && models[type]) {
-      models[type].query().findOne({_id: id}).exec().promise.then((displayed)=>{
+    if (id && backend[type]) {
+      backend[type].query().findOne({_id: id}).exec().promise.then((displayed)=>{
 
         this.refs.map.addMarkers(type, [displayed]);
         this.setState({
@@ -64,7 +59,7 @@ export default class Home extends React.Component {
     var box = [[southWest.lat(), southWest.lng()], [northEast.lat(), northEast.lng()]];
 
     ['bin', 'poo'].forEach((model) =>{
-      models[model].query().where('loc').within({box: box}).exec().promise.then((entity)=>{
+      backend[model].query().where('loc').within({box: box}).exec().promise.then((entity)=>{
         this.refs.map.addMarkers(model, entity);
       });
     });

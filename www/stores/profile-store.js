@@ -1,11 +1,23 @@
 import ENV from 'ENV';
 import backend from '../services/moonridge';
 
+const loginCB = function(response) {
+  if (response.status === 'connected') {
+    // Logged in
+    connectedCallback(response);
+  } else if (response.status === 'not_authorized') {
+    // The person is logged into Facebook, but not this app
+
+  } else {
+    // The person is not logged into Facebook, so we're not sure if
+    // they are logged into this app or not.
+
+  }
+};
+
 const self = {
   login: function() {
-    FB.login(function() {
-      //todo handle the login properly
-    });
+    FB.login(loginCB, {scope: 'public_profile,email'});
   }
 };
 
@@ -28,19 +40,7 @@ window.fbAsyncInit = function() {
     version    : 'v2.4'
   });
 
-  FB.getLoginStatus(function(response) {
-    if (response.status === 'connected') {
-      // Logged in
-    connectedCallback(response);
-    } else if (response.status === 'not_authorized') {
-      // The person is logged into Facebook, but not this app
-
-    } else {
-      // The person is not logged into Facebook, so we're not sure if
-      // they are logged into this app or not.
-
-    }
-  });
+  FB.getLoginStatus(loginCB);
 };
 
 (function(d, s, id){
@@ -50,7 +50,6 @@ window.fbAsyncInit = function() {
   js.src = "//connect.facebook.net/cz_CS/sdk.js";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
-
 
 
 export default self;
