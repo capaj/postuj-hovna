@@ -14,3 +14,4 @@ For development, run
 ```
 node server.js.
 ```
+Moonridge backend is in separate [repo](https://github.com/capaj/postuj-hovna-server).
