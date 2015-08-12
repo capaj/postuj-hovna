@@ -7,20 +7,18 @@ import backend from '../services/moonridge';
 export default class AddPoo extends React.Component {
   constructor(...props) {
     super(...props);
-    this.state = {
-      images: []
-    };
+
     this.model = backend.poo;
   }
 
   addImage = (imageData) => {
-    this.setState({images: this.state.images.concat([imageData])});
+    this.setState({image: imageData});
   }
   submit = () => {
     console.log('submit', this);
     this.setState({inProgress: true});
-    var images = this.state.images.map((imgData)=> {return imgData.substr(imgData.indexOf(',') + 1);});
-    backend.rpc('savePhoto')(images[0]).then(photoId => {
+    var image = this.state.image.substr(imgData.indexOf(',') + 1);
+    backend.rpc('savePhoto')(image).then(photoId => {
       const GPS = this.state.loc;
       var toCreate = {
         loc: [GPS.lat, GPS.lng],

@@ -22,15 +22,18 @@ export default class Home extends React.Component {
     if (id && backend[type]) {
       backend[type].query().findOne({_id: id}).exec().promise.then((displayed)=>{
 
-        this.refs.map.addMarkers(type, [displayed]);
+        var prom = this.refs.map.addMarkers(type, [displayed]);
         this.setState({
           center: {lat: displayed.loc[0], lng: displayed.loc[1]},
           zoom: 16
         });
+        
+        Promise.resolve(prom).then(function(){
+          setTimeout(function(){
+            displayed.openInfoBubble(); //we need the pin to be rendered before opening the window
+          }, 32);
+        });
 
-        setTimeout(function(){
-          displayed.openInfoBubble(); //we need the pin to be rendered before opening the window
-        }, 32);
       });
     } else {
       const geolocationOptions = {

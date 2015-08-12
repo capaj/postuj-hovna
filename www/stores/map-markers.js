@@ -5,6 +5,7 @@ import InfoBubble from 'googlemaps/js-info-bubble/src/infobubble';
 import MarkerBubble from '../components/marker-bubble.jsx!';
 import React from 'react';
 import 'jspm_packages/npm/hashset.js@1.1.0/test/object-assign-polyfill';
+import backend from '../services/moonridge';
 
 function getIcon(type, entity) {
   var icons = {
@@ -52,36 +53,54 @@ const store = {
       map: map,
       icon: `/img/pin-${type}.svg`
     });
-    const infoBubble = new InfoBubble({
-      map: map,
-      content: `<div id="${marker._id}" class="${type}-bubble" style="width: 345px;height: 300px;"></div>`,
-      shadowStyle: 1,
-      padding: 10,
-      backgroundColor: '#3A1F07',
-      borderRadius: 5,
-      arrowSize: 25,
-      borderWidth: 1,
-      borderColor: '#987230',
-      //disableAutoPan: true,
-      arrowPosition: 50,
-      backgroundClassName: 'transparent',
-      arrowStyle: 2,
-      width: 300,
-      height: 600
-    });
 
-    marker.openInfoBubble = function() {
-      if (openedBubble) {
-        openedBubble.close();
-      }
-      infoBubble.open(map, newMarker);
-      openedBubble = infoBubble;
-      location.hash = `#/${type}/${marker._id}`;
-      setTimeout(function() {
-        React.render(<MarkerBubble {...marker}/>, infoBubble.contentContainer_.children[0].children[0]);
-      }, 50);
-    };
-    google.maps.event.addListener(newMarker, 'click', marker.openInfoBubble);
+    function createBubble() {
+      const infoBubble = new InfoBubble({
+        map: map,
+        content: `<div id="${marker._id}" class="${type}-bubble" style="width: 345px;height: 300px;"></div>`,
+        shadowStyle: 1,
+        padding: 10,
+        backgroundColor: '#3A1F07',
+        borderRadius: 5,
+        arrowSize: 25,
+        borderWidth: 1,
+        borderColor: '#987230',
+        //disableAutoPan: true,
+        arrowPosition: 50,
+        backgroundClassName: 'transparent',
+        arrowStyle: 2,
+        width: 300,
+        height: 600
+      });
+
+      marker.openInfoBubble = function() {
+        if (openedBubble) {
+          openedBubble.close();
+        }
+        infoBubble.open(map, newMarker);
+        openedBubble = infoBubble;
+        location.hash = `#/${type}/${marker._id}`;
+        setTimeout(function() {
+          React.render(<MarkerBubble {...marker}/>, infoBubble.contentContainer_.children[0].children[0]);
+        }, 50);
+      };
+      google.maps.event.addListener(newMarker, 'click', marker.openInfoBubble);
+    }
+
+    if (type === 'bin') {
+      return backend.binState.query().find().limit(1).sort({date: -1}).exec().promise.then((binArr)=>{
+        var latest = binArr[0];
+        if (latest.bag_count > 4) {
+          newMarker.icon = '/img/pin-bin-good.svg';
+        } else {
+          newMarker.icon = '/img/pin-bin-bad.svg';
+        }
+        createBubble();
+
+      });
+    }
+    createBubble();
+
   }
 
 };

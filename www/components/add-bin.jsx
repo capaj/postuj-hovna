@@ -4,33 +4,40 @@ import GoogleMap from './google-map.jsx!';
 
 import backend from '../services/moonridge';
 
-
 export default class AddBin extends React.Component {
   constructor(...props) {
     super(...props);
-    this.state = {
-      photos: []
-    };
-
+    this.state = {};
+    this.model = backend.bin;
   }
-  addImages(imageIds){
-
+  addImage = (imageData) => {
+    this.setState({image: imageData.substr(imageData.indexOf(',') + 1)});
   }
-  submit() {
-    console.log('submit');
+  /**
+   * @param {Number} bagCount
+   */
+  submit = (bagCount) => {
+    console.log('submit', this);
     this.setState({inProgress: true});
-    backend.bin.create(this.state).then(function(newPoo){
-      //TODO transition to home
-      this.setState({inProgress: false});
-    }, function(err) {
-      this.setState({
-        error: err
+    var image = this.state.image;
+    backend.rpc('savePhoto')(image).then(photoId => {
+      const GPS = this.state.loc;
+      var toCreate = {
+        loc: [GPS.lat, GPS.lng],
+        photos: [photoId]
+      };
+      return this.model.create(toCreate).then(created => {
+        backend.binState.create({bin: created._id, bag_count: bagCount}).then(()=>{
+          location.hash = `/bin/${created._id}`;
+        });
       });
+    }, err => {
+      this.error = err;
+      console.log('err', err);
     });
   }
-
   render() {
-    var props = this.props;
+
     var submitBtn;
     var state = this.state;
     if (state.loc && !state.inProgress) {
@@ -59,7 +66,7 @@ export default class AddBin extends React.Component {
       <div className="post item">
         {map}
       </div>
-      <ImgUploader onGPSRead={(GPS) => {this.setState({loc: GPS})}} onImageRead={this.addImages}
+      <ImgUploader onGPSRead={(GPS) => {this.setState({loc: GPS})}} onImageRead={this.addImage}
                    icon={'img/bin-plain.svg'}/>
       {submitBtn}
       {alert}

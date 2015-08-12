@@ -30,24 +30,33 @@ export default class ImgUploader extends React.Component {
       reader.onload = (function(theFile) {
         return function(e) {
           var img = new Image();
-          img.onload = function() {
+
+          img.src = e.target.result;
+          EXIF.getData(img, function() {
+            var pos = {
+              lng: EXIF.getTag(this, "GPSLongitude"),
+              lat: EXIF.getTag(this, "GPSLatitude")
+            };
+            self.getGPS(pos);
+
+            var orientation = EXIF.getTag(this, "Orientation");
             downscaleImage({
               img: img,
+              orientation: orientation,
               maxHeight: 1500,
               maxWidth: 1500,
               done: function(data) {
                 self.setState({
                   base64s: self.state.base64s.concat([data])
                 });
+
                 if (self.props.onImageRead) {
                   self.props.onImageRead(data);
                 }
               }
             });
-          };
 
-          img.src = e.target.result;
-          self.getGPS(img);
+          });
         };
       })(f);
 
@@ -55,7 +64,14 @@ export default class ImgUploader extends React.Component {
       reader.readAsDataURL(f);
     }
   }
-  getGPS(imgBase64) {
+
+  /**
+   *
+   * @param {Object} pos
+   * @param {Number} pos.lng
+   * @param {Number} pos.lat
+   */
+  getGPS(pos) {
     //thanks to http://blogs.microsoft.co.il/ranw/2015/01/07/reading-gps-data-using-exif-js/
     var self = this;
     var toDecimal = function(number) {
@@ -63,21 +79,15 @@ export default class ImgUploader extends React.Component {
         (60 * number[1].denominator) + number[2].numerator / (3600 * number[2].denominator);
     };
 
-    EXIF.getData(imgBase64, function() {
-      var pos = {
-        lng: EXIF.getTag(this, "GPSLongitude"),
-        lat: EXIF.getTag(this, "GPSLatitude")
-      };
-      if (Array.isArray(pos.lng) && Array.isArray(pos.lat)) {
-        pos.lat = toDecimal(pos.lat);
-        pos.lng = toDecimal(pos.lng);
+    if (Array.isArray(pos.lng) && Array.isArray(pos.lat)) {
+      pos.lat = toDecimal(pos.lat);
+      pos.lng = toDecimal(pos.lng);
 
-        if (self.props.onGPSRead) {
-          self.props.onGPSRead(pos);
-        }
+      if (self.props.onGPSRead) {
+        self.props.onGPSRead(pos);
       }
-      console.log("was taken on " + pos.lat + " " + pos.lng);
-    });
+    }
+    console.log("was taken on " + pos.lat + " " + pos.lng);
   }
   clickInput(ev){
     this.el = $(ev.target.parentElement);
