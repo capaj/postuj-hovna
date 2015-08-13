@@ -4,10 +4,7 @@ import backend from '../services/moonridge';
 export default class Leaderboards extends React.Component {
   constructor(...props) {
     super(...props);
-    backend.user.query().find().exec().promise.then((users) =>{
-       this.users = users;
-      this.forceUpdate();
-    });
+    this.LQs = {users: backend.user.liveQuery().find().sort({karma: -1}).limit(30)};
   }
 
   render() {
