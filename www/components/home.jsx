@@ -4,6 +4,10 @@ import backend from '../services/moonridge';
 
 const knownModels = ['bin', 'poo'];
 
+const LatLng = function(obj) {
+  return new google.maps.LatLng(obj.lat, obj.lng);
+};
+
 export default class Home extends React.Component {
   constructor() {
     super();
@@ -21,15 +25,11 @@ export default class Home extends React.Component {
     var id = this.props.params.id;
     var type = this.props.params.type;
 
-    if (id && knownModels[type]) {
+    if (id && knownModels.indexOf(type) !== -1) {
       backend.model(type).query().findOne({_id: id}).exec().promise.then((displayed)=>{
 
-        var prom = this.refs.map.addMarkers(type, [displayed]);
-        this.setState({
-          center: {lat: displayed.loc[0], lng: displayed.loc[1]},
-          zoom: 16
-        });
-        
+        var prom = this.refs.mainMap.addMarkers(type, [displayed]);
+
         Promise.resolve(prom).then(function(){
           setTimeout(function(){
             displayed.openInfoBubble(); //we need the pin to be rendered before opening the window
@@ -48,15 +48,17 @@ export default class Home extends React.Component {
         var crd = pos.coords;
 
         var zoom = Math.floor(17 - (pos.coords.accuracy/500));
-        this.setState({
-          center: {lat: crd.latitude, lng: crd.longitude},
-          zoom: zoom
-        });
+        const mainMap = this.refs.mainMap;
+        if (mainMap) {  //a mainMap can unmount while the query is running
+          mainMap.map.setCenter(LatLng({lat: crd.latitude, lng: crd.longitude}));
+          mainMap.map.setZoom(zoom);
+        }
+
       }, err => {
         console.warn('ERROR(' + err.code + '): ' + err.message);
       }, geolocationOptions);
     }
-    console.log('this.props.params', this.props.params);
+
   }
   query = (bounds) => {
     const southWest = bounds.getSouthWest();
@@ -65,8 +67,8 @@ export default class Home extends React.Component {
 
     let queriesPromises = knownModels.map((model) =>{
       return backend.model(model).query().where('loc').within({box: box}).exec().promise.then((entity)=>{
-        if (this.refs.map) {  //a map can unmount while the query is running
-          this.refs.map.addMarkers(model, entity);
+        if (this.refs.mainMap) {  //a map can unmount while the query is running
+          this.refs.mainMap.addMarkers(model, entity);
         }
       });
     });
@@ -75,7 +77,7 @@ export default class Home extends React.Component {
   }
   render() {
     return <div className="google-map-wrapper">
-      <GoogleMap ref="map" center={this.state.center} zoom={this.state.zoom}
+      <GoogleMap ref="mainMap" center={this.state.center} zoom={this.state.zoom}
                  onBoundsChanged={this.query}>
       </GoogleMap>
       <a href="/#/pridat-hovno">

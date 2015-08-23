@@ -10,15 +10,8 @@ export default class GoogleMap extends React.Component {
     super(...props);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (location.hash === '#/') { //if we have an entity, we better ignore props(otherwise we set the old props)
-      this.state.map.setCenter(LatLng(nextProps.center));
-      this.state.map.setZoom(nextProps.zoom);
-    }
-
-  }
   addMarkers(type, markerEntities){
-    mapMarkers.addMarkers(type, markerEntities, this.state.map);
+    mapMarkers.addMarkers(type, markerEntities, this.map);
   }
   componentDidMount() {
     console.log('componentDidMount GoogleMap');
@@ -58,7 +51,7 @@ export default class GoogleMap extends React.Component {
       mapMarkers.addMarkerToMap('poo', poo, map);
     });
 
-    this.setState({map: map});
+    this.map = map;
   }
 
   render() {
