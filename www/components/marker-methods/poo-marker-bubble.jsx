@@ -1,6 +1,6 @@
 import React from 'react';
 import ImgUploader from '../img-uploader.jsx!';
-import backend from '../../services/moonridge';
+import {poo} from '../../services/moonridge';
 import profile from '../../stores/profile-store';
 
 export default class PooMarkerBubbleBody extends React.Component {
@@ -14,7 +14,7 @@ export default class PooMarkerBubbleBody extends React.Component {
 
   seenAsWell = ()=> {
     this.props.seen_by.push(profile._id);
-    backend.poo.update(this.props);
+    poo.update(this.props);
   }
 
   render() {

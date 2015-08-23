@@ -2,13 +2,13 @@ import React from 'react';
 import ImgUploader from './img-uploader.jsx!';
 import GoogleMap from './google-map.jsx!';
 
-import backend from '../services/moonridge';
+import {bin, binState} from '../services/moonridge';
 
 export default class AddBin extends React.Component {
   constructor(...props) {
     super(...props);
     this.state = {};
-    this.model = backend.bin;
+    this.model = bin;
   }
   addImage = (imageData) => {
     this.setState({image: imageData.substr(imageData.indexOf(',') + 1)});
@@ -27,7 +27,7 @@ export default class AddBin extends React.Component {
         photos: [photoId]
       };
       return this.model.create(toCreate).then(created => {
-        backend.binState.create({bin: created._id, bag_count: bagCount}).then(()=>{
+        binState.create({bin: created._id, bag_count: bagCount}).then(()=>{
           location.hash = `/bin/${created._id}`;
         });
       });

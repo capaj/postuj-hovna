@@ -2,6 +2,8 @@ import React from 'react';
 import GoogleMap from './google-map.jsx!';
 import backend from '../services/moonridge';
 
+const knownModels = ['bin', 'poo'];
+
 export default class Home extends React.Component {
   constructor() {
     super();
@@ -19,8 +21,8 @@ export default class Home extends React.Component {
     var id = this.props.params.id;
     var type = this.props.params.type;
 
-    if (id && backend[type]) {
-      backend[type].query().findOne({_id: id}).exec().promise.then((displayed)=>{
+    if (id && knownModels[type]) {
+      backend.model(type).query().findOne({_id: id}).exec().promise.then((displayed)=>{
 
         var prom = this.refs.map.addMarkers(type, [displayed]);
         this.setState({
@@ -61,13 +63,15 @@ export default class Home extends React.Component {
     const northEast = bounds.getNorthEast();
     var box = [[southWest.lat(), southWest.lng()], [northEast.lat(), northEast.lng()]];
 
-    ['bin', 'poo'].forEach((model) =>{
-      backend[model].query().where('loc').within({box: box}).exec().promise.then((entity)=>{
-        this.refs.map.addMarkers(model, entity);
+    let queriesPromises = knownModels.map((model) =>{
+      return backend.model(model).query().where('loc').within({box: box}).exec().promise.then((entity)=>{
+        if (this.refs.map) {  //a map can unmount while the query is running
+          this.refs.map.addMarkers(model, entity);
+        }
       });
     });
 
-
+    this.setState({queriesPromises: queriesPromises});
   }
   render() {
     return <div className="google-map-wrapper">

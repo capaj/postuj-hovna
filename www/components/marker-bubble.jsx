@@ -11,7 +11,7 @@ export default class MarkerBubble extends React.Component {
   constructor(props) {
     super(props);
     var type = this.props.type;
-    model = backend[type];
+    model = backend.model(type);
   }
 
   render(){

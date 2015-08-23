@@ -6,10 +6,14 @@ export default class FbProfilePicture extends React.Component {
   }
 
   render() {
-    var style = Object.assign({maxWidth: '100%'}, this.props.style);
+    let style = Object.assign({maxWidth: '100%'}, this.props.style);
+    let size = 55;
+    if (this.props.type === 'small') {
+      size = 25;
+    }
 
     return <div style={style}>
-      <img style={{borderRadius: "50%"}} src={`https://graph.facebook.com/${this.props.id}/picture?width=55&height=55`}/>
+      <img style={{borderRadius: "50%"}} src={`https://graph.facebook.com/${this.props.id}/picture?width=${size}&height=${size}`}/>
     </div>;
   }
 }

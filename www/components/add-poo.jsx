@@ -2,13 +2,13 @@ import React from 'react';
 import ImgUploader from './img-uploader.jsx!';
 import GoogleMap from './google-map.jsx!';
 
-import backend from '../services/moonridge';
+import {poo} from '../services/moonridge';
 
 export default class AddPoo extends React.Component {
   constructor(...props) {
     super(...props);
-
-    this.model = backend.poo;
+    this.state = {};
+    this.model = poo;
   }
 
   addImage = (imageData) => {

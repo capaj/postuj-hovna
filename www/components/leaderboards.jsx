@@ -1,10 +1,15 @@
 import React from 'react';
-import backend from '../services/moonridge';
+import {user} from '../services/moonridge';
+import {liveQueryComponent} from 'capaj/moonridge-react-utils';
+import FbProfilePicture from './fb-profile-picture.jsx!';
+import ProfileStore from '../stores/profile-store';
 
 export default class Leaderboards extends React.Component {
   constructor(...props) {
     super(...props);
-    this.LQs = {users: backend.user.liveQuery().find().sort({karma: -1}).limit(30)};
+
+    this.queries = {users: user.liveQuery().find().sort({karma: -1}).limit(30)};
+    liveQueryComponent(this);
   }
 
   render() {
@@ -19,11 +24,17 @@ export default class Leaderboards extends React.Component {
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>2</td>
-        </tr>
+        {this.state.users.map((user, i)=> {
+          var rowStyle = {};
+          if (user.fb.id === ProfileStore.id) {
+            rowStyle.backgroundColor = '#987230';
+          }
+          return <tr style={rowStyle}>
+            <th scope="row">{i + 1}</th>
+            <td><FbProfilePicture id={user.fb.id} type="small"/>{user.fb.name}</td>
+            <td>{user.karma}</td>
+          </tr>;
+        })}
         </tbody>
       </table>
     </div>;

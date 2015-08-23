@@ -10,7 +10,8 @@
     "dependencies": {
       "babel-core": "npm:babel-core@^5.8.3",
       "bootstrap": "github:twbs/bootstrap@^3.3.4",
-      "capaj/react-observe-store": "github:capaj/react-observe-store@^0.1.0",
+      "capaj/moonridge-react-utils": "github:capaj/moonridge-react-utils@master",
+      "capaj/react-observe-store": "github:capaj/react-observe-store@^0.2.0",
       "classnames": "npm:classnames@^2.1.2",
       "exif-js/exif-js": "github:exif-js/exif-js@master",
       "googlemaps/js-info-bubble": "github:googlemaps/js-info-bubble@gh-pages",
@@ -18,7 +19,7 @@
       "jsx": "npm:jspm-loader-jsx@^0.0.7",
       "just-debounce": "npm:just-debounce@^1.0.0",
       "lodash": "npm:lodash@^3.9.3",
-      "moonridge-client": "github:capaj/Moonridge-client@^0.8.5",
+      "moonridge-client": "github:capaj/Moonridge-client@^0.9.0",
       "react": "npm:react@0.13.3",
       "react-intl": "npm:react-intl@^1.2.0",
       "react-router": "npm:react-router@0.13.3"

@@ -2,14 +2,14 @@ import React from 'react';
 import ProfileStore from '../stores/profile-store';
 import FbProfilePicture from './fb-profile-picture.jsx!';
 import {observeStore} from 'capaj/react-observe-store';
-import backend from '../services/moonridge';
+import {user} from '../services/moonridge';
 
 export default class Profile extends React.Component {
   constructor(...props) {
     super(...props);
     var id = this.props.params.id;
     if (id) {
-      backend.user.query().findOne({_id: id}).exec().promise.then((user) =>{
+      user.query().findOne({_id: id}).exec().promise.then((user) =>{
           this.user = user;
           console.log('user', user);
           this.forceUpdate();
