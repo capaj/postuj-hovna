@@ -19,7 +19,7 @@
       "jsx": "npm:jspm-loader-jsx@^0.0.7",
       "just-debounce": "npm:just-debounce@^1.0.0",
       "lodash": "npm:lodash@^3.9.3",
-      "moonridge-client": "github:capaj/Moonridge-client@^0.9.0",
+      "moonridge-client": "github:capaj/Moonridge-client@^0.9.1",
       "react": "npm:react@0.13.3",
       "react-intl": "npm:react-intl@^1.2.0",
       "react-router": "npm:react-router@0.13.3"

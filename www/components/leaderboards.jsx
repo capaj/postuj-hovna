@@ -8,7 +8,7 @@ export default class Leaderboards extends React.Component {
   constructor(...props) {
     super(...props);
 
-    this.queries = {users: user.liveQuery().find().sort({karma: -1}).limit(30)};
+    this.queries = {users: user.liveQuery().find().sort('-karma').limit(30)};
     liveQueryComponent(this);
   }
 

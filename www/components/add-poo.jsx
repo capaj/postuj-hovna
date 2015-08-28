@@ -3,6 +3,7 @@ import ImgUploader from './img-uploader.jsx!';
 import GoogleMap from './google-map.jsx!';
 
 import {poo} from '../services/moonridge';
+import backend from '../services/moonridge';
 
 export default class AddPoo extends React.Component {
   constructor(...props) {
@@ -17,7 +18,8 @@ export default class AddPoo extends React.Component {
   submit = () => {
     console.log('submit', this);
     this.setState({inProgress: true});
-    var image = this.state.image.substr(imgData.indexOf(',') + 1);
+    var imgBase64 = this.state.image;
+    var image = imgBase64.substr(imgBase64.indexOf(',') + 1);
     backend.rpc('savePhoto')(image).then(photoId => {
       const GPS = this.state.loc;
       var toCreate = {
@@ -36,10 +38,10 @@ export default class AddPoo extends React.Component {
     this.setState({loc: GPS});
   }
   render() {
-    var props = this.props;
+
     var submitBtn;
     var state = this.state;
-    if (state.loc && state.images.length > 0 && !state.inProgress) {
+    if (state.loc && state.image && !state.inProgress) {
       submitBtn = <div className="post button ok clickable" onClick={this.submit}>
         <span className="glyphicon glyphicon-ok"/>
       </div>;

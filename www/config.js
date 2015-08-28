@@ -18,32 +18,32 @@ System.config({
 
   map: {
     "ENV": "envs/dev",
-    "babel": "npm:babel-core@5.8.3",
-    "babel-core": "npm:babel-core@5.8.3",
-    "babel-runtime": "npm:babel-runtime@5.6.17",
+    "babel": "npm:babel-core@5.8.23",
+    "babel-core": "npm:babel-core@5.8.23",
+    "babel-runtime": "npm:babel-runtime@5.8.20",
     "bootstrap": "github:twbs/bootstrap@3.3.5",
     "capaj/moonridge-react-utils": "github:capaj/moonridge-react-utils@master",
-    "capaj/react-observe-store": "github:capaj/react-observe-store@0.1.1",
+    "capaj/react-observe-store": "github:capaj/react-observe-store@0.2.0",
     "chai": "npm:chai@3.2.0",
-    "classnames": "npm:classnames@2.1.2",
+    "classnames": "npm:classnames@2.1.3",
     "core-js": "npm:core-js@0.9.18",
     "exif-js/exif-js": "github:exif-js/exif-js@master",
     "googlemaps/js-info-bubble": "github:googlemaps/js-info-bubble@gh-pages",
     "hashset.js": "npm:hashset.js@1.1.0",
     "jsx": "npm:jspm-loader-jsx@0.0.7",
     "just-debounce": "npm:just-debounce@1.0.0",
-    "lodash": "npm:lodash@3.9.3",
+    "lodash": "npm:lodash@3.10.1",
     "mocha": "npm:mocha@2.2.5",
-    "moonridge-client": "github:capaj/Moonridge-client@0.9.0",
+    "moonridge-client": "github:capaj/Moonridge-client@0.9.1",
     "react": "npm:react@0.13.3",
     "react-intl": "npm:react-intl@1.2.0",
     "react-router": "npm:react-router@0.13.3",
-    "github:capaj/Moonridge-client@0.9.0": {
+    "github:capaj/Moonridge-client@0.9.1": {
       "debug": "npm:debug@2.2.0",
       "lodash.difference": "npm:lodash.difference@3.2.2",
       "socket.io-rpc-client": "github:capaj/socket.io-rpc-client@0.9.11"
     },
-    "github:capaj/react-observe-store@0.1.1": {
+    "github:capaj/react-observe-store@0.2.0": {
       "observe-js": "github:Polymer/observe-js@0.5.6"
     },
     "github:capaj/socket.io-rpc-client@0.9.11": {
@@ -135,7 +135,7 @@ System.config({
     "npm:assert@1.3.0": {
       "util": "npm:util@0.10.3"
     },
-    "npm:babel-runtime@5.6.17": {
+    "npm:babel-runtime@5.8.20": {
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
     "npm:browserify-aes@1.0.3": {
@@ -188,7 +188,7 @@ System.config({
       "systemjs-json": "github:systemjs/plugin-json@0.1.0",
       "type-detect": "npm:type-detect@1.0.0"
     },
-    "npm:classnames@2.1.2": {
+    "npm:classnames@2.1.3": {
       "assert": "github:jspm/nodelibs-assert@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.1",
       "systemjs-json": "github:systemjs/plugin-json@0.1.0"
@@ -317,7 +317,7 @@ System.config({
       "lodash._baseflatten": "npm:lodash._baseflatten@3.1.4",
       "lodash.restparam": "npm:lodash.restparam@3.6.1"
     },
-    "npm:lodash@3.9.3": {
+    "npm:lodash@3.10.1": {
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
     "npm:miller-rabin@2.0.1": {
@@ -325,7 +325,7 @@ System.config({
       "brorand": "npm:brorand@1.0.5"
     },
     "npm:mocha@2.2.5": {
-      "css": "github:systemjs/plugin-css@0.1.13"
+      "css": "github:systemjs/plugin-css@0.1.15"
     },
     "npm:parse-asn1@3.0.1": {
       "asn1.js": "npm:asn1.js@2.2.0",

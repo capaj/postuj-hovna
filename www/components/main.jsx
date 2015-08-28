@@ -14,7 +14,7 @@ export default class Main extends React.Component {
     this.state = {
       showMenu: false
     };
-    observeStore(this, ProfileStore, 'ProfileStore');
+    observeStore(this, ()=> ProfileStore);
   }
   toggleMenu(){
     this.setState({

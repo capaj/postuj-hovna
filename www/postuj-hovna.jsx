@@ -27,3 +27,5 @@ var routes = (
 Router.run(routes, Router.HashLocation, (Root) => {
   React.render(<Root/>, document.getElementById('app'));
 });
+
+export let __hotReload = true

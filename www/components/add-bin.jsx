@@ -3,6 +3,7 @@ import ImgUploader from './img-uploader.jsx!';
 import GoogleMap from './google-map.jsx!';
 
 import {bin, binState} from '../services/moonridge';
+import backend from '../services/moonridge';
 
 export default class AddBin extends React.Component {
   constructor(...props) {
