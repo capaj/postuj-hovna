@@ -2,14 +2,13 @@ import React from 'react';
 import ImgUploader from './img-uploader.jsx!';
 import GoogleMap from './google-map.jsx!';
 
-import {poo} from '../services/moonridge';
+import {photo} from '../services/moonridge';
 import backend from '../services/moonridge';
 
 export default class AddPoo extends React.Component {
   constructor(...props) {
     super(...props);
     this.state = {};
-    this.model = poo;
   }
 
   addImage = (imageData) => {
@@ -24,9 +23,10 @@ export default class AddPoo extends React.Component {
       const GPS = this.state.loc;
       var toCreate = {
         loc: [GPS.lat, GPS.lng],
-        photos: [photoId]
+        photoIds: [photoId],
+        type: 'poo'
       };
-      return this.model.create(toCreate).then(created => {
+      return photo.create(toCreate).then(created => {
         location.hash = `/poo/${created._id}`;
       });
     }, err => {

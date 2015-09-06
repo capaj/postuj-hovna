@@ -2,14 +2,13 @@ import React from 'react';
 import ImgUploader from './img-uploader.jsx!';
 import GoogleMap from './google-map.jsx!';
 
-import {bin, binState} from '../services/moonridge';
+import {photo, binState} from '../services/moonridge';
 import backend from '../services/moonridge';
 
 export default class AddBin extends React.Component {
   constructor(...props) {
     super(...props);
     this.state = {};
-    this.model = bin;
   }
   addImage = (imageData) => {
     this.setState({image: imageData.substr(imageData.indexOf(',') + 1)});
@@ -25,9 +24,10 @@ export default class AddBin extends React.Component {
       const GPS = this.state.loc;
       var toCreate = {
         loc: [GPS.lat, GPS.lng],
-        photos: [photoId]
+        photoIds: [photoId],
+        type: 'bin'
       };
-      return this.model.create(toCreate).then(created => {
+      return photo.create(toCreate).then(created => {
         binState.create({bin: created._id, bag_count: bagCount}).then(()=>{
           location.hash = `/bin/${created._id}`;
         });

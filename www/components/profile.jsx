@@ -1,7 +1,7 @@
 import React from 'react';
 import ProfileStore from '../stores/profile-store';
 import FbProfilePicture from './fb-profile-picture.jsx!';
-import {observeStore} from 'capaj/react-observe-store';
+import {observeStoreByString} from 'capaj/react-observe-store';
 import {user} from '../services/moonridge';
 
 export default class Profile extends React.Component {
@@ -16,7 +16,7 @@ export default class Profile extends React.Component {
       });
     } else {
       this.user = ProfileStore;
-      observeStore(this, ProfileStore, 'this.user', this.renderContent);
+      observeStoreByString(this, ProfileStore, 'this.user', this.renderContent);
     }
   }
   renderContent() {

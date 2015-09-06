@@ -6,7 +6,7 @@ export default class FbProfilePicture extends React.Component {
   }
 
   render() {
-    let style = Object.assign({maxWidth: '100%'}, this.props.style);
+    let style = Object.assign({maxWidth: '100%', display: 'inline-block'}, this.props.style);
     let size = 55;
     if (this.props.type === 'small') {
       size = 25;

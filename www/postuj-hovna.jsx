@@ -1,7 +1,10 @@
 import Bootstrap from 'bootstrap';
 import React from 'react';
 import Router from 'react-router';
+import Intl from 'react-intl';
 var Route = Router.Route;
+
+window.ReactIntl = Intl;
 
 import AddPoo from './components/add-poo.jsx!';
 import AddBin from './components/add-bin.jsx!';
@@ -11,8 +14,12 @@ import Profile from './components/profile.jsx!';
 import About from './components/about.jsx!';
 import Home from './components/home.jsx!';
 
+const onLeave = ()=> {
+  console.log('aaa leave');
+};
+
 var routes = (
-  <Route path="/" handler={Main}>
+  <Route path="/" handler={Main} onLeave={onLeave}>
     <Route handler={Home}/>
     <Route path="about" handler={About}/>
     <Route path="pridat-hovno" handler={AddPoo}/>
@@ -28,4 +35,6 @@ Router.run(routes, Router.HashLocation, (Root) => {
   React.render(<Root/>, document.getElementById('app'));
 });
 
-export let __hotReload = true
+System.import('jspm_packages/npm/react-intl@1.2.0/dist/locale-data/' + navigator.language);
+
+export let __hotReload = true;

@@ -10,8 +10,8 @@ export default class GoogleMap extends React.Component {
     super(...props);
   }
 
-  addMarkers(type, markerEntities){
-    mapMarkers.addMarkers(type, markerEntities, this.map);
+  addMarkers(markerEntities){
+    mapMarkers.addMarkers(markerEntities, this.map);
   }
   componentDidMount() {
     console.log('componentDidMount GoogleMap');
@@ -43,12 +43,8 @@ export default class GoogleMap extends React.Component {
 
     }
 
-    mapMarkers.bin.each((bin) => {
-      mapMarkers.addMarkerToMap('bin', bin, map);
-    });
-
-    mapMarkers.poo.each((poo) => {
-      mapMarkers.addMarkerToMap('poo', poo, map);
+    mapMarkers.photos.each((bin) => {
+      mapMarkers.addMarkerToMap(bin, map);
     });
 
     this.map = map;

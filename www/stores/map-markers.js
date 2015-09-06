@@ -30,34 +30,33 @@ var openedBubble;
 
 
 const store = {
-  bin: new Hashset('_id'),
-  poo: new Hashset('_id'),
+  photos: new Hashset('_id'),
+
   /**
-   * @param {String} type
    * @param {Array<Objects>} markers
    */
-  addMarkers: (type, markers, map) => {
+  addMarkers: (markers, map) => {
 
     markers.forEach(function (marker){
-      var updated = store[type].upsert(marker);
+      var updated = store.photos.upsert(marker);
       if (!updated) {  //markers cannot change position, so we don't have to recreate google map marker instances
-        store.addMarkerToMap(type, marker, map);
+        store.addMarkerToMap(marker, map);
       }
     });
 
   },
-  addMarkerToMap: function addMarkerToMap(type, marker, map) {
+  addMarkerToMap: function addMarkerToMap(marker, map) {
     const myLatLng = new google.maps.LatLng(marker.loc[0], marker.loc[1]);
     const newMarker = new google.maps.Marker({
       position: myLatLng,
       map: map,
-      icon: `/img/pin-${type}.svg`
+      icon: `/img/pin-${marker.type}.svg`
     });
 
     function createBubble() {
       const infoBubble = new InfoBubble({
         map: map,
-        content: `<div id="${marker._id}" class="${type}-bubble" style="width: 345px;height: 300px;"></div>`,
+        content: `<div id="${marker._id}" class="${marker.type}-bubble" style="width: 345px;height: 300px;"></div>`,
         shadowStyle: 1,
         padding: 10,
         backgroundColor: '#3A1F07',
@@ -70,7 +69,13 @@ const store = {
         backgroundClassName: 'transparent',
         arrowStyle: 2,
         width: 300,
-        height: 600
+        height: 600,
+        buildCloseBtn: function() {
+          var el = document.createElement('SPAN');
+          el.style['font-size'] = '25px';
+          el.className = 'glyphicon glyphicon-remove';
+          return el;
+        }
       });
 
       marker.openInfoBubble = function() {
@@ -79,7 +84,11 @@ const store = {
         }
         infoBubble.open(map, newMarker);
         openedBubble = infoBubble;
-        location.hash = `#/${type}/${marker._id}`;
+        google.maps.event.addDomListener(infoBubble.close_, 'click', function() {
+          location.hash = '#/';
+        });
+
+        location.hash = `#/${marker.type}/${marker._id}`;
         setTimeout(function() {
           React.render(<MarkerBubble {...marker}/>, infoBubble.contentContainer_.children[0].children[0]);
         }, 50);
@@ -87,7 +96,7 @@ const store = {
       google.maps.event.addListener(newMarker, 'click', marker.openInfoBubble);
     }
 
-    if (type === 'bin') {
+    if (marker.type === 'bin') {
       return backend.binState.query().find().limit(1).sort({date: -1}).exec().promise.then((binArr)=>{
         var latest = binArr[0];
         if (latest.bag_count > 4) {
