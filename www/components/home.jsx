@@ -1,7 +1,9 @@
 import React from 'react';
 import GoogleMap from './google-map.jsx!';
-import {photo} from '../services/moonridge';
+import {photo, pooState, binState} from '../services/moonridge';
+import backend from '../services/moonridge';
 import calcDistance from '../js/gps-distance';
+import {liveQueryComponent} from 'capaj/moonridge-react-utils';
 
 const LatLng = function(obj) {
   return new google.maps.LatLng(obj.lat, obj.lng);
@@ -18,6 +20,8 @@ export default class Home extends React.Component {
       },
       nonexistent: false
     };
+
+    //todo live query on binStates/pooStates
   }
   isAnExisting(){
     return this.props.params.id && this.state.nonexistent === false;
@@ -28,6 +32,7 @@ export default class Home extends React.Component {
       var id = this.props.params.id;
       photo.query().findOne({_id: id}).exec().promise.then((displayed)=>{
         if (displayed) {
+          this.setState({nonexistent: false, displayed: displayed});
           var prom = this.refs.mainMap.addMarkers([displayed]);
 
           Promise.resolve(prom).then(function(){
@@ -38,6 +43,9 @@ export default class Home extends React.Component {
         }else{
           this.setState({nonexistent: true});
         }
+      }, (err)=> {
+        console.error(err);
+        this.setState({nonexistent: true});
       });
     } else {
       const geolocationOptions = {
@@ -60,7 +68,6 @@ export default class Home extends React.Component {
         console.warn('ERROR(' + err.code + '): ' + err.message);
       }, geolocationOptions);
     }
-
   }
   query = (bounds) => {
     const southWest = bounds.getSouthWest();
@@ -78,10 +85,27 @@ export default class Home extends React.Component {
   willTransitionTo(transition, params) {
     console.log('transition', transition);
   }
+  createStatus = (present) => {
+    let state = {photo: this.props.params.id};
+    if (this.props.params.type === 'poo') {
+      state.type = 'present';
+      if (!present) {
+        state.type = 'gone';
+      }
+      pooState.create(state);
+
+    } else {
+      state.bag_count = 10;
+      binState.create(state);
+    }
+
+  }
   renderFooter(){
-    if (this.state.nonexistent === true) {
-      return <div style={{position: 'absolute', bottom: '2rem'}}>
-        <h3>Špatná URL: bod {this.props.params.id} neexistuje</h3>
+    if (this.props.params.id && this.state.nonexistent === true) {
+      let badUrlAlertStyle = {position: 'absolute', bottom: 0, left: 0,
+        backgroundColor: "#372321", borderRadius: 37, margin: 10, padding: 10};
+      return <div className='add' style={badUrlAlertStyle}>
+        <h3>Špatná URL: {this.props.params.id} neexistuje</h3>
       </div>;
     } else {
       var leftBtn = <a href="/#/pridat-hovno">
@@ -91,10 +115,12 @@ export default class Home extends React.Component {
         <img className="add bin" src="img/bin.svg" width="75px"/>
       </a>;
       if (this.isAnExisting()) {
-        leftBtn = <div style={{backgroundColor: 'red'}} className="add poo btn btn-default btn-circle">
+        leftBtn = <div style={{backgroundColor: 'red'}} className="add poo btn btn-default btn-circle"
+                       onClick={()=>{this.createStatus(false)}}>
           <span className="glyphicon glyphicon-remove"></span>
         </div>;
-        rightBtn = <div style={{backgroundColor: 'green'}} className="add bin btn btn-default btn-circle">
+        rightBtn = <div style={{backgroundColor: 'green'}} className="add bin btn btn-default btn-circle"
+                        onClick={()=>{this.createStatus(true)}}>
           <span className="glyphicon glyphicon-ok"></span>
         </div>
       }
