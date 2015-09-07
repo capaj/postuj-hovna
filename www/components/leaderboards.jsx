@@ -29,7 +29,7 @@ export default class Leaderboards extends React.Component {
           if (user.fb.id === ProfileStore.id) {
             rowStyle.backgroundColor = '#987230';
           }
-          return <tr style={rowStyle}>
+          return <tr style={rowStyle} key={user._id}>
             <th scope="row">{i + 1}</th>
             <td><FbProfilePicture id={user.fb.id} type="small"/>{user.fb.name}</td>
             <td>{user.karma}</td>

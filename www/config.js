@@ -23,7 +23,7 @@ System.config({
     "babel-runtime": "npm:babel-runtime@5.8.20",
     "bootstrap": "github:twbs/bootstrap@3.3.5",
     "capaj/moonridge-react-utils": "github:capaj/moonridge-react-utils@master",
-    "capaj/react-observe-store": "github:capaj/react-observe-store@0.2.0",
+    "capaj/react-observe-store": "github:capaj/react-observe-store@0.2.1",
     "chai": "npm:chai@3.2.0",
     "classnames": "npm:classnames@2.1.3",
     "core-js": "npm:core-js@0.9.18",
@@ -43,7 +43,7 @@ System.config({
       "lodash.difference": "npm:lodash.difference@3.2.2",
       "socket.io-rpc-client": "github:capaj/socket.io-rpc-client@0.9.11"
     },
-    "github:capaj/react-observe-store@0.2.0": {
+    "github:capaj/react-observe-store@0.2.1": {
       "observe-js": "github:Polymer/observe-js@0.5.6"
     },
     "github:capaj/socket.io-rpc-client@0.9.11": {
@@ -155,7 +155,7 @@ System.config({
       "crypto": "github:jspm/nodelibs-crypto@0.1.0",
       "randombytes": "npm:randombytes@2.0.1"
     },
-    "npm:browserify-sign@3.0.3": {
+    "npm:browserify-sign@3.0.8": {
       "bn.js": "npm:bn.js@2.2.0",
       "browserify-rsa": "npm:browserify-rsa@2.0.1",
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
@@ -228,7 +228,7 @@ System.config({
     },
     "npm:crypto-browserify@3.9.14": {
       "browserify-aes": "npm:browserify-aes@1.0.3",
-      "browserify-sign": "npm:browserify-sign@3.0.3",
+      "browserify-sign": "npm:browserify-sign@3.0.8",
       "create-ecdh": "npm:create-ecdh@2.0.1",
       "create-hash": "npm:create-hash@1.1.1",
       "create-hmac": "npm:create-hmac@1.1.3",
