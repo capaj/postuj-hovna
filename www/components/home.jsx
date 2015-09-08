@@ -1,9 +1,11 @@
 import React from 'react';
 import GoogleMap from './google-map.jsx!';
-import {photo, pooState, binState} from '../services/moonridge';
+import {photo} from '../services/moonridge';
 import backend from '../services/moonridge';
 import calcDistance from '../js/gps-distance';
 import {liveQueryComponent} from 'capaj/moonridge-react-utils';
+import gonePoosLQ from '../stores/states-store';
+import HomeFooter from './home-footer.jsx!';
 
 const LatLng = function(obj) {
   return new google.maps.LatLng(obj.lat, obj.lng);
@@ -85,57 +87,12 @@ export default class Home extends React.Component {
   willTransitionTo(transition, params) {
     console.log('transition', transition);
   }
-  createStatus = (present) => {
-    let state = {photo: this.props.params.id};
-    if (this.props.params.type === 'poo') {
-      state.type = 'present';
-      if (!present) {
-        state.type = 'gone';
-      }
-      pooState.create(state);
-
-    } else {
-      state.bag_count = 10;
-      binState.create(state);
-    }
-
-  }
-  renderFooter(){
-    if (this.props.params.id && this.state.nonexistent === true) {
-      let badUrlAlertStyle = {position: 'absolute', bottom: 0, left: 0,
-        backgroundColor: "#372321", borderRadius: 37, margin: 10, padding: 10};
-      return <div className='add' style={badUrlAlertStyle}>
-        <h3>Špatná URL: {this.props.params.id} neexistuje</h3>
-      </div>;
-    } else {
-      var leftBtn = <a href="/#/pridat-hovno">
-        <img className="add poo" src="img/poo.svg" width="75px"/>
-      </a>;
-      var rightBtn = <a href="/#/pridat-kos">
-        <img className="add bin" src="img/bin.svg" width="75px"/>
-      </a>;
-      if (this.isAnExisting()) {
-        leftBtn = <div style={{backgroundColor: 'red'}} className="add poo btn btn-default btn-circle"
-                       onClick={()=>{this.createStatus(false)}}>
-          <span className="glyphicon glyphicon-remove"></span>
-        </div>;
-        rightBtn = <div style={{backgroundColor: 'green'}} className="add bin btn btn-default btn-circle"
-                        onClick={()=>{this.createStatus(true)}}>
-          <span className="glyphicon glyphicon-ok"></span>
-        </div>
-      }
-      return <div>
-        {leftBtn}{rightBtn}
-      </div>;
-    }
-
-  }
   render() {
     return <div className="google-map-wrapper">
       <GoogleMap ref="mainMap" center={this.state.center} zoom={this.state.zoom}
                  onBoundsChanged={this.query}>
       </GoogleMap>
-      {this.renderFooter()}
+      <HomeFooter id={this.props.params.id} type={this.props.params.type} nonexistent={this.state.nonexistent}/>
     </div>;
   }
 }

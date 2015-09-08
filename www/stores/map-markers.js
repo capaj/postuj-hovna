@@ -6,6 +6,7 @@ import MarkerBubble from '../components/marker-bubble.jsx!';
 import React from 'react';
 import 'jspm_packages/npm/hashset.js@1.1.0/test/object-assign-polyfill';
 import backend from '../services/moonridge';
+import gonePoosLQ from '../stores/states-store';
 
 function getIcon(type, entity) {
   var icons = {

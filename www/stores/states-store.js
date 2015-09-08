@@ -1,4 +1,6 @@
 import {pooState, binState} from '../services/moonridge';
 
+var fourteenDaysAgo = new Date(+new Date - 12096e5);
+const gonePoosLQ = pooState.liveQuery().find({ timestamp: { $gt: fourteenDaysAgo }, type: 'gone' }).exec();
 
-pooState.find({ created_at: { $gt: objectIdWithTimestamp('1980/05/25') } });
+export default gonePoosLQ;

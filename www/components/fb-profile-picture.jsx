@@ -13,7 +13,8 @@ export default class FbProfilePicture extends React.Component {
     }
 
     return <div style={style}>
-      <img style={{borderRadius: "50%"}} src={`https://graph.facebook.com/${this.props.id}/picture?width=${size}&height=${size}`}/>
+      <img style={{marginLeft: 6, marginRight: 2, borderRadius: "50%"}}
+           src={`https://graph.facebook.com/${this.props.id}/picture?width=${size}&height=${size}`}/>
     </div>;
   }
 }
