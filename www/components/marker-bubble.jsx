@@ -29,11 +29,12 @@ export default class MarkerBubble extends React.Component {
       bubbleBody = <PooMarkerBubbleBody {...props}/>;
     }
 
+    const styleRightColl = {float: 'right', marginRight: 15};
     return <div style={{display: 'flex', flexDirection: 'column', paddingTop: 10, paddingRight: 12}}>
       {photos}
       <div style={{marginTop: 10}}>
         Vyfotil: <User id={props.owner}/>
-      <span style={{float: 'right'}}>
+      <span style={styleRightColl}>
         Vloženo <FormattedRelative locales={locales} value={props.capture_date}/>
       </span>
 

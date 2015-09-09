@@ -92,7 +92,11 @@ export default class Home extends React.Component {
       <GoogleMap ref="mainMap" center={this.state.center} zoom={this.state.zoom}
                  onBoundsChanged={this.query}>
       </GoogleMap>
-      <HomeFooter id={this.props.params.id} type={this.props.params.type} nonexistent={this.state.nonexistent}/>
+      <HomeFooter id={this.props.params.id}
+                  type={this.props.params.type}
+                  nonexistent={this.state.nonexistent}
+                  gone={this.props.query.gone}
+      />
     </div>;
   }
 }

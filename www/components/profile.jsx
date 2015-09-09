@@ -3,6 +3,9 @@ import ProfileStore from '../stores/profile-store';
 import FbProfilePicture from './fb-profile-picture.jsx!';
 import {observeStoreByString} from 'capaj/react-observe-store';
 import {user} from '../services/moonridge';
+import {FormattedDate} from 'react-intl';
+
+var locales = ['cs', 'en'];
 
 export default class Profile extends React.Component {
   constructor(...props) {
@@ -11,7 +14,6 @@ export default class Profile extends React.Component {
     if (id) {
       user.query().findOne({_id: id}).exec().promise.then((user) =>{
           this.user = user;
-          console.log('user', user);
           this.forceUpdate();
       });
     } else {
@@ -30,6 +32,12 @@ export default class Profile extends React.Component {
           <h3>{this.user.fb.name}</h3>
         </div>
         <span>Karma: {this.user.karma}</span>
+        <br/>
+        <span>
+        Registrace <FormattedDate locales={locales} value={this.user.creation_date}/>
+      </span>
+        <br/>
+        <a href={"https://www.facebook.com/" + this.user.fb.id}>Facebook</a>
       </div>;
 
     } else {

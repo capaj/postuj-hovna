@@ -1,5 +1,5 @@
 import * as bootstrap from 'bootstrap';
-import React from 'react';
+import React, {PropTypes} from 'react';
 import clNs from 'classnames';
 import Router from 'react-router';
 import {observeStore} from 'capaj/react-observe-store';
@@ -15,6 +15,8 @@ export default class Main extends React.Component {
       showMenu: false
     };
     observeStore(this, ()=> ProfileStore);
+
+
   }
   toggleMenu(){
     this.setState({
@@ -22,8 +24,8 @@ export default class Main extends React.Component {
     });
   }
   componentDidMount(){
-
     console.log('this.props', this.props);
+    Router.mainRouter = this.context.router;
   }
   render() {
     const menuClasses = clNs({open: this.state.showMenu, menu: true});
@@ -65,5 +67,9 @@ export default class Main extends React.Component {
         <RouteHandler/>
       </div>
     </div>;
+  }
+
+  static get contextTypes(){
+    return {router: PropTypes.func.isRequired};
   }
 };
