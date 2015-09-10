@@ -85,13 +85,17 @@ const store = {
         }
         infoBubble.open(map, newMarker);
         openedBubble = infoBubble;
+        var infoBubbleContainer;
+
         google.maps.event.addDomListener(infoBubble.close_, 'click', function() {
           location.hash = '#/';
+          React.unmountComponentAtNode(infoBubbleContainer);
         });
 
         location.hash = `#/${marker.type}/${marker._id}`;
         setTimeout(function() {
-          React.render(<MarkerBubble {...marker}/>, infoBubble.contentContainer_.children[0].children[0]);
+          infoBubbleContainer = infoBubble.contentContainer_.children[0].children[0];
+          React.render(<MarkerBubble {...marker}/>, infoBubbleContainer);
         }, 50);
       };
       google.maps.event.addListener(newMarker, 'click', marker.openInfoBubble);

@@ -13,7 +13,7 @@ export default class PooMarkerBubbleBody extends React.Component {
     super(...props);
     this.queries = {reports: pooState.liveQuery().find({photo: this.props.id}).sort('timestamp')};
     liveQueryComponent(this);
-    this.queries.reports.on('add', function(newDoc) {
+    this.queries.reports.on('add', function(newReport) {
       //todo check if gone
     });
 
