@@ -40,11 +40,19 @@ export default class HomeFooter extends React.Component {
         <img className="add bin" src="img/bin.svg" width="75px"/>
       </a>
       if (props.id) { //TODO check gps distance, if too big, disable the buttons
-        leftBtn = <div style={{backgroundColor: 'green'}} className="add poo btn btn-default btn-circle"
+        var presentBtnStyle = {backgroundColor: 'green'};
+        var goneBtnStyle = {backgroundColor: 'red'};
+        if (location.hash.match(/gone=true/)) {
+          presentBtnStyle.opacity = 0.5;
+          presentBtnStyle.pointerEvents = 'none';
+          goneBtnStyle.opacity = 0.5;
+          goneBtnStyle.pointerEvents = 'none';
+        }
+        leftBtn = <div style={presentBtnStyle} className="add poo btn btn-default btn-circle"
                        onClick={()=>{this.createStatus(true)}}>
           <img src="/img/poo-only.svg" style={{ width: 41,top: -13, position: 'relative' }} alt="poo is still there"/>
         </div>
-        rightBtn = <div style={{backgroundColor: 'red'}} className="add bin btn btn-default btn-circle"
+        rightBtn = <div style={goneBtnStyle} className="add bin btn btn-default btn-circle"
                         onClick={()=>{this.createStatus(false)}}>
           <span className="glyphicon glyphicon-ok"></span>
         </div>
