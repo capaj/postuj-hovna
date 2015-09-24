@@ -15,11 +15,12 @@ const LatLng = function(obj) {
 export default class Home extends React.Component {
   constructor() {
     super()
+
     this.state = {
       zoom: 16,
       center: {
-        lat: 50.051611,
-        lng: 14.407032
+        lat: currentGps.coords.latitude,
+        lng: currentGps.coords.longitude
       },
       nonexistent: false
     }

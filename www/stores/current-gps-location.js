@@ -5,11 +5,17 @@ const geolocationOptions = {
   maximumAge: 0
 }
 
-class CurrentGps extends Emitter {
+class Gps extends Emitter {
   constructor() {
     super()
+    var self = this;
+    this.coords = {
+      latitude: 50.051611,
+      longitude: 14.407032
+    }
     navigator.geolocation.getCurrentPosition(pos => {
-      Object.assign(this, pos)
+      self.coords = pos.coords
+      self.timestamp = pos.timestamp
       this.emit('gotCurrentPosition', pos)
     }, err => {
       this.error = err
@@ -18,5 +24,5 @@ class CurrentGps extends Emitter {
     }, geolocationOptions)
   }
 }
-
-export default new CurrentGps()
+const currentGps = new Gps()
+export default currentGps
