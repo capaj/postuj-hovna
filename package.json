@@ -22,7 +22,8 @@
       "moonridge-client": "github:capaj/Moonridge-client@^0.9.1",
       "react": "npm:react@0.13.3",
       "react-intl": "npm:react-intl@^1.2.0",
-      "react-router": "npm:react-router@0.13.3"
+      "react-router": "npm:react-router@0.13.3",
+      "weakee": "npm:weakee@^0.9.1"
     },
     "devDependencies": {
       "babel": "npm:babel-core@^5.1.13",

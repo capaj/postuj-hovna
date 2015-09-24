@@ -44,6 +44,7 @@ export default class PooMarkerBubbleBody extends React.Component {
               <span style={styleRightColl}><FormattedRelative locales={locales} value={report.timestamp}/></span></div>
           </div>
       })}
+      <span>celkem {this.state.reports.length}</span>
     </div>
   }
 

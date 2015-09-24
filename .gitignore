@@ -26,3 +26,4 @@ build/Release
 node_modules
 www/jspm_packages
 www/css
+.idea

@@ -38,6 +38,7 @@ System.config({
     "react": "npm:react@0.13.3",
     "react-intl": "npm:react-intl@1.2.0",
     "react-router": "npm:react-router@0.13.3",
+    "weakee": "npm:weakee@0.9.1",
     "github:capaj/Moonridge-client@0.9.1": {
       "debug": "npm:debug@2.2.0",
       "lodash.difference": "npm:lodash.difference@3.2.2",
@@ -447,6 +448,11 @@ System.config({
     },
     "npm:vm-browserify@0.0.4": {
       "indexof": "npm:indexof@0.0.1"
+    },
+    "npm:weakee@0.9.1": {
+      "fs": "github:jspm/nodelibs-fs@0.1.2",
+      "path": "github:jspm/nodelibs-path@0.1.0",
+      "process": "github:jspm/nodelibs-process@0.1.1"
     }
   }
 });
