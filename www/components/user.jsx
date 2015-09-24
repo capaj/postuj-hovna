@@ -14,7 +14,6 @@ export default class User extends React.Component {
     return 1;
   }
   render() {
-    console.log('this', this);
     if (!this.state.user) {
       return <div/>;
     }

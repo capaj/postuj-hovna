@@ -5,7 +5,7 @@ import backend from '../services/moonridge'
 import calcDistance from '../js/gps-distance'
 import {liveQueryComponent} from 'capaj/moonridge-react-utils'
 import gonePoosLQ from '../stores/states-store'
-import HomeFooter from './home-footer.jsx!'
+import HomeFooter from './map-controls.jsx!'
 import currentGps from '../stores/current-gps-location'
 
 const LatLng = function(obj) {

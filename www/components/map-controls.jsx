@@ -57,11 +57,10 @@ export default class HomeFooter extends React.Component {
           <span className="glyphicon glyphicon-ok"></span>
         </div>
       }
+      var goneText = <div></div>
       if (props.gone === 'true') {
-        return <div>
-          {leftBtn}{rightBtn}
-          <div className='add' style={msgBoxStyle}>
-            <h5 style={{
+        goneText = <div className='add' style={msgBoxStyle}>
+          <h5 style={{
               margin: '0px 78px',
               padding: 6,
               textOverflow: 'ellipsis',
@@ -69,14 +68,12 @@ export default class HomeFooter extends React.Component {
               fontSize: 16,
               borderRadius: 13
             }}>{props.id} už je pryč</h5>
-          </div>
-        </div>
-      } else {
-        return <div>
-          {leftBtn}{rightBtn}
         </div>
       }
-
+      return <div>
+        {leftBtn}{rightBtn}
+        {goneText}
+      </div>
     }
 
   }
