@@ -63,7 +63,7 @@ export default class Main extends React.Component {
         <hr/>
 
       </div>
-      <div className="main">
+      <div className="main" style={{textAlign: 'center', justifyContent: 'center'}}>
         <RouteHandler/>
       </div>
     </div>;
