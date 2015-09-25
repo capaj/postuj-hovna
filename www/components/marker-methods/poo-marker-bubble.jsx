@@ -4,7 +4,7 @@ import profile from '../../stores/profile-store';
 import {liveQueryComponent} from 'capaj/moonridge-react-utils';
 import User from '../user.jsx!';
 import {FormattedRelative} from 'react-intl';
-import Router from 'react-router';
+
 
 var locales = ['cs', 'en'];
 const styleRightColl = {float: 'right', marginRight: 15};

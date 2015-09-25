@@ -102,7 +102,7 @@ const store = {
     }
 
     if (marker.type === 'bin') {
-      return binState.query().find().limit(1).sort('-date').exec().promise.then((binArr)=>{
+      return binState.query().find().limit(1).sort('-timestamp').exec().promise.then((binArr)=>{
         var latest = binArr[0];
         if (latest.bag_count > 4) {
           newMarker.icon = '/img/pin-bin-good.svg';
