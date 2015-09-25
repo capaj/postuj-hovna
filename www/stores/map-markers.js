@@ -112,8 +112,9 @@ const store = {
         createBubble();
 
       });
+    } else {
+      createBubble();
     }
-    createBubble();
 
   }
 
