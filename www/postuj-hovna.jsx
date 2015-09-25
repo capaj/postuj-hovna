@@ -1,10 +1,10 @@
 import Bootstrap from 'bootstrap';
 import React from 'react';
 import Router from 'react-router';
-import Intl from 'react-intl';
+import ReactIntl from 'react-intl';
 var Route = Router.Route;
 
-window.ReactIntl = Intl;
+window.ReactIntl = ReactIntl;
 
 import AddPoo from './components/add-poo.jsx!';
 import AddBin from './components/add-bin.jsx!';
