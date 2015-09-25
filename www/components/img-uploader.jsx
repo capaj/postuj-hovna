@@ -13,7 +13,8 @@ export default class ImgUploader extends React.Component {
     console.log('onFilesSelected ev', this);
 
     var self = this;
-    var files = evt.target.files; // FileList object
+    self.setState({error: null})
+    var files = evt.target.files // FileList object
 
     // Loop through the FileList and render image files as thumbnails.
     for (var i = 0, f; f = files[i]; i++) {
@@ -33,28 +34,37 @@ export default class ImgUploader extends React.Component {
 
           img.src = e.target.result;
           EXIF.getData(img, function() {
-            var pos = {
-              lng: EXIF.getTag(this, "GPSLongitude"),
-              lat: EXIF.getTag(this, "GPSLatitude")
-            };
-            self.getGPS(pos);
+            var GPSLongitude = EXIF.getTag(this, "GPSLongitude");
+            var GPSLatitude = EXIF.getTag(this, "GPSLatitude");
+            if (GPSLatitude && GPSLongitude) {
+              var pos = {
+                lng: GPSLongitude,
+                lat: GPSLatitude
+              };
+              self.getGPS(pos);
 
-            var orientation = EXIF.getTag(this, "Orientation");
-            downscaleImage({
-              img: img,
-              orientation: orientation,
-              maxHeight: 1500,
-              maxWidth: 1500,
-              done: function(data) {
-                self.setState({
-                  base64s: self.state.base64s.concat([data])
-                });
+              var orientation = EXIF.getTag(this, "Orientation");
+              downscaleImage({
+                img: img,
+                orientation: orientation,
+                maxHeight: 1500,
+                maxWidth: 1500,
+                done: function(data) {
+                  self.setState({
+                    base64s: self.state.base64s.concat([data])
+                  });
 
-                if (self.props.onImageRead) {
-                  self.props.onImageRead(data);
+                  if (self.props.onImageRead) {
+                    self.props.onImageRead(data);
+                  }
                 }
-              }
-            });
+              });
+            }else {
+              self.setState({
+                error: 'Fotka bohužel nemá v sobě uloženou GPS lokaci. Zapněte funkci na vašem foťáku a vyfoťte znovu.'
+              })
+            }
+
 
           });
         };
@@ -97,7 +107,12 @@ export default class ImgUploader extends React.Component {
     return this.state.base64s.length > 0 && this.state.loc;
   }
 	render() {
-    let error = <span className="error">{this.state.error}</span>;
+     var alert;
+    if (this.state.error) {
+      alert = <div className="alert" style={{backgroundColor: 'red', fontSize: 19}}>
+        {this.state.error}
+      </div>;
+    }
     let imagesOrInput;
     if (this.state.base64s.length > 0) {
       imagesOrInput = this.state.base64s.map((data) => {
@@ -113,7 +128,7 @@ export default class ImgUploader extends React.Component {
     }
 		return <div className="post item">
       {imagesOrInput}
-      {error}
+      {alert}
     </div>;
 	}
 }

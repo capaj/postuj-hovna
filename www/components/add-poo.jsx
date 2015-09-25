@@ -12,7 +12,7 @@ export default class AddPoo extends React.Component {
   }
 
   addImage = (imageData) => {
-    this.setState({image: imageData});
+    this.setState({error: null, image: imageData});
   }
   submit = () => {
     console.log('submit', this);
@@ -30,7 +30,7 @@ export default class AddPoo extends React.Component {
         location.hash = `/poo/${created._id}`;
       });
     }, err => {
-      this.error = err;
+      this.setState({error: err});
       console.log('err', err);
     });
   }

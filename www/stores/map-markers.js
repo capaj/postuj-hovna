@@ -5,7 +5,7 @@ import InfoBubble from 'googlemaps/js-info-bubble/src/infobubble';
 import MarkerBubble from '../components/marker-bubble.jsx!';
 import React from 'react';
 import 'jspm_packages/npm/hashset.js@1.1.0/test/object-assign-polyfill';
-import backend from '../services/moonridge';
+import {binState} from '../services/moonridge';
 import gonePoosLQ from '../stores/states-store';
 
 function getIcon(type, entity) {
@@ -102,7 +102,7 @@ const store = {
     }
 
     if (marker.type === 'bin') {
-      return backend.binState.query().find().limit(1).sort({date: -1}).exec().promise.then((binArr)=>{
+      return binState.query().find().limit(1).sort('-date').exec().promise.then((binArr)=>{
         var latest = binArr[0];
         if (latest.bag_count > 4) {
           newMarker.icon = '/img/pin-bin-good.svg';
