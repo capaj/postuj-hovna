@@ -20,7 +20,7 @@ export default class MarkerBubble extends React.Component {
       //TODO add an option to remove this
     }
     const photos = this.props.photoIds.map((photo) => {
-      return <img src={`${env.filesServer}/img/${photo}.jpg`} style={{maxWidth: '96%'}}/>;
+      return <img src={`${env.filesServer}/${photo}.jpg`} style={{maxWidth: '96%'}}/>;
     });
     var props = this.props;
     console.log('props', props);
