@@ -2,7 +2,7 @@ import React from 'react';
 import ImgUploader from './img-uploader.jsx!';
 import ProfileStore from '../stores/profile-store';
 
-import env from '../envs/dev';
+import env from 'ENV';
 import BinMarkerBubbleBody from './marker-methods/bin-marker-bubble.jsx!';
 import PooMarkerBubbleBody from './marker-methods/poo-marker-bubble.jsx!';
 import User from './user.jsx!';
