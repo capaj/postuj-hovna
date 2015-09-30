@@ -94,9 +94,10 @@ const store = {
 
         location.hash = `#/${marker.type}/${marker._id}`;
         setTimeout(function() {
-          infoBubbleContainer = infoBubble.contentContainer_.children[0].children[0];
-          React.render(<MarkerBubble {...marker}/>, infoBubbleContainer);
+          infoBubbleContainer = infoBubble.contentContainer_.children[0].children[0]
+          React.render(<MarkerBubble {...marker}/>, infoBubbleContainer)
         }, 50);
+
       };
       google.maps.event.addListener(newMarker, 'click', marker.openInfoBubble);
     }
@@ -109,11 +110,12 @@ const store = {
         } else {
           newMarker.icon = '/img/pin-bin-bad.svg';
         }
-        createBubble();
-
+        createBubble()
+        return marker
       });
     } else {
       createBubble();
+      return marker
     }
 
   }

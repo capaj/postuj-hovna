@@ -38,4 +38,3 @@ extensionsToWatch.forEach(function (ext){
 bs.watch(from + '*.less', watchOptions).on('change', function() {
 	gulp.start('less'); //not a public gulp API, but works, be aware of when updating gulp
 });
-

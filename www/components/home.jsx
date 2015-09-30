@@ -22,7 +22,8 @@ export default class Home extends React.Component {
         lat: currentGps.coords.latitude,
         lng: currentGps.coords.longitude
       },
-      nonexistent: false
+      nonexistent: false,
+      spinner: 0
     }
 
     //todo live query on binStates/pooStates
@@ -68,27 +69,34 @@ export default class Home extends React.Component {
     const northEast = bounds.getNorthEast()
     var box = [[southWest.lat(), southWest.lng()], [northEast.lat(), northEast.lng()]]
 
-    this.setState({
-      queriesPromise: photo.query().where('loc').within({box: box}).exec().promise.then((photos)=> {
-        if (this.refs.mainMap) {  //a map can unmount while the query is running
-          this.refs.mainMap.addMarkers(photos)
-        }
-      })
+    queriesPromise: photo.query().where('loc').within({box: box}).exec().promise.then((photos)=> {
+      if (this.refs.mainMap) {  //a map can unmount while the query is running
+        Promise.resolve(this.refs.mainMap.addMarkers(photos)).then(()=>{
+          this.setState({spinner: 0})
+        })
+      }
     })
   }
   willTransitionTo(transition, params) {
     console.log('transition', transition)
   }
+  showSpinner = () => {
+    this.setState({spinner: 1})
+  }
   render() {
     return <div className="google-map-wrapper">
       <GoogleMap ref="mainMap" center={this.state.center} zoom={this.state.zoom}
-                 onBoundsChanged={this.query}>
+                 onBoundsChanged={this.query} onMove={this.showSpinner}>
       </GoogleMap>
       <HomeFooter id={this.props.params.id}
                   type={this.props.params.type}
                   nonexistent={this.state.nonexistent}
                   gone={this.props.query.gone}
       />
+    <li className="spinner" style={{opacity: this.state.spinner}}>
+        <div className="dot1"></div>
+        <div className="dot2"></div>
+      </li>
     </div>
   }
 }

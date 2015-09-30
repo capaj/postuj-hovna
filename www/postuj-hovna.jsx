@@ -15,7 +15,7 @@ import About from './components/about.jsx!';
 import Home from './components/home.jsx!';
 
 const onLeave = ()=> {
-  console.log('aaa leave');
+  console.log('leaving route');
 };
 
 var routes = (
