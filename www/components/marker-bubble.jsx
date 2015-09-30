@@ -1,18 +1,18 @@
-import React from 'react';
-import ImgUploader from './img-uploader.jsx!';
-import ProfileStore from '../stores/profile-store';
+import React from 'react'
+import ImgUploader from './img-uploader.jsx!'
+import ProfileStore from '../stores/profile-store'
 
-import env from 'ENV';
-import BinMarkerBubbleBody from './marker-methods/bin-marker-bubble.jsx!';
-import PooMarkerBubbleBody from './marker-methods/poo-marker-bubble.jsx!';
-import User from './user.jsx!';
-import {FormattedRelative} from 'react-intl';
+import env from 'ENV'
+import BinMarkerBubbleBody from './marker-methods/bin-marker-bubble.jsx!'
+import PooMarkerBubbleBody from './marker-methods/poo-marker-bubble.jsx!'
+import User from './user.jsx!'
+import {FormattedRelative} from 'react-intl'
 
 
-var locales = ['cs', 'en'];
+var locales = ['cs', 'en']
 export default class MarkerBubble extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
   }
 
   render(){
@@ -20,16 +20,16 @@ export default class MarkerBubble extends React.Component {
       //TODO add an option to remove this
     }
     const photos = this.props.photoIds.map((photo) => {
-      return <img src={`${env.filesServer}/${photo}.jpg`} style={{maxWidth: '96%'}}/>;
-    });
-    var props = this.props;
-    console.log('props', props);
-    var bubbleBody = <BinMarkerBubbleBody {...props}/>;
+      return <img src={`${env.filesServer}/${photo}.jpg`} style={{maxWidth: '96%'}}/>
+    })
+    var props = this.props
+    console.log('props', props)
+    var bubbleBody = <BinMarkerBubbleBody {...props}/>
     if (props.type === 'poo') {
-      bubbleBody = <PooMarkerBubbleBody {...props}/>;
+      bubbleBody = <PooMarkerBubbleBody {...props}/>
     }
 
-    const styleRightColl = {float: 'right', marginRight: 15};
+    const styleRightColl = {float: 'right', marginRight: 15}
     return <div style={{display: 'flex', flexDirection: 'column', paddingTop: 10, paddingRight: 12}}>
       {photos}
       <div style={{marginTop: 10}}>
@@ -42,6 +42,6 @@ export default class MarkerBubble extends React.Component {
       {bubbleBody}
 
 
-    </div>;
+    </div>
   }
-};
+}
