@@ -48,13 +48,14 @@ const store = {
   },
   addMarkerToMap: function addMarkerToMap(marker, map) {
     const myLatLng = new google.maps.LatLng(marker.loc[0], marker.loc[1]);
-    const newMarker = new google.maps.Marker({
-      position: myLatLng,
-      map: map,
-      icon: `/img/pin-${marker.type}.svg`
-    });
 
-    function createBubble() {
+    function createBubble(pin) {
+      const newMarker = new google.maps.Marker({
+        position: myLatLng,
+        map: map,
+        icon: pin
+      });
+
       const infoBubble = new InfoBubble({
         map: map,
         content: `<div id="${marker._id}" class="${marker.type}-bubble" style="width: 345px;height: 300px;"></div>`,
@@ -101,20 +102,21 @@ const store = {
       };
       google.maps.event.addListener(newMarker, 'click', marker.openInfoBubble);
     }
-
+    let pin = `/img/pin-${marker.type}`
     if (marker.type === 'bin') {
       return binState.query().find().limit(1).sort('-timestamp').exec().promise.then((binArr)=>{
         var latest = binArr[0];
+
         if (latest.bag_count > 4) {
-          newMarker.icon = '/img/pin-bin-good.svg';
+          pin += '-good.svg';
         } else {
-          newMarker.icon = '/img/pin-bin-bad.svg';
+          pin += '-bad.svg';
         }
-        createBubble()
+        createBubble(pin)
         return marker
       });
     } else {
-      createBubble();
+      createBubble(pin + '.svg');
       return marker
     }
 
