@@ -1,5 +1,5 @@
 # postuj-hovna
-a hackton app for reporting dog poo on the streets of Prague
+a hackton app for reporting dog poo on the streets of Prague, deployed on http://sbirejto.cz/
 
 #Prerequisites
 JSPM and NPM. It is very much needed to have a github auth in JSPM, otherwise you will hit a rate limit in the install phase.
