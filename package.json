@@ -1,7 +1,7 @@
 {
   "scripts": {
     "postinstall": "jspm install",
-    "build": "jspm bundle postuj-hovna.jsx! --inject --minify",
+    "build": "jspm bundle postuj-hovna.jsx! --inject --minify && gulp less",
     "serve": "gulp less && node server"
   },
   "jspm": {

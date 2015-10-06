@@ -8,8 +8,7 @@ var locales = ['cs', 'en'];
 export default class BinMarkerBubbleBody extends React.Component {
   constructor(...props){
     super(...props)
-
-    this.queries = {reports: binState.liveQuery().find({photo: props._id}).sort('timestamp')};
+    this.queries = {reports: binState.liveQuery().find({photo: this.props._id}).sort('timestamp')};
     liveQueryComponent(this)
   }
   render() {

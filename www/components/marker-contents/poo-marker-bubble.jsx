@@ -11,7 +11,7 @@ const styleRightColl = {float: 'right', marginRight: 15};
 export default class PooMarkerBubbleBody extends React.Component {
   constructor(...props) {
     super(...props);
-    this.queries = {reports: pooState.liveQuery().find({photo: this.props.id}).sort('timestamp')};
+    this.queries = {reports: pooState.liveQuery().find({photo: this.props._id}).sort('timestamp')};
     liveQueryComponent(this);
     this.queries.reports.on('add', function(ev, evDetails) {
       if (evDetails[1].type === 'gone') {
