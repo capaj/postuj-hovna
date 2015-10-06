@@ -13,8 +13,8 @@ export default class BinMarkerBubbleBody extends React.Component {
   }
   render() {
 
-    return <div>
-      <h3>aktualizovace počtu pytlíků</h3>
+    return <div style={{margin: '20px 0px'}}>
+      <h4 style={{color: 'white'}}>aktualizace počtu pytlíků: </h4>
       {this.state.reports.map((report) => {
         return <div className="row">
         <div className="col-xs-3">{report.bag_count}</div>

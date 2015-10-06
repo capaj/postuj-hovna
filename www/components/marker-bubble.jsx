@@ -32,7 +32,7 @@ export default class MarkerBubble extends React.Component {
     const styleRightColl = {float: 'right', marginRight: 15}
     return <div style={{display: 'flex', flexDirection: 'column', paddingTop: 10, paddingRight: 12}}>
       {photos}
-      <div style={{marginTop: 10}}>
+      <div style={{marginTop: 10, textAlign: 'left'}}>
         Vyfotil: <User id={props.owner}/>
       <span style={styleRightColl}>
         Vloženo <FormattedRelative locales={locales} value={props.capture_date}/>

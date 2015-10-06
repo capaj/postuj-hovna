@@ -31,7 +31,7 @@ export default class PooMarkerBubbleBody extends React.Component {
   }
 
   render() {
-    return <div style={{marginTop: 20}}>
+    return <div style={{margin: '20px 0px'}}>
       Všechna nahlášení:
       {this.state.reports.map((report)=> {
         const types = {
