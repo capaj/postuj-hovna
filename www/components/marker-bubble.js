@@ -1,11 +1,11 @@
 import React from 'react'
-import ImgUploader from './img-uploader.jsx!'
+import ImgUploader from './img-uploader'
 import ProfileStore from '../stores/profile-store'
 
 import env from 'ENV'
-import BinMarkerBubbleBody from './marker-contents/bin-marker-bubble.jsx!'
-import PooMarkerBubbleBody from './marker-contents/poo-marker-bubble.jsx!'
-import User from './user.jsx!'
+import BinMarkerBubbleBody from './marker-contents/bin-marker-bubble'
+import PooMarkerBubbleBody from './marker-contents/poo-marker-bubble'
+import User from './user'
 import {FormattedRelative} from 'react-intl'
 
 

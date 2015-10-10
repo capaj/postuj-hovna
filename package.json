@@ -1,9 +1,13 @@
 {
   "scripts": {
     "postinstall": "jspm install",
-    "build": "jspm bundle postuj-hovna.jsx! --inject --minify && gulp less",
+    "precommit": "npm test",
+    "pretest": "node_modules/.bin/standard",
+    "test": "mocha",
+    "build": "jspm bundle postuj-hovna --inject --minify && gulp less",
     "serve": "gulp less && node server"
   },
+  "repository": "git@github.com:capaj/postuj-hovna.git",
   "jspm": {
     "directories": {
       "baseURL": "www"
@@ -17,7 +21,6 @@
       "exif-js/exif-js": "github:exif-js/exif-js@master",
       "googlemaps/js-info-bubble": "github:capaj/js-info-bubble@master",
       "hashset.js": "npm:hashset.js@^1.1.0",
-      "jsx": "npm:jspm-loader-jsx@^0.0.7",
       "just-debounce": "npm:just-debounce@^1.0.0",
       "lodash": "npm:lodash@^3.9.3",
       "moonridge-client": "github:capaj/Moonridge-client@^0.9.1",
@@ -27,6 +30,7 @@
       "weakee": "npm:weakee@^0.9.1"
     },
     "devDependencies": {
+      "capaj/jspm-hot-reloader": "github:capaj/jspm-hot-reloader@^0.1.1",
       "babel": "npm:babel-core@^5.8.24",
       "babel-runtime": "npm:babel-runtime@^5.8.24",
       "chai": "npm:chai@^3.0.0",

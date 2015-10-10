@@ -1,11 +1,11 @@
 import React from 'react'
-import GoogleMap from './google-map.jsx!'
+import GoogleMap from './google-map'
 import {photo} from '../services/moonridge'
 import backend from '../services/moonridge'
 import calcDistance from '../js/gps-distance'
 import {liveQueryComponent} from 'capaj/moonridge-react-utils'
 import gonePoosLQ from '../stores/states-store'
-import HomeFooter from './map-controls.jsx!'
+import HomeFooter from './map-controls'
 import currentGps from '../stores/current-gps-location'
 
 const LatLng = function(obj) {
@@ -84,8 +84,8 @@ export default class Home extends React.Component {
     this.setState({spinner: 1})
   }
   render() {
-    return <div className="google-map-wrapper">
-      <GoogleMap ref="mainMap" center={this.state.center} zoom={this.state.zoom}
+    return <div className='google-map-wrapper'>
+      <GoogleMap ref='mainMap' center={this.state.center} zoom={this.state.zoom}
                  onBoundsChanged={this.query} onMove={this.showSpinner}>
       </GoogleMap>
       <HomeFooter id={this.props.params.id}
@@ -93,9 +93,9 @@ export default class Home extends React.Component {
                   nonexistent={this.state.nonexistent}
                   gone={this.props.query.gone}
       />
-    <li className="spinner" style={{opacity: this.state.spinner}}>
-        <div className="dot1"></div>
-        <div className="dot2"></div>
+    <li className='spinner' style={{opacity: this.state.spinner}}>
+        <div className='dot1'></div>
+        <div className='dot2'></div>
       </li>
     </div>
   }
