@@ -102,6 +102,9 @@
     System.import('postuj-hovna').then(function() {
       console.log('ran at ', new Date());
     });
+    System.import('capaj/jspm-hot-reloader').then(function(HotReloader){
+      new HotReloader.default('http://localhost:8090')  // chokidar-socket-emitter port
+    })
   </script>
 
 </body>

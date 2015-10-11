@@ -14,7 +14,7 @@ import Profile from './components/profile'
 import About from './components/about'
 import Home from './components/home'
 
-const onLeave = ()=> {
+const onLeave = () => {
   console.log('leaving route')
 }
 

@@ -14,12 +14,12 @@ export default class GoogleMap extends React.Component {
     return mapMarkers.addMarkers(markerEntities, this.map)
   }
   componentDidMount() {
-    console.log('componentDidMount GoogleMap')
+    console.log('componentDidMount GoogleMap', this)
     var props = this.props
 
     const mapOptions = {
       center: new LatLng(props.center),
-      zoom: this.props.zoom || 8,
+      zoom: this.props.zoom || 7,
       zoomControlOptions: {
         style: google.maps.ZoomControlStyle.SMALL,
         position: google.maps.ControlPosition.TOP_LEFT
@@ -33,7 +33,7 @@ export default class GoogleMap extends React.Component {
 
     if (this.props.onBoundsChanged) {
       //we need this, because google maps are triggering this way to much
-      var debouncedBoundsChangedEvent = debounce(()=>{
+      var debouncedBoundsChangedEvent = debounce(() => {
         this.props.onBoundsChanged(map.getBounds())
       }, 900)
 
@@ -43,7 +43,6 @@ export default class GoogleMap extends React.Component {
         }
         debouncedBoundsChangedEvent()
       })
-
     }
 
     mapMarkers.photos.each((bin) => {
@@ -53,7 +52,7 @@ export default class GoogleMap extends React.Component {
     this.map = map
   }
 
-  render() {
+  render () {
     return <div className={this.props.containerClass || 'google-map-container'}></div>
   }
 }

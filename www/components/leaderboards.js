@@ -5,14 +5,14 @@ import FbProfilePicture from './fb-profile-picture'
 import ProfileStore from '../stores/profile-store'
 
 export default class Leaderboards extends React.Component {
-  constructor(...props) {
+  constructor (...props) {
     super(...props)
 
     this.queries = {users: user.liveQuery().find().sort('-karma').limit(30)}
     liveQueryComponent(this)
   }
 
-  render() {
+  render () {
     return <div style={{width: '100%', padding: 15}}><h3>NEJAKTIVNĚJŠÍ SBĚRAČI</h3>
       <table className='table' style={{width: '100%'}}>
         <caption>Nejlepší budou vychvalováni pravidelně na twitteru.</caption>
@@ -24,7 +24,7 @@ export default class Leaderboards extends React.Component {
         </tr>
         </thead>
         <tbody>
-        {this.state.users.map((user, i)=> {
+        {this.state.users.map((user, i) => {
           var rowStyle = {}
           if (user.fb.id === ProfileStore.id) {
             rowStyle.backgroundColor = '#987230'

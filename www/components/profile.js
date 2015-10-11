@@ -12,7 +12,7 @@ export default class Profile extends React.Component {
     super(...props)
     var id = this.props.params.id
     if (id) {
-      user.query().findOne({_id: id}).exec().promise.then((user) =>{
+      user.query().findOne({_id: id}).exec().promise.then((user) => {
           this.user = user
           this.forceUpdate()
       })
@@ -21,7 +21,7 @@ export default class Profile extends React.Component {
       observeStoreByString(this, ProfileStore, 'this.user', this.renderContent)
     }
   }
-  renderContent() {
+  renderContent () {
     if (this.user && this.user._id) {
       if (this.user.fb) {
         var profilePic = <FbProfilePicture id={this.user.fb.id} type='normal' style={{marginRight: 20}}/>
@@ -47,7 +47,7 @@ export default class Profile extends React.Component {
       </div>
     }
   }
-  render(){
+  render (){
     return <div style={{padding: 15}}>{this.renderContent()}</div>
   }
 }

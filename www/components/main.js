@@ -14,20 +14,18 @@ export default class Main extends React.Component {
     this.state = {
       showMenu: false
     }
-    observeStore(this, ()=> ProfileStore)
-
-
+    observeStore(this, () => ProfileStore)
   }
-  toggleMenu(){
+  toggleMenu () {
     this.setState({
       showMenu: !this.state.showMenu
     })
   }
-  componentDidMount(){
+  componentDidMount () {
     console.log('this.props', this.props)
     Router.mainRouter = this.context.router
   }
-  render() {
+  render () {
     const menuClasses = clNs({open: this.state.showMenu, menu: true})
 	  var toggleMenu = this.toggleMenu.bind(this)
     var backBtnStyle = {}

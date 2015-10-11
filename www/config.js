@@ -5,6 +5,7 @@ System.config({
     "blacklist": [],
     "stage": 0,
     "optional": [
+      "optimisation.modules.system",
       "es7.classProperties",
       "es7.functionBind",
       "runtime"
@@ -14,7 +15,6 @@ System.config({
     "github:*": "jspm_packages/github/*",
     "npm:*": "jspm_packages/npm/*"
   },
-  trace: true,
 
   map: {
     "ENV": "envs/dev",
@@ -31,7 +31,6 @@ System.config({
     "exif-js/exif-js": "github:exif-js/exif-js@master",
     "googlemaps/js-info-bubble": "github:capaj/js-info-bubble@master",
     "hashset.js": "npm:hashset.js@1.1.0",
-    "jsx": "npm:jspm-loader-jsx@0.0.7",
     "just-debounce": "npm:just-debounce@1.0.0",
     "lodash": "npm:lodash@3.10.1",
     "mocha": "npm:mocha@2.3.3",
@@ -200,10 +199,6 @@ System.config({
       "ieee754": "npm:ieee754@1.1.6",
       "is-array": "npm:is-array@1.0.1"
     },
-    "npm:camel-case@1.1.2": {
-      "sentence-case": "npm:sentence-case@1.1.2",
-      "upper-case": "npm:upper-case@1.1.2"
-    },
     "npm:chai@3.3.0": {
       "assertion-error": "npm:assertion-error@1.0.1",
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
@@ -326,12 +321,6 @@ System.config({
     "npm:intl-relativeformat@1.1.0": {
       "intl-messageformat": "npm:intl-messageformat@1.1.0"
     },
-    "npm:jspm-loader-jsx@0.0.7": {
-      "pascal-case": "npm:pascal-case@1.1.1",
-      "path": "github:jspm/nodelibs-path@0.1.0",
-      "react": "npm:react@0.13.3",
-      "react-hot-api": "github:gaearon/react-hot-api@0.4.5"
-    },
     "npm:jstransform@10.1.0": {
       "base62": "npm:base62@0.1.1",
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
@@ -375,10 +364,6 @@ System.config({
       "evp_bytestokey": "npm:evp_bytestokey@1.0.0",
       "pbkdf2": "npm:pbkdf2@3.0.4",
       "systemjs-json": "github:systemjs/plugin-json@0.1.0"
-    },
-    "npm:pascal-case@1.1.1": {
-      "camel-case": "npm:camel-case@1.1.2",
-      "upper-case-first": "npm:upper-case-first@1.1.1"
     },
     "npm:path-browserify@0.0.0": {
       "process": "github:jspm/nodelibs-process@0.1.2"
@@ -443,9 +428,6 @@ System.config({
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
-    "npm:sentence-case@1.1.2": {
-      "lower-case": "npm:lower-case@1.1.2"
-    },
     "npm:sha.js@2.4.4": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "fs": "github:jspm/nodelibs-fs@0.1.2",
@@ -472,9 +454,6 @@ System.config({
     },
     "npm:timers-browserify@1.4.1": {
       "process": "npm:process@0.11.2"
-    },
-    "npm:upper-case-first@1.1.1": {
-      "upper-case": "npm:upper-case@1.1.2"
     },
     "npm:url@0.10.3": {
       "assert": "github:jspm/nodelibs-assert@0.1.0",

@@ -3,13 +3,13 @@ import EXIF from 'exif-js/exif-js'
 import downscaleImage from '../js/downscale-image'
 
 export default class ImgUploader extends React.Component {
-	constructor(...props) {
+	constructor (...props) {
 		super(...props)
     this.state = {
       base64s: []
     }
 	}
-  onFilesSelected(evt) {
+  onFilesSelected (evt) {
     console.log('onFilesSelected ev', this)
 
     var self = this
@@ -17,7 +17,7 @@ export default class ImgUploader extends React.Component {
     var files = evt.target.files // FileList object
 
     // Loop through the FileList and render image files as thumbnails.
-    for (var i = 0, f f = files[i] i++) {
+    for (var i = 0, f; f = files[i]; i++) {
 
       // Only process image files.
       if (!f.type.match('image.jpeg')) {
