@@ -28,6 +28,7 @@ System.config({
     "chai": "npm:chai@3.4.0",
     "classnames": "npm:classnames@2.2.0",
     "core-js": "npm:core-js@1.2.5",
+    "diegocr/exif-js": "github:diegocr/exif-js@master",
     "exif-js/exif-js": "github:exif-js/exif-js@master",
     "googlemaps/js-info-bubble": "github:capaj/js-info-bubble@master",
     "hashset.js": "npm:hashset.js@1.1.0",

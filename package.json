@@ -19,7 +19,7 @@
       "capaj/moonridge-react-utils": "github:capaj/moonridge-react-utils@master",
       "capaj/react-observe-store": "github:capaj/react-observe-store@^0.2.1",
       "classnames": "npm:classnames@^2.1.2",
-      "exif-js/exif-js": "github:exif-js/exif-js@master",
+      "diegocr/exif-js": "github:diegocr/exif-js@master",
       "googlemaps/js-info-bubble": "github:capaj/js-info-bubble@master",
       "hashset.js": "npm:hashset.js@^1.1.0",
       "just-debounce": "npm:just-debounce@^1.0.0",
