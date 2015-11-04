@@ -1,10 +1,10 @@
-import Bootstrap from 'bootstrap'
+import 'bootstrap'
 import React from 'react'
-import Router from 'react-router'
-import ReactIntl from 'react-intl'
-var Route = Router.Route
-
-window.ReactIntl = ReactIntl
+import { Router, Route, IndexRoute } from 'react-router'
+import { render } from 'react-dom'
+import { IntlProvider, addLocaleData } from 'react-intl'
+import cs from 'react-intl/lib/locale-data/cs'
+import en from 'react-intl/lib/locale-data/en'
 
 import AddPoo from './components/add-poo'
 import AddBin from './components/add-bin'
@@ -13,28 +13,39 @@ import Main from './components/main'
 import Profile from './components/profile'
 import About from './components/about'
 import Home from './components/home'
+import injectTapEventPlugin from 'react-tap-event-plugin'
+injectTapEventPlugin()
+addLocaleData(cs)
+addLocaleData(en)
 
 const onLeave = () => {
   console.log('leaving route')
 }
 
-var routes = (
-  <Route path='/' handler={Main} onLeave={onLeave}>
-    <Route handler={Home}/>
-    <Route path='about' handler={About}/>
-    <Route path='pridat-hovno' handler={AddPoo}/>
-    <Route path='pridat-kos' handler={AddBin}/>
-    <Route path='zebricky' handler={Leaderboards}/>
-    <Route path='profil' handler={Profile}/>
-    <Route path='profil/:id' handler={Profile}/>
-    <Route path=':type/:id' handler={Home}/>
-  </Route>
-)
+class RenderForcer extends React.Component {
+  constructor () {
+    super()
+  }
+  componentWillMount () {
+    this.forceUpdate()  // a little hack to help us rerender when this module is reloaded
+  }
+  render () {
+    return <IntlProvider locale="cs">
+      <Router>
+        <Route path='/' component={Main} onLeave={onLeave}>
+          <IndexRoute component={Home}/>
+          <Route path='about' component={About}/>
+          <Route path='pridat-hovno' component={AddPoo}/>
+          <Route path='pridat-kos' component={AddBin}/>
+          <Route path='zebricky' component={Leaderboards}/>
+          <Route path='profil' component={Profile}/>
+          <Route path='profil/:id' component={Profile}/>
+          <Route path=':type/:id' component={Home}/>
+        </Route>
+      </Router>
+    </IntlProvider>
+  }
+}
 
-Router.run(routes, Router.HashLocation, (Root) => {
-  React.render(<Root/>, document.getElementById('app'))
-})
 
-System.import('jspm_packages/npm/react-intl@1.2.0/dist/locale-data/' + navigator.language)
-
-export let __hotReload = true
+render(<RenderForcer/>, document.getElementById('app'))

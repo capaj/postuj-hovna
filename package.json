@@ -25,26 +25,28 @@
       "just-debounce": "npm:just-debounce@^1.0.0",
       "lodash": "npm:lodash@^3.9.3",
       "moonridge-client": "github:capaj/Moonridge-client@^0.9.1",
-      "react": "npm:react@0.13.3",
-      "react-intl": "npm:react-intl@^1.2.0",
-      "react-router": "npm:react-router@0.13.3",
+      "react": "npm:react@0.14.2",
+      "react-dom": "npm:react-dom@^0.14.2",
+      "react-intl": "npm:react-intl@2.0.0-beta-1",
+      "react-router": "npm:react-router@1.0.0-rc4",
+      "react-tap-event-plugin": "npm:react-tap-event-plugin@^0.2.1",
       "weakee": "npm:weakee@^0.9.1"
     },
     "devDependencies": {
       "babel": "npm:babel-core@^5.8.24",
       "babel-runtime": "npm:babel-runtime@^5.8.24",
-      "capaj/jspm-hot-reloader": "github:capaj/jspm-hot-reloader@^0.1.1",
+      "capaj/jspm-hot-reloader": "github:capaj/jspm-hot-reloader@^0.3.0",
       "chai": "npm:chai@^3.0.0",
       "core-js": "npm:core-js@^1.1.4",
       "mocha": "npm:mocha@^2.2.5"
     }
   },
   "devDependencies": {
-    "chokidar-socket-emitter": "0.0.2",
+    "chokidar-socket-emitter": "^0.3.0",
     "connect-history-api-fallback": "^1.1.0",
     "gulp": "^3.9.0",
     "gulp-less": "^3.0.3",
-    "jspm": "^0.16.10",
+    "jspm": "^0.16.14",
     "less-plugin-autoprefix": "^1.4.2",
     "less-plugin-clean-css": "^1.5.0"
   },

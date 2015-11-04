@@ -1,4 +1,3 @@
-import * as bootstrap from 'bootstrap'
 import React, {PropTypes} from 'react'
 import clNs from 'classnames'
 import Router from 'react-router'
@@ -6,10 +5,8 @@ import {observeStore} from 'capaj/react-observe-store'
 import ProfileStore from '../stores/profile-store'
 import FbProfilePicture from './fb-profile-picture'
 
-const RouteHandler = Router.RouteHandler
-
 export default class Main extends React.Component {
-  constructor(...props) {
+  constructor (...props) {
     super(...props)
     this.state = {
       showMenu: false
@@ -62,12 +59,15 @@ export default class Main extends React.Component {
 
       </div>
       <div className='main' style={{textAlign: 'center', justifyContent: 'center'}}>
-        <RouteHandler/>
+        {this.props.children}
       </div>
     </div>
   }
 
   static get contextTypes(){
-    return {router: PropTypes.func.isRequired}
+    return {
+      router: PropTypes.object,
+      history: PropTypes.object
+    }
   }
 }

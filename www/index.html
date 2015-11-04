@@ -99,11 +99,17 @@
   <script src="https://cdn.polyfill.io/v1/polyfill.min.js?features=Intl.~locale.en,Intl.~locale.cs"></script>
   <script src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
   <script>
-    System.import('postuj-hovna').then(function() {
-      console.log('ran at ', new Date());
-    });
-    System.import('capaj/jspm-hot-reloader').then(function(HotReloader){
-      new HotReloader.default('http://localhost:8090')  // chokidar-socket-emitter port
+    var readyForMainLoad
+    if (location.origin.match(/local/)) {
+     System.trace = true
+     readyForMainLoad = System.import('capaj/jspm-hot-reloader').then(function(HotReloader){
+       hr = new HotReloader.default('http://localhost:8080')  // chokidar-socket-emitter port
+     })
+    }
+    Promise.resolve(readyForMainLoad).then(() => {
+     System.import('postuj-hovna').then(function () {
+       console.log('ran at ', new Date());
+     })
     })
   </script>
 

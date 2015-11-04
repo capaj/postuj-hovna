@@ -7,6 +7,7 @@ import {liveQueryComponent} from 'capaj/moonridge-react-utils'
 import gonePoosLQ from '../stores/states-store'
 import HomeFooter from './map-controls'
 import currentGps from '../stores/current-gps-location'
+import MarkerBubble from './marker-bubble'
 
 const LatLng = function(obj) {
   return new google.maps.LatLng(obj.lat, obj.lng)
@@ -84,16 +85,22 @@ export default class Home extends React.Component {
     this.setState({spinner: 1})
   }
   render() {
+    let markerSectionContent
+    if (this.state.marker) {
+      markerSectionContent = <MarkerBubble {...this.state.marker}/>
+    }
+    
     return <div className='google-map-wrapper'>
       <GoogleMap ref='mainMap' center={this.state.center} zoom={this.state.zoom}
                  onBoundsChanged={this.query} onMove={this.showSpinner}>
       </GoogleMap>
       <HomeFooter id={this.props.params.id}
                   type={this.props.params.type}
-                  nonexistent={this.state.nonexistent}
-                  gone={this.props.query.gone}
       />
-    <li className='spinner' style={{opacity: this.state.spinner}}>
+      <div className="marker-section">
+        {markerSectionContent}
+      </div>
+      <li className='spinner' style={{opacity: this.state.spinner}}>
         <div className='dot1'></div>
         <div className='dot2'></div>
       </li>

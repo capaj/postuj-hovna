@@ -1,11 +1,12 @@
-import React from 'react'
+import React, {Component} from 'react'
+import {findDOMNode} from 'react-dom'
 import debounce from 'just-debounce'
 import mapMarkers from '../stores/map-markers'
 const LatLng = function(obj) {
   return new google.maps.LatLng(obj.lat, obj.lng)
 }
 
-export default class GoogleMap extends React.Component {
+export default class GoogleMap extends Component {
   constructor(...props) {
     super(...props)
   }
@@ -27,7 +28,7 @@ export default class GoogleMap extends React.Component {
       streetViewControl: false
     }
     Object.assign(mapOptions, this.props.mapOptions)
-    var domNode = React.findDOMNode(this)
+    var domNode = findDOMNode(this)
     const map = new google.maps.Map(domNode, mapOptions)
     //const marker = new google.maps.Marker({position: this.mapCenterLatLng(), title: 'Hi', map: map})
 
